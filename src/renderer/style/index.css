@@ -1,0 +1,83 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 0;
+  -webkit-app-region: drag;
+  margin: 0;
+  background-color: var(--bg-html)
+}
+
+* {
+  -webkit-app-region: drag;
+}
+
+:root {
+  --bg-html: #202020;
+  --hover-links: #ffffff;
+  --base_links: #afafaf;
+  --dark-color: #2e2e2e;
+}
+
+nav {
+  background-color: var(--dark-color);
+  height: 48px;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.divider {
+  padding: 8px 10px;
+}
+
+.svg:hover {
+  fill: #202020;
+  background-color: #ffffff;
+}
+
+.close-svg:hover {
+  fill: white;
+  background-color: tomato;
+}
+
+.svg {
+  -webkit-app-region: no-drag;
+  padding: 10px 10px;
+  cursor: pointer;
+  fill: rgb(235, 235, 235);;
+}
+
+.left-bar {
+  display: flex;
+}
+
+
+.right-bar {
+  display: flex;
+}
+
+
+
+#url {
+  min-width: 31vw;
+  -webkit-app-region: no-drag;
+  border: none;
+  background-color: transparent;
+  border-bottom: transparent solid 1px;
+  border-radius: 1px;
+  padding: 7px 10px;
+  color: rgb(236, 236, 236);
+  outline: none;
+  font-weight: 200;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  transition:  .6s border-color;
+  cursor: pointer;
+}
+
+
+#url:hover, #url:focus {
+  border-color: rgb(255, 255, 255);
+}
