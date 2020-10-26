@@ -3,7 +3,6 @@ const main = require('electron-reload');
 const path = require('path');
 const storage = require('electron-json-storage');
 const startup = require("./startup")
-let defaultDataPath = storage.getDefaultDataPath();
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -25,18 +24,6 @@ const createWindow = () => {
     }
   });
 
-webConView = new BrowserView()
-
-mainWindow.setBrowserView(webConView)
-webConView.setBounds({ x: 0, y: 48, width: 1340, height: 748})
-startup.get_initial_url(storage).then((url) => {
-  webConView.webContents.loadURL(url)
-})
-webConView.setAutoResize({
-  width: true,
-  height: true,
-})
-
   mainWindow.on("ready-to-show", (e) => {
     mainWindow.show()
   })
@@ -51,7 +38,7 @@ webConView.setAutoResize({
   mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished

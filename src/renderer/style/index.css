@@ -11,15 +11,21 @@ body {
 }
 
 :root {
-  --bg-html: #202020;
+  --color-special-1: #ed553b;
+  --color-special-2: #f6d55c;
+  --color-special-3: #3caea3;
+  --primary-text: #fff;
+  --bg-html: rgb(41, 41, 41);
   --hover-links: #ffffff;
   --base_links: #afafaf;
-  --dark-color: #2e2e2e;
+  --bg-nav: #fff;
+  --active-fill: #fff;
 }
 
+
 nav {
-  background-color: var(--dark-color);
-  height: 48px;
+  background-color: var(--bg-nav);
+  height: 38px;
   width: 100vw;
   position: fixed;
   top: 0;
@@ -29,24 +35,25 @@ nav {
   align-items: center;
 }
 .divider {
-  padding: 8px 10px;
+  padding: 2px 10px;
 }
 
 .svg:hover {
-  fill: #202020;
-  background-color: #ffffff;
+  fill: var(--active-fill);
+  background-color:var(--bg-html);
 }
+
 
 .close-svg:hover {
   fill: white;
-  background-color: tomato;
+  background-color: var(--color-special-1);
 }
 
 .svg {
   -webkit-app-region: no-drag;
-  padding: 10px 10px;
+  padding: 10px 14px;
   cursor: pointer;
-  fill: rgb(235, 235, 235);;
+  fill: var(--bg-html);
 }
 
 .left-bar {
@@ -58,26 +65,17 @@ nav {
   display: flex;
 }
 
-
-
-#url {
-  min-width: 31vw;
-  -webkit-app-region: no-drag;
-  border: none;
-  background-color: transparent;
-  border-bottom: transparent solid 1px;
-  border-radius: 1px;
-  padding: 7px 10px;
-  color: rgb(236, 236, 236);
-  outline: none;
-  font-weight: 200;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 15px;
-  transition:  .6s border-color;
-  cursor: pointer;
+.active-link {
+  fill: var(--active-fill);
+  background-color: var(--bg-html);
 }
 
+.page-header {
+  color: var(--primary-text);
+  font-size: 26px;
+}
 
-#url:hover, #url:focus {
-  border-color: rgb(255, 255, 255);
+.container {
+  width: 88vw;
+  margin: auto;
 }
