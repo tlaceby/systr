@@ -14,6 +14,8 @@ body {
   --color-special-1: #ed553b;
   --color-special-2: #f6d55c;
   --color-special-3: #3caea3;
+  --color-special-4: #513cae;
+  --color-special-5: #ae3c4f;
   --primary-text: #fff;
   --bg-html: rgb(41, 41, 41);
   --hover-links: #ffffff;
@@ -22,8 +24,16 @@ body {
   --active-fill: #fff;
 }
 
+.color {
+    color: var(--color-special-3);
+}
+.color-2 {
+  color: var(--color-special-1);
+}
+
 
 nav {
+  z-index: 10;
   background-color: var(--bg-nav);
   height: 38px;
   width: 100vw;
@@ -78,4 +88,24 @@ nav {
 .container {
   width: 88vw;
   margin: auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: .1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(#fff)
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: transparent
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

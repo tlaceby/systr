@@ -52,6 +52,7 @@
     "electron-storage": "^1.0.7",
     "node-powershell": "^4.0.0",
     "node-wmi": "0.0.5",
+    "os-utils": "0.0.14",
     "wmic-js": "0.0.3"
   },
   "devDependencies": {

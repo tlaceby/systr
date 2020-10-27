@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="./js/main.js"></script>
     <title>Systr</title>
     <link rel="stylesheet" href="./style/index.css">
@@ -33,9 +34,27 @@
 
   
     <div id="cpu-section" class='container'>
-      <div class="page-header">CPU Overview</div>
+      <h3 class="page-header">CPU Overview</h3>
 
+      <div class="row-2">
+        <ul class="list cpu-stats-row">
+          <li>Package Name: <span class='color' id='manufacturer'>Ryzen 5 2600</span></li>
+          <li>Manufacturer: <span id='manufacturer'>AMD</span></li>
+          <li>Physical Cores: <span id='manufacturer'>6</span></li>
+          <li>Active Cores <span id='manufacturer'>12</span></li>
+          <li>CPU Utilization: <span class='color' id='utilization-cpu'>46%</span></li>
+          <li>CPU Available: <span class='color-2' id='available-cpu'>54%</span></li>
+          <li>Base Clock:: <span id='manufacturer'>3.7GHz</span></li>
+        </ul>
+        <div class='chart-sm' id="chart-long"></div>
+        <div class='chart-sm' id="chart-close"></div>
+      </div>
+      <br>
+      <br>
+      <div class='chart-lg' id="chart-minutes"></div>
+    </div>
 
+    <script src="./js/cpu_chart.js"></script>
     <script src="./js/menu/menu.js"></script>
   </body>
 </html>

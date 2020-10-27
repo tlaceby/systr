@@ -4,6 +4,8 @@ const path = require('path');
 const storage = require('electron-json-storage');
 const startup = require("./startup")
 
+var os 	= require('os-utils');
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
   app.quit();
@@ -14,11 +16,11 @@ require('electron-reload')(__dirname);
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1340,
+    width: 782,
     frame: false,
     show: false,
     autoHideMenuBar: true,
-    height: 798,
+    height: 568,
     webPreferences: {
       nodeIntegration: true,
     }
@@ -73,3 +75,24 @@ ipcMain.on("close-btn", (events, args) => {
 });
 
 
+ipcMain.on('get-cpu-usage', (events, args) => {
+  let free;
+  let used;
+
+  let cpus = os.cpuCount()
+
+  os.cpuUsage(function(v){
+    used = v * 100;
+
+    os.cpuFree(function(v){
+      free = v * 100;
+
+      events.reply("cpu-data", {
+        free: free,
+        used: used
+      })
+    });
+  });
+
+
+});
