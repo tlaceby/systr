@@ -36,7 +36,7 @@ span {
 
 .chart-lg {
     -webkit-app-region: no-drag;
-    max-height: 40vh;
+    height: 40vh;
 }
 
 .tooltip {
@@ -52,4 +52,8 @@ span {
 
 .center {
     text-align: center;
+}
+
+li span {
+    color: rgb(243, 243, 243);
 }

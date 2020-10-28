@@ -1,4 +1,5 @@
 const { app, BrowserWindow, BrowserView, ipcMain } = require('electron');
+const si = require('systeminformation');
 const main = require('electron-reload');
 const path = require('path');
 const storage = require('electron-json-storage');
@@ -34,17 +35,14 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
 
   const loading_window = new BrowserWindow({
-    minHeight: 450,
-    minWidth: 450,
-    width: 480,
+    minHeight: 170,
+    minWidth: 170,
+    width: 230,
     frame: false,
     show: false,
     autoHideMenuBar: true,
     alwaysOnTop: true,
-    height: 450,
-    webPreferences: {
-      nodeIntegration: true,
-    }
+    height: 230,
   });
 
   loading_window.loadFile(path.join(__dirname, '/renderer/loading.html'));
@@ -110,20 +108,18 @@ ipcMain.on("close-btn", (events, args) => {
 
 
 ipcMain.on('get-cpu-usage', (events, args) => {
-  let free;
-  let used;
-  let cpus = os.cpuCount()
-  os.cpuUsage(function(v){
-    used = v * 100;
-    os.cpuFree(function(v){
-      free = v * 100;
-      events.reply("cpu-data", {
-        free: free,
-        used: used
-      })
-    });
-  });
+  system.get_cpu_usage(si)
+    .then(data => {
+      events.reply("cpu-data", data)
+    })
+    .catch(err => console.log(err))
 });
+
+ipcMain.on("base-cpu-stats", (events, args) => {
+  system.get_system_info_static(si).then((system_stats) => {
+    events.reply("base-cpu-stats", system_stats)
+  }).catch((err) => console.log(err))
+})
 
 ipcMain.on("get-user-settings", (events, args) => {
   startup.get_initial_settings(storage).then(settings => {
@@ -144,6 +140,7 @@ autoUpdater.on('update-available', () => {
   mainWindow.webContents.send('update_available');
 });
 autoUpdater.on('update-downloaded', () => {
+  autoUpdater.autoInstallOnAppQuit()
   mainWindow.webContents.send('update_downloaded');
 });
 

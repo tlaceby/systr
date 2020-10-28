@@ -45,6 +45,7 @@
 
 
 ipcRenderer.on("cpu-data", (events, data) => {
+  console.log(data)
     __cpu_stats.recent_minute.free.push(data.free.toFixed(1));
     __cpu_stats.recent_minute.used.push(data.used.toFixed(1));
 
@@ -325,5 +326,5 @@ function show_elements () {
   setTimeout(() => {
     ipcRenderer.send("show_main", true)
   }
-  , 5000)
+  , 3500)
 }

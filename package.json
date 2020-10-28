@@ -71,6 +71,7 @@
     }
   },
   "dependencies": {
+    "apexcharts": "^3.22.0",
     "child_process": "^1.0.2",
     "electron-json-storage": "^4.2.0",
     "electron-reload": "^1.5.0",
@@ -80,6 +81,7 @@
     "node-powershell": "^4.0.0",
     "node-wmi": "0.0.5",
     "os-utils": "0.0.14",
+    "systeminformation": "^4.27.11",
     "wmic-js": "0.0.3"
   },
   "devDependencies": {
