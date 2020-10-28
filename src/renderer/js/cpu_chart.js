@@ -302,6 +302,8 @@ ipcRenderer.on("ready-to-render", (events, data) => {
       colors : [data.settings.theme.color_3, data.settings.theme.secondary]
 }
 
+ipcRenderer.removeAllListeners('ready-to-render');
+
 chart_used = new ApexCharts(document.querySelector("#chart-long"), options_used);
 chart_long_time = new ApexCharts(document.querySelector("#chart-minutes"), options_time);
 chart_free = new ApexCharts(document.querySelector("#chart-close"), options_free);

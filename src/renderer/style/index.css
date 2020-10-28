@@ -124,3 +124,25 @@ nav {
     margin-top: 20px;
   }
 }
+
+footer {
+  position: fixed;
+  margin: auto;
+  bottom: 0;
+}
+
+#version {
+  padding:10px 0px 5px 5px;
+  color: #5d5d5d;
+}
+
+#notification {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 200px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}

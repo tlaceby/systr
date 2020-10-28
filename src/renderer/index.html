@@ -66,8 +66,22 @@
       </div>
     </section>
 
+    <footer>
+      <div id="version"></div>
+      <div id="notification" class="hidden">
+        <p id="message"></p>
+        <button id="close-button" onClick="closeNotification()">
+          Close
+        </button>
+        <button id="restart-button" onClick="restartApp()" class="hidden">
+          Restart
+        </button>
+      </div>
+    </footer>
+
 
     <script src="./js/cpu_chart.js"></script>
     <script src="./js/menu/menu.js"></script>
+    <script src="./js/version.js"></script>
   </body>
 </html>

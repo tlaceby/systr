@@ -1,5 +1,4 @@
-
-const { ipcRenderer } = require("electron");
+const { ipcRenderer } = require('electron');
 
 
 let __cpu_stats = {

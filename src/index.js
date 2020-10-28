@@ -4,6 +4,7 @@ const path = require('path');
 const storage = require('electron-json-storage');
 const startup = require("./startup")
 const system = require("./system")
+const { autoUpdater } = require('electron-updater');
 
 var os 	= require('os-utils');
 const { start } = require('repl');
@@ -27,7 +28,7 @@ const createWindow = () => {
     height: 668,
     webPreferences: {
       nodeIntegration: true,
-    }
+    },
   });
 
   mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
@@ -49,6 +50,7 @@ const createWindow = () => {
   loading_window.loadFile(path.join(__dirname, '/renderer/loading.html'));
   
   loading_window.on("ready-to-show", (e) => {
+    autoUpdater.checkForUpdatesAndNotify();
     setTimeout(() => {
       loading_window.show()
     }, 200)
@@ -130,4 +132,21 @@ ipcMain.on("get-user-settings", (events, args) => {
   }).catch(err => {
     events.reply(err);
   });
+});
+
+
+// App updating
+ipcMain.on('app_version', (event) => {
+  event.sender.send('app_version', { version: app.getVersion() });
+});
+
+autoUpdater.on('update-available', () => {
+  mainWindow.webContents.send('update_available');
+});
+autoUpdater.on('update-downloaded', () => {
+  mainWindow.webContents.send('update_downloaded');
+});
+
+ipcMain.on('restart_app', () => {
+  autoUpdater.quitAndInstall();
 });
