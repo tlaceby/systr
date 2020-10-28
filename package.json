@@ -1,22 +1,22 @@
 {
   "name": "systr",
   "productName": "systr",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "System Tracking app for windows 10.",
   "main": "src/index.js",
   "scripts": {
-    "build": "electron-builder build --mac --win --publish never",
-    "deploy": "electron-builder build --mac --win --publish always",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-builder build --mac --win --publish never",
+    "make": "electron-builder build --win --publish never",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
     "build-installer": "electron-builder"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/tylerbadger23/systr.git"
+    "type": "git",
+    "url": "https://github.com/tylerbadger23/systr.git"
   },
   "build": {
     "appId": "system-tr",
@@ -24,7 +24,6 @@
       "target": [
         "nsis"
       ],
-      "requestedExecutionLevel": "requireAdministrator",
       "icon": "Z:/System/Electron/systr/icon.ico"
     },
     "nsis": {
@@ -84,6 +83,7 @@
     "wmic-js": "0.0.3"
   },
   "devDependencies": {
+    "electron-builder": "^22.9.1",
     "@electron-forge/cli": "^6.0.0-beta.54",
     "@electron-forge/maker-deb": "^6.0.0-beta.54",
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
