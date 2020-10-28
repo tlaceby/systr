@@ -81,12 +81,21 @@ nav {
 }
 
 .page-header {
+  margin: 0px 0px 5px 0px;
   color: var(--primary-text);
   font-size: 26px;
 }
 
+.page-header-2 {
+  color: var(--primary-text);
+  font-size: 22px;
+  font-weight: 100;
+}
+
+
+
 .container {
-  width: 88vw;
+  width: 95vw;
   margin: auto;
 }
 
@@ -108,4 +117,10 @@ nav {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+@media only screen and (max-width: 600px) {
+  .item {
+    margin-top: 20px;
+  }
 }

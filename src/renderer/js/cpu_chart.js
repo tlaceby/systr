@@ -1,5 +1,70 @@
 
-var options_used = {
+  var options_used;
+  var options_free;
+  var options_time = {
+    series: [],
+    chart: {
+    width: 300,
+    height: 250,
+    type: 'pie',
+  },
+  legend :{
+    show: false,
+  },
+  labels: ['Avalilable', 'Used'],
+  responsive: [{
+    breakpoint: 600,
+    options: {
+      chart: {
+        width: 200
+      },
+      legend: {
+        position: 'bottom'
+      }
+    }
+  }]
+  };
+
+  let chart_used;
+  let chart_long_time;
+  let chart_free;
+  
+
+
+  function update_chart_data (data_set = Array, chart, pie) {
+
+    if(pie) {
+      chart.updateSeries([data_set[0], data_set[1]], true)
+      chart.render()
+    } else {
+        chart.updateSeries([{
+            data: data_set[0]
+          }], true)
+    }
+}
+
+
+ipcRenderer.on("cpu-data", (events, data) => {
+    __cpu_stats.recent_minute.free.push(data.free.toFixed(1));
+    __cpu_stats.recent_minute.used.push(data.used.toFixed(1));
+
+    document.getElementById("utilization-cpu").innerHTML = ` ${data.used.toFixed(2)}% `
+    document.getElementById("available-cpu").innerHTML = ` ${data.free.toFixed(2)}% `
+    console.log(__cpu_stats.recent_minute)
+    if(__cpu_stats.recent_minute.free.length >= 10) {
+        __cpu_stats.recent_minute.free.shift()
+        __cpu_stats.recent_minute.used.shift()
+    }
+    update_chart_data([data.free, data.used], chart_long_time, true)
+    update_chart_data([__cpu_stats.recent_minute.free], chart_free,false)
+    update_chart_data([__cpu_stats.recent_minute.used], chart_used, false)
+});
+
+
+ipcRenderer.on("ready-to-render", (events, data) => {
+
+  Apex.colors = [data.settings.theme.secondary, data.settings.theme.color_3, data.settings.theme.primary]
+  options_used = {
     chart: {
       type: 'line'
     },
@@ -114,10 +179,11 @@ var options_used = {
     dataLabels: {
         enabled: true,
       },
-      colors : ["#3caea3", "#ed553b"]
+      colors : [data.settings.theme.primary, data.settings.theme.secondary]
   }
 
-  var options_free = {
+  
+  options_free = {
     chart: {
       type: 'line'
     },
@@ -150,7 +216,7 @@ var options_used = {
       },],
     
     tooltip: {
-        enabled: false,
+        enabled: true,
     },
     legend: {
         show: true,
@@ -159,7 +225,7 @@ var options_used = {
         show: false,
     },
     toolbar: {
-        show: false,
+        show: true,
     },
     xaxis: {
         type: 'category',
@@ -174,7 +240,7 @@ var options_used = {
             minHeight: undefined,
             maxHeight: 120,
             style: {
-                colors: [],
+                colors: ["#fff"],
                 fontSize: '12px',
                 fontFamily: 'Helvetica, Arial, sans-serif',
                 fontWeight: 400,
@@ -213,7 +279,7 @@ var options_used = {
         min: undefined,
         max: undefined,
         range: undefined,
-        floating: false,
+        floating: true,
         position: 'bottom',
         title: {
             text: undefined,
@@ -232,77 +298,21 @@ var options_used = {
     dataLabels: {
         enabled: true,
       },
-      colors: ['#f6d55c', "#ed553b"]
-  }
-
-  var options_time = {
-    series: [],
-    chart: {
-    width: 300,
-    height: 250,
-    type: 'pie',
-  },
-  legend :{
-    show: false,
-  },
-  labels: ['Avalilable', 'Used'],
-  responsive: [{
-    breakpoint: 600,
-    options: {
-      chart: {
-        width: 200
-      },
-      legend: {
-        position: 'bottom'
-      }
-    }
-  }]
-  };
-
-
-
-
-  
-  Apex.colors = ['#3caea3', "#f6d55c", "#ed553b"]
-
-  var chart_used = new ApexCharts(document.querySelector("#chart-long"), options_used);
-  
-  var chart_long_time = new ApexCharts(document.querySelector("#chart-minutes"), options_time);
-  var chart_free = new ApexCharts(document.querySelector("#chart-close"), options_free);
-  
-  chart_used.render();
-  chart_free.render();
-  chart_long_time.render()
-
-
-  function update_chart_data (data_set = Array, chart, pie) {
-
-    if(pie) {
-      chart.updateSeries([data_set[0], data_set[1]], true)
-      chart.render()
-    } else {
-        chart.updateSeries([{
-            data: data_set[0]
-          }], true)
-    }
+      colors : [data.settings.theme.color_3, data.settings.theme.secondary]
 }
 
+chart_used = new ApexCharts(document.querySelector("#chart-long"), options_used);
+chart_long_time = new ApexCharts(document.querySelector("#chart-minutes"), options_time);
+chart_free = new ApexCharts(document.querySelector("#chart-close"), options_free);
+
+chart_used.render();
+chart_free.render();
+chart_long_time.render()
+
+settings = data.settings;
   setInterval(() => {
     ipcRenderer.send("get-cpu-usage", true);
-  }, 1000)
+    
+  }, data.settings.cpu_settings.update_graph_interval)
 
-ipcRenderer.on("cpu-data", (events, data) => {
-    __cpu_stats.recent_minute.free.push(data.free.toFixed(1));
-    __cpu_stats.recent_minute.used.push(data.used.toFixed(1));
-
-    document.getElementById("utilization-cpu").innerHTML = ` ${data.used.toFixed(2)}% `
-    document.getElementById("available-cpu").innerHTML = ` ${data.free.toFixed(2)}% `
-    console.log(__cpu_stats.recent_minute)
-    if(__cpu_stats.recent_minute.free.length > 10) {
-        __cpu_stats.recent_minute.free.shift()
-        __cpu_stats.recent_minute.used.shift()
-    }
-    update_chart_data([data.free, data.used], chart_long_time, true)
-    update_chart_data([__cpu_stats.recent_minute.free], chart_free,false)
-    update_chart_data([__cpu_stats.recent_minute.used], chart_used, false)
-});
+})

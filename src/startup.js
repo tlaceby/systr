@@ -2,23 +2,57 @@ const { ipcMain } = require("electron");
 
 module.exports =  {
 
-    get_initial_url (storage) {
+    async get_initial_settings (storage) {
         return new Promise((resolve, reject) => {
-            let default_url = "https://google.com/"
+            let return_settings = {
+                theme: {
+                    name: "default",
+                    primary: "#ed553b",
+                    secondary: "#f6d55c",
+                    color_3: "#3caea3",
+                    bg: "#292929",
+                    bg_nav: "#ffffff",
+                    base_links: "#afafaf",
+                },
+                cpu_settings: {
+                    update_graph_interval: 1500,
+                    cpu_graph_length: 10,
+                    save_specs: {
+                        enabled: false,
+                        manufacturer: "undefined",
+                        cores: null,
+                        physical_cores: null,
+                    }
+                },
+                memory_settings: {
+                    memory_update_interval: 1500,
+                    memory_graph_length: 10,
+                },
+                network_settings: {
+                    network_update_interval: 1500,
+                    network_graph_length: 10,
+                },
+                
+            };
 
-            storage.get('home_url', function(error, data) {
-                if (error) reject(error);
-                if(data.url.length > 0) {
-                    resolve(data.url);
+            storage.get('user_settings', function(error, data) {
+                if (error) throw error;
+                console.log(data)
+
+                if(data.length == undefined) {
+
+                    storage.set("user_settings", return_settings, (err) => {
+                        if(err) console.log(err);
+                    })
+
+                    resolve(return_settings);
                 } else {
-                    storage.set("home_url", {url: default_url }, function(error) {
-                        if (error) reject(error);
-                        
-                        resolve(default_url)
-                      });
+                    resolve(data)
                 }
-              });
-        })
+
+            });
+            resolve(return_settings)
+        });
        
     }
 }

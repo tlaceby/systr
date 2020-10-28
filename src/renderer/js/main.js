@@ -1,4 +1,6 @@
+
 const { ipcRenderer } = require("electron");
+
 
 let __cpu_stats = {
     recent_minute: {

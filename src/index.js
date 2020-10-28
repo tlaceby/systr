@@ -3,8 +3,10 @@ const main = require('electron-reload');
 const path = require('path');
 const storage = require('electron-json-storage');
 const startup = require("./startup")
+const system = require("./system")
 
 var os 	= require('os-utils');
+const { start } = require('repl');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -16,6 +18,8 @@ require('electron-reload')(__dirname);
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    minHeight: 635,
+    minWidth: 670,
     width: 782,
     frame: false,
     show: false,
@@ -27,7 +31,9 @@ const createWindow = () => {
   });
 
   mainWindow.on("ready-to-show", (e) => {
-    mainWindow.show()
+    setTimeout(() => {
+      mainWindow.show()
+    }, 1000)
   })
 
   ipcMain.on("minimize-btn", (events, args) => {
@@ -40,7 +46,7 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -78,21 +84,24 @@ ipcMain.on("close-btn", (events, args) => {
 ipcMain.on('get-cpu-usage', (events, args) => {
   let free;
   let used;
-
   let cpus = os.cpuCount()
-
   os.cpuUsage(function(v){
     used = v * 100;
-
     os.cpuFree(function(v){
       free = v * 100;
-
       events.reply("cpu-data", {
         free: free,
         used: used
       })
     });
   });
+});
 
-
+ipcMain.on("get-user-settings", (events, args) => {
+  startup.get_initial_settings(storage).then(settings => {
+    events.reply( "recieved-settings",{settings: settings});
+    events.reply( "ready-to-render",{settings: settings});
+  }).catch(err => {
+    events.reply(err);
+  });
 });
