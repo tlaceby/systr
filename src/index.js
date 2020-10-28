@@ -20,20 +20,50 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     minHeight: 635,
     minWidth: 670,
-    width: 782,
+    width: 982,
     frame: false,
     show: false,
     autoHideMenuBar: true,
-    height: 568,
+    height: 668,
     webPreferences: {
       nodeIntegration: true,
     }
   });
 
-  mainWindow.on("ready-to-show", (e) => {
+  mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
+
+  const loading_window = new BrowserWindow({
+    minHeight: 450,
+    minWidth: 450,
+    width: 480,
+    frame: false,
+    show: false,
+    autoHideMenuBar: true,
+    alwaysOnTop: true,
+    height: 450,
+    webPreferences: {
+      nodeIntegration: true,
+    }
+  });
+
+  loading_window.loadFile(path.join(__dirname, '/renderer/loading.html'));
+  
+  loading_window.on("ready-to-show", (e) => {
     setTimeout(() => {
-      mainWindow.show()
+      loading_window.show()
+    }, 200)
+  })
+
+  ipcMain.on("show_main", (events, args) => {
+    loading_window.hide()
+    mainWindow.show()
+    setTimeout(() => {
+      mainWindow.focus()
     }, 1000)
+
+    setTimeout(() => {
+      loading_window.destroy()
+    }, 3000)
   })
 
   ipcMain.on("minimize-btn", (events, args) => {
@@ -41,10 +71,6 @@ const createWindow = () => {
   });
 
   
-
-  // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
-
   // Open the DevTools.
   //mainWindow.webContents.openDevTools();
 };

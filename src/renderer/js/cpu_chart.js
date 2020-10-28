@@ -60,8 +60,9 @@ ipcRenderer.on("cpu-data", (events, data) => {
     update_chart_data([__cpu_stats.recent_minute.used], chart_used, false)
 });
 
-
 ipcRenderer.on("ready-to-render", (events, data) => {
+  ipcRenderer.send("get-cpu-usage", true);
+
 
   Apex.colors = [data.settings.theme.secondary, data.settings.theme.color_3, data.settings.theme.primary]
   options_used = {
@@ -315,4 +316,12 @@ settings = data.settings;
     
   }, data.settings.cpu_settings.update_graph_interval)
 
+  show_elements ()
 })
+
+function show_elements () {
+  setTimeout(() => {
+    ipcRenderer.send("show_main", true)
+  }
+  , 5000)
+}
