@@ -9,7 +9,26 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "build-installer": "electron-builder"
+  },
+  "build": {
+    "appId": "system-tr",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "requestedExecutionLevel": "requireAdministrator",
+      "icon": "Z:/System/Electron/systr/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "installerIcon": "Z:/System/Electron/systr/icon.ico",
+      "uninstallerIcon": "Z:/System/Electron/systr/icon.ico",
+      "uninstallDisplayName": "systr",
+      "license": "readme.md",
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "keywords": [],
   "author": {
@@ -19,7 +38,9 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "Z:/System/Electron/systr/icon.ico"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
