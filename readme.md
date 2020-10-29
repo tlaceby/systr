@@ -1,4 +1,3 @@
-# Wasssssup!
 
 # About systr:
     * stsr is a cross platform system-analysis and monitoring app. This application shows you real time hardware information and and allow you to set custom notifications, themes, and much more. 
