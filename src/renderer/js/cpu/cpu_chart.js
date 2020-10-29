@@ -315,7 +315,12 @@ chart_long_time.render()
 
 settings = data.settings;
   setInterval(() => {
-    ipcRenderer.send("get-cpu-usage", true);
+
+    if(current_page == "cpu") {
+      ipcRenderer.send("get-cpu-usage", true);
+    } else {
+      console.log("not checking system")
+    }
     
   }, data.settings.cpu_settings.update_graph_interval)
 
@@ -326,5 +331,5 @@ function show_elements () {
   setTimeout(() => {
     ipcRenderer.send("show_main", true)
   }
-  , 3500)
+  , 3900)
 }

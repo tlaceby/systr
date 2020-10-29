@@ -15,7 +15,7 @@ module.exports =  {
                     base_links: "#afafaf",
                 },
                 cpu_settings: {
-                    update_graph_interval: 1500,
+                    update_graph_interval: 3500,
                     cpu_graph_length: 10,
                     save_specs: {
                         enabled: false,
@@ -25,11 +25,11 @@ module.exports =  {
                     }
                 },
                 memory_settings: {
-                    memory_update_interval: 1500,
+                    memory_update_interval: 3000,
                     memory_graph_length: 10,
                 },
                 network_settings: {
-                    network_update_interval: 1500,
+                    network_update_interval: 3000,
                     network_graph_length: 10,
                 },
                 
@@ -49,7 +49,7 @@ module.exports =  {
                 } else {
                     resolve(data)
                 }
-
+                
             });
             resolve(return_settings)
         });

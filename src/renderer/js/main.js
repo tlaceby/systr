@@ -38,3 +38,5 @@ let __disk_stats = {
         used: [],
     },static: {}
 };
+
+let current_page = "cpu";

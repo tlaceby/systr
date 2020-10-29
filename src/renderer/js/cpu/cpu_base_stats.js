@@ -20,7 +20,7 @@ ipcRenderer.on("base-cpu-stats", (events, data) => {
 
     cpu_name.innerHTML = ` ${data.cpu.brand}`
     cpu_manufacturer.innerHTML = ` ${data.cpu.manufacturer}`
-    cpu_cores_physical = ` ${data.cpu.physicalCores}`
+    cpu_cores_physical.innerHTML = ` ${data.cpu.physicalCores}`
     cpu_total_cores.innerHTML = ` ${data.cpu.cores}`
     cpu_base_clock.innerHTML = ` ${data.cpu.speed}GHz`
 });

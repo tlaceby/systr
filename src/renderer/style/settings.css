@@ -1,0 +1,26 @@
+.settings-navigation {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 0px;
+}
+
+.settings-links {
+    padding: 8px 16px;
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+    color: #d3d3d3;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    transition: color .6s;
+}
+
+.settings-links:hover {
+    color:#ffffff;
+}
+
+.left-gap {
+    margin-left: 20px;
+}

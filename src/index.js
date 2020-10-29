@@ -15,7 +15,7 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
   app.quit();
 }
 
-require('electron-reload')(__dirname);
+//require('electron-reload')(__dirname);
 
 const createWindow = () => {
   // Create the browser window.
@@ -72,7 +72,7 @@ const createWindow = () => {
 
   
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
