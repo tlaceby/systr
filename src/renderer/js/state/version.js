@@ -6,6 +6,12 @@ const version = document.getElementById('version');
       version.innerText = `version ${arg.version} systr.tech`;
     })
 
-    app.on("update_available", console.log("Update Available! Starting download now!"))
+    app.on("update_available", (e) => {
+      console.log("Update Found We will let you know when it is finished")
+      alert("Update Found We will let you know when it is finished")
+    })
 
-    app.on("update-downloaded", console.log("Update Downloaded! Install to Take Effect"))
+    app.on("update-downloaded", (e) => {
+      console.log("Update Downloaded! Install to Take Effect")
+      alert("Update Has finished downloading! Restart the app to make changes final.")
+    })
