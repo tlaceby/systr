@@ -45,13 +45,13 @@
 
 
 ipcRenderer.on("cpu-data", (events, data) => {
-  console.log(data)
+  
     __cpu_stats.recent_minute.free.push(data.free.toFixed(1));
     __cpu_stats.recent_minute.used.push(data.used.toFixed(1));
 
     document.getElementById("utilization-cpu").innerHTML = ` ${data.used.toFixed(2)}% `
     document.getElementById("available-cpu").innerHTML = ` ${data.free.toFixed(2)}% `
-    console.log(__cpu_stats.recent_minute)
+    
     if(__cpu_stats.recent_minute.free.length >= 10) {
         __cpu_stats.recent_minute.free.shift()
         __cpu_stats.recent_minute.used.shift()

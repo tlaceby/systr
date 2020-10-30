@@ -53,7 +53,7 @@
         </div>
         <br>
   
-        <div class="row-2">
+        <div class="row-2 break-hide">
           <div class="item">
             <p class='center tooltip'>% Used</p>
             <div class='chart-sm' id="chart-long"></div>
@@ -69,13 +69,68 @@
 
     <section id="settings-section" class='hidden'>
       <h3 class="page-header m-top-60 left-gap">Settings</h3>
-        <ul class="settings-navigation">
-          <li class='settings-links'>Notifications</li>
-          <li class='settings-links'>Theme</li>
-          <li class='settings-links'>Performance</li>
-          <li class='settings-links'>Data</li>
-          <li class='settings-links'>Extra</li>
-        </ul>
+
+      <div class="settings-row">
+
+        <div class="settings-column">
+          <h3 class='header-sm'>Update Interval</h3>
+          <div class="setting-item">
+            <p class='item-header'>Memory Data Update Interval</p>
+            <input class='input-item md-input' type="number" id="memory_update_interval" value='5000'>
+          </div>
+          <div class="setting-item">
+            <p class='item-header'>GPU Data Update Interval</p>
+            <input class='input-item md-input' type="number" id="gpu_update_interval" value='4000'>
+          </div>
+          <div class="setting-item">
+            <p class='item-header'>CPU Data Update Interval</p>
+            <input class='input-item md-input' type="number" id="cpu_update_interval" value='3000'>
+          </div>
+        </div>
+
+        <div class="settings-column">
+          <h3 class='header-sm'>Notification Threshold</h3>
+          <div class="setting-item">
+            <p class='item-header'>Memory Max Usage</p>
+            <input class='input-item sm-input' type="text" id="memory_notification" value='40%'>
+          </div>
+          <div class="setting-item">
+            <p class='item-header'>CPU Max Usage</p>
+            <input class='input-item sm-input' type="text" id="cpu_notification" value='80%'>
+          </div>
+          <div class="setting-item">
+            <label class='item-header'>Network Traffic Notification</label>
+
+            <select class='input-item lg-input' id="network-usage">
+              <option value="Memory">Light Traffic >= 4mb / Minute</option>
+              <option value="GPU">Moderate Traffic >= 100mb / Minute</option>
+              <option value="Network & Disk">Heavy Traffic >= 100mb / Minute</option>
+              <option value="System Overview">Super Heavy Traffic >= 500mb / Minute</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="settings-column">
+          <h3 class='header-sm'>Startup Preferences</h3>
+          <div class="setting-item">
+            <label class='item-header lg-input'>Load Profile First</label>
+
+            <select class='input-item' id="load-profile">
+              <option value="CPU">CPU</option>
+              <option value="Memory">Memory</option>
+              <option value="GPU">GPU</option>
+              <option value="Network & Disk">Network & Disk</option>
+              <option value="System Overview">System Overview</option>
+            </select>
+          </div>
+
+          <div class="settings-item">
+            <p class='item-header'>Open <i>systr</i> on startup</p>
+            <input class='input-item' type="checkbox" id="open-at-startup">
+          </div>
+        </div>
+
+      </div>
 
         
     </section>

@@ -6,6 +6,15 @@
     margin-top: 0px;
 }
 
+li, span, input, p, select, label {
+    -webkit-app-region: no-drag;
+    cursor: pointer;
+}
+
+.setting-item {
+    -webkit-app-region: no-drag;
+}
+
 .settings-links {
     padding: 8px 16px;
     text-decoration: none;
@@ -24,3 +33,62 @@
 .left-gap {
     margin-left: 20px;
 }
+
+.settings-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    width: 95vw;
+
+}
+
+.header-sm  {
+    color: #f3f3f3;
+}
+
+.item-header {
+    color: #d3d3d3;
+    display: block;
+    margin: 0 0px 10px 5px;
+}
+
+.input-item {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 0;
+    border-radius: 4px;
+    margin: 0px 0px 20px 10px;
+    outline: none;
+}
+
+.lg-input  {
+    max-width: 300px ;
+}
+
+.md-input  {
+    max-width: 90px ;
+}
+
+.sm-input  {
+    max-width: 70px ;
+}
+
+    .animate-in {
+        animation: anim 2.5s ease-in-out;
+    }
+  @keyframes anim {
+    0% {
+      transform: translateX(100%);
+    }
+    14.28% {
+      transform: translateX(0);
+    }
+    85.71% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }

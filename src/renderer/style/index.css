@@ -1,14 +1,16 @@
+
+
 body {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  padding: 0;
-  -webkit-app-region: drag;
   margin: 0;
-  background-color: var(--bg-html)
+  background-color: var(--bg-html);
+  -webkit-app-region: no-drag;
 }
 
-* {
-  -webkit-app-region: drag;
-}
+
 
 :root {
   --color-special-1: #ed553b;
@@ -43,6 +45,7 @@ nav {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  -webkit-app-region: drag;
 }
 .divider {
   padding: 2px 10px;
@@ -119,9 +122,17 @@ nav {
   background: #555;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 770px) {
   .item {
     margin-top: 20px;
+  }
+
+  .break-hide {
+    margin-top: 50px;
+  }
+
+  .page-header {
+    margin-top: 60px;
   }
 }
 
@@ -134,6 +145,7 @@ footer {
 #version {
   padding:10px 0px 5px 5px;
   color: #5d5d5d;
+  font-size: 12px;
 }
 
 .hidden{

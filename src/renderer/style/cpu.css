@@ -11,6 +11,7 @@
 
 li {
     padding: 2px;
+    list-style: none;
     font-weight: 400;
     color: rgb(255, 255, 255);
     font-size: 17px;
