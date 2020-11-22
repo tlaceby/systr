@@ -68,7 +68,6 @@
     }
   },
   "dependencies": {
-    "apexcharts": "^3.22.0",
     "child_process": "^1.0.2",
     "dotenv": "^8.2.0",
     "electron-json-storage": "^4.2.0",
