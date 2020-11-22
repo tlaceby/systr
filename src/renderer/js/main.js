@@ -1,42 +1,7 @@
 const { ipcRenderer } = require('electron');
-let ApexCharts = require("apexcharts");
-console.time("startup")
-let __cpu_stats = {
-    recent_minute: {
-        free: [],
-        used: [],
-    },static: {}
-};
-let __memory_stats = {
-    recent_minute: {
-        free: [],
-        used: [],
-    },static: {}};
-let __graphics_stats = {
-    recent_minute: {
-        free: [],
-        used: [],
-    },static: {}
-};
-
-let __os_stats = {
-    recent_minute: {
-        free: [],
-        used: [],
-    },static: {}};
-
-let __network_stats = {
-    recent_minute: {
-        free: [],
-        used: [],
-    },static: {}
-};
-
-let __disk_stats = {
-    recent_minute: {
-        free: [],
-        used: [],
-    },static: {}
-};
-
+let ThemeSettings, PerformanceSettings;
+/**
+ * This is a string that contains the name of the current page in view of the renderer.Default is "cpu", however this can change due to settings as well.
+ * @global
+ */
 let current_page = "cpu";

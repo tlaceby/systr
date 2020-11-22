@@ -1,25 +1,26 @@
 const { app, BrowserWindow, BrowserView, ipcMain } = require('electron');
 const si = require('systeminformation');
-const main = require('electron-reload');
 const path = require('path');
 const storage = require('electron-json-storage');
 const startup = require("./startup")
 const system = require("./system")
-const { autoUpdater } = require('electron-updater');
+
+let mainWindow;
 
 var os 	= require('os-utils');
-const { start } = require('repl');
+const main = require('electron-reload');
+require('dotenv').config()
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
   app.quit();
 }
 
-//require('electron-reload')(__dirname);
+require('electron-reload')(__dirname);
 
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     minHeight: 635,
     minWidth: 670,
     width: 982,
@@ -32,7 +33,7 @@ const createWindow = () => {
     },
   });
 
-  mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
+  mainWindow.webContents.openDevTools()
 
   const loading_window = new BrowserWindow({
     minHeight: 170,
@@ -48,31 +49,24 @@ const createWindow = () => {
   loading_window.loadFile(path.join(__dirname, '/renderer/loading.html'));
   
   loading_window.on("ready-to-show", (e) => {
-    autoUpdater.checkForUpdatesAndNotify();
+    mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
     setTimeout(() => {
       loading_window.show()
-    }, 200)
+    }, 100)
   })
 
-  ipcMain.on("show_main", (events, args) => {
-    loading_window.hide()
-    mainWindow.show()
-    setTimeout(() => {
-      mainWindow.focus()
-    }, 1000)
-
-    setTimeout(() => {
-      loading_window.destroy()
-    }, 3000)
+  mainWindow.on('ready-to-show', (e) => {
+    mainWindow.show();
+    loading_window.destroy();
+    mainWindow.focus()
   })
 
   ipcMain.on("minimize-btn", (events, args) => {
     mainWindow.minimize()
   });
+                        
 
   
-  // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -106,7 +100,6 @@ ipcMain.on("close-btn", (events, args) => {
   app.quit()
 });
 
-
 ipcMain.on('get-cpu-usage', (events, args) => {
   system.get_cpu_usage(si)
     .then(data => {
@@ -128,22 +121,4 @@ ipcMain.on("get-user-settings", (events, args) => {
   }).catch(err => {
     events.reply(err);
   });
-});
-
-
-// App updating
-ipcMain.on('app_version', (event) => {
-  event.sender.send('app_version', { version: app.getVersion() });
-});
-
-autoUpdater.on('update-available', () => {
-  mainWindow.webContents.send('update_available');
-});
-autoUpdater.on('update-downloaded', () => {
-  autoUpdater.autoInstallOnAppQuit()
-  mainWindow.webContents.send('update_downloaded');
-});
-
-ipcMain.on('restart_app', () => {
-  autoUpdater.quitAndInstall();
 });
