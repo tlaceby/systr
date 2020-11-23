@@ -1,0 +1,1 @@
+# Might experiement using python scripts for opening app on startup
