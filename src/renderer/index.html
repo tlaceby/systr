@@ -60,6 +60,28 @@
             <p class='item-header'>CPU Data Update Interval</p>
             <input class='input-item md-input' type="number" id="cpu_update_interval" value='3000'>
           </div>
+
+          <h3 class='header-sm'>Theme Preferences</h3>
+          <div class="setting-item">
+            <label class='item-header lg-input'>Color Theme</label>
+
+            <select class='input-item' id="color-theme">
+              <option value="Dark">Dark</option>
+              <option value="Light">Light</option>
+              <option value="Match Time">Match Time</option>
+              <option disabled value="Custom">Custom</option>
+            </select>
+
+            <label class='item-header lg-input'>Layout Profile</label>
+            <select class='input-item' id="layout-profile">
+              <option value="Default">Default</option>
+              <option value="Minimal">Minimal</option>
+              <option value="Data Heavy">Data Heavy</option>
+              <option disabled value="Custom">Custom</option>
+            </select>
+          </div>
+          
+
         </div>
 
         <div class="settings-column">
@@ -76,10 +98,24 @@
             <label class='item-header'>Network Traffic Notification</label>
 
             <select class='input-item lg-input' id="network-usage">
-              <option value="Memory">Light Traffic >= 4mb / Minute</option>
-              <option value="GPU">Moderate Traffic >= 100mb / Minute</option>
-              <option value="Network & Disk">Heavy Traffic >= 100mb / Minute</option>
-              <option value="System Overview">Super Heavy Traffic >= 500mb / Minute</option>
+              <option value="Light Traffic >= 4mb / Minute">Light Traffic >= 4mb / Minute</option>
+              <option value="Moderate Traffic >= 10mb / Minute">Moderate Traffic >= 10mb / Minute</option>
+              <option value="Heavy Traffic >= 60mb / Minutek">Heavy Traffic >= 60mb / Minute</option>
+              <option value="Super Heavy Traffic >= 300mb / Minute">Super Heavy Traffic >= 300mb / Minute</option>
+            </select>
+          </div>
+
+          <h3 class='header-sm'>System & App Performance</h3>
+          <div class="setting-item">
+            <label class='item-header lg-input'>App Performance</label>
+
+            <select class='input-item' id="app-performance-mode">
+              <option value="Default - Most Machines">Default - Most Machines</option>
+              <option value="Optimized: All Machines">Optimized: All Machines</option>
+              <option value="Optimized: Slower Machines">Optimized: Slower Machines</option>
+              <option value="Optimized: Most Machines">Optimized: Most Machines</option>
+              <option value="Optimized: Faster Machines">Optimized: Faster Machines</option>
+              <option disabled value="Custom">Custom</option>
             </select>
           </div>
         </div>
@@ -96,15 +132,23 @@
               <option value="Network & Disk">Network & Disk</option>
               <option value="System Overview">System Overview</option>
             </select>
+
+            <label class='item-header lg-input'>Cache Previous Data</label>
+            <select class='input-item' id="allow-previous-cache">
+              <option value="Allow">Allow</option>
+              <option value="Minimal">Disable</option>
+            </select>
           </div>
+          
 
           <div class="settings-item">
             <p class='item-header'>Open <i>systr</i> on startup</p>
             <input class='input-item' type="checkbox" id="open-at-startup">
           </div>
         </div>
-
+        
       </div>
+      <br>
 
         
     </section>

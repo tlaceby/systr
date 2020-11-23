@@ -33,7 +33,7 @@ const createWindow = () => {
     },
   });
 
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   const loading_window = new BrowserWindow({
     minHeight: 170,
@@ -56,9 +56,11 @@ const createWindow = () => {
   })
 
   mainWindow.on('ready-to-show', (e) => {
-    mainWindow.show();
-    loading_window.destroy();
-    mainWindow.focus()
+    setTimeout(() => {
+      mainWindow.show();
+      loading_window.destroy();
+      mainWindow.focus();
+    }, 1500)
   })
 
   ipcMain.on("minimize-btn", (events, args) => {

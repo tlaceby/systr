@@ -84,16 +84,30 @@
                 network_settings: {
                     network_update_interval: 3000,
                     network_graph_length: 10,
+                    network_traffic_threshold : "Light Traffic >= 4mb / Minute"
+                },
+                gpu_settings: {
+                    gpu_update_interval: 3000,
                 },
                 theme: {
-                    name : 'default',
+                    name : 'Dark',
                     startup_preferences : "CPU",
-                    primary :  "#ed553b",
-                    secondary : "#f6d55c",
-                    color_3 : "#3caea3",
-                    bg : "#292929",
-                    bg_nav : "#ffffff",
-                    base_links :  "#afafaf",
+                    layout_profile: "Default",
+                    dark_theme: {
+                        color1 :  "#ed553b",
+                        color2 : "#f6d55c",
+                        color3 : "#3caea3",
+                        primary_text: "#ffffff",
+                        secondary_text: "#d3d3d3",
+                        third_text : "#f3f3f3",
+                        bg : "#292929",
+                        bg_nav : "#ffffff",
+                        base_links :  "#afafaf",
+                    },
+                },
+                app_performance: {
+                    allow_caching: true,
+                    performance_mode: "Default - Most Machines"
                 }
             }
 

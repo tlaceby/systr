@@ -20,14 +20,14 @@ li, span, input, p, select, label {
     text-decoration: none;
     list-style: none;
     cursor: pointer;
-    color: #d3d3d3;
+    color: var(--secondary-text);
     border: 0;
     border-bottom: 2px solid transparent;
     transition: color .6s;
 }
 
 .settings-links:hover {
-    color:#ffffff;
+    color: ar(--primary-text);
 }
 
 .left-gap {
@@ -37,7 +37,6 @@ li, span, input, p, select, label {
 .settings-row {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: space-between;
     margin: auto;
     width: 95vw;
@@ -45,11 +44,14 @@ li, span, input, p, select, label {
 }
 
 .header-sm  {
-    color: #f3f3f3;
+    font-style: italic;
+    color: var(--third-text);
+    font-weight: 400;
 }
 
 .item-header {
-    color: #d3d3d3;
+    font-weight: 100;
+    color: var(--secondary-text);
     display: block;
     margin: 0 0px 10px 5px;
 }
@@ -61,6 +63,10 @@ li, span, input, p, select, label {
     border-radius: 4px;
     margin: 0px 0px 20px 10px;
     outline: none;
+}
+
+.input-item:hover {
+    background-color: var(--third-text);
 }
 
 .lg-input  {
