@@ -1,11 +1,11 @@
 
 
 body {
-  overflow: hidden;
   height: 100vh;
   width: 100vw;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
+  overflow: visible;
   background-color: var(--bg-html);
   -webkit-app-region: no-drag;
 }
@@ -100,28 +100,30 @@ nav {
 
 
 .container {
-  width: 95vw;
+  width: 90vw;
   margin: auto;
 }
 
 /* width */
 ::-webkit-scrollbar {
   width: .1px;
+  background-color: transparent;
+  color: transparent;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(#fff)
+  background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: transparent
+  background: transparent;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: transparent;
 }
 
 @media only screen and (max-width: 770px) {

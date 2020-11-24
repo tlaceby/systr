@@ -36,6 +36,7 @@ li, span, input, p, select, label {
 
 .settings-row {
     display: flex;
+    overflow: visible;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: auto;
@@ -82,7 +83,8 @@ li, span, input, p, select, label {
 }
 
     .animate-in {
-        animation: anim 2.5s ease-in-out;
+        background-color: var(--bg-html);
+        animation: anim 1.5s ease-in-out;
     }
   @keyframes anim {
     0% {
@@ -97,4 +99,23 @@ li, span, input, p, select, label {
     100% {
       transform: translateX(100%);
     }
+  }
+
+
+@media only screen and (max-width: 860px) {
+    
+    .settings-row {
+        display:grid;
+        margin-top: 120px;
+        grid-template-columns: 50% 50%;
+        margin: auto;
+        width: 86vw;
+    
+    }
+
+    .top-row {
+        margin-top: 30px;
+    }
+
+
   }
