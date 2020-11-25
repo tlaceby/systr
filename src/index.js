@@ -50,17 +50,15 @@ const createWindow = () => {
   
   loading_window.on("ready-to-show", (e) => {
     mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
-    setTimeout(() => {
-      loading_window.show()
-    }, 100)
+    loading_window.show();
   })
 
   mainWindow.on('ready-to-show', (e) => {
     setTimeout(() => {
-      mainWindow.show();
       loading_window.destroy();
+      mainWindow.show();
       mainWindow.focus();
-    }, 1500)
+    }, 650)
   })
 
   ipcMain.on("minimize-btn", (events, args) => {

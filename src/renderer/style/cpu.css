@@ -2,7 +2,7 @@
     -webkit-app-region: no-drag;
     margin-top: 60px;
     width: 90vw;
-    overflow: visible
+    overflow: visible;
 }
 
 .page-header {
@@ -65,7 +65,37 @@ table {
     width: 90%;
 }
 
+.table-recent-data {
+    width: 300px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.table-recent-data tr, .table-recent-data td, .table-recent-data th{
+    background-color: var(--bg-html);
+    transition: .8s background-color;
+    border: #565656 1px solid;
+    color: rgb(192, 192, 192);
+}
+
+.table-recent-data tr:hover, .table-recent-data td:hover, .table-recent-data th{
+    background-color: #3d3d3d;
+    border: 1px solid #565656;
+    cursor: pointer;
+}
+
+.table-recent-data th {
+    background-color: var(--color-special-3);
+    border: transparent;
+    color: rgb(10, 10, 10);
+    font-weight: 400;
+    font-style: italic;
+}
+
+
 th, td {
+    width:1%;
+    white-space:nowrap;
     outline: none;
     margin: 0;
     padding: 14px  6px;

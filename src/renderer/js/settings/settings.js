@@ -68,14 +68,9 @@
         set_default_settings() {
             this.settings = {
                 cpu_settings: {
-                    update_graph_interval: 3500,
+                    update_interval: 3500,
                     cpu_graph_length: 10,
-                    save_specs: {
-                        enabled: false,
-                        manufacturer: "undefined",
-                        cores: null,
-                        physical_cores: null,
-                    }
+                    save_specs: false,
                 },
                 memory_settings: {
                     memory_update_interval: 3000,

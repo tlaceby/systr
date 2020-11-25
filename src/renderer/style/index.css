@@ -56,6 +56,7 @@ nav {
 .svg:hover {
   fill: var(--active-fill);
   background-color:var(--bg-html);
+  cursor: pointer;
 }
 
 
@@ -81,6 +82,7 @@ nav {
 }
 
 .active-link {
+  cursor: pointer;
   fill: var(--active-fill);
   background-color: var(--bg-html);
 }
@@ -107,6 +109,7 @@ nav {
 /* width */
 ::-webkit-scrollbar {
   width: .1px;
+  height: .1px;  
   background-color: transparent;
   color: transparent;
 }
