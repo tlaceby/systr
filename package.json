@@ -7,6 +7,7 @@
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
+    "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
     "build-installer": "electron-builder"
@@ -21,7 +22,7 @@
       "target": [
         "nsis"
       ],
-      "icon": "Z:/System/Electron/systr/icon.ico"
+      "icon": "/Users/tylerlaceby/Documents/systr/icon.ico"
     },
     "nsis": {
       "oneClick": false,
@@ -41,7 +42,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "Z:/System/Electron/systr/icon.ico"
+        "icon": "/Users/tylerlaceby/Documents/systr/icon.ico"
       },
       "makers": [
         {
@@ -73,11 +74,10 @@
     "electron-json-storage": "^4.2.0",
     "electron-reload": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0",
-    "electron-updater": "^4.3.5",
+
     "node-powershell": "^4.0.0",
     "os-utils": "0.0.14",
-    "systeminformation": "^4.27.11",
-    "update-electron-app": "^2.0.1"
+    "systeminformation": "^4.27.11"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",

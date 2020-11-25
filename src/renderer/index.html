@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <script src="./js/components/RenderData.js"></script>
+    <script src="./js/config.js"></script>
     <script src="./js/settings/settings.js"></script>
     <script src="./js/components/CpuController.js"></script>
     
-    <script src="./js/main.js"></script>
+    <script defer src="./js/main.js"></script>
     <title>systr</title>
     <link rel="stylesheet" href="./style/index.css">
     <link rel="stylesheet" href="./style/settings.css">
@@ -45,17 +45,17 @@
             <h4 class='lg-header'>Specifications</h4>
             <table class='table-specs' id='cpu-specs-table'>
               <tr>
-                <td class='lg-table table-elem'><span class='header-table'>Name </span><span class='table-sub' id='processor-name'> AMD Ryzen 5 2600 @ 3.7GHz</span></td>
+                <td class='lg-table table-elem'><span class='header-table'>Name </span><span class='table-sub' id='processor-name'> AMD Ryzen 5 xsxs2600 @ 3.7GHz</span></td>
                 <td class='sm-table table-elem'><span class='header-table'>Utilization </span><span  class='table-sub color-3' id='processor-utilization'> 46%</span></td>
                 
               </tr>
               <tr>
-                <td class='normal-table table-elem'><span class='header-table'>Model </span><span class='table-sub' id='cpu-make'> Ryzen 5 2600 </span></td>
-                <td class='normal-table table-elem'><span class='header-table'>Cores </span><span class='table-sub' id='cpu-cores-stats'> 16 Physical, 24 Logical </span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Model </span><span class='table-sub' id='cpu-make'> Ryzen 5 2600xs </span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Cores </span><span class='table-sub' id='cpu-cores-stats'> 16 Physical, 24xsxs Logical </span></td>
               </tr>
               <tr>
                 <td class='normal-table table-elem'><span class='header-table'>Manufacturer </span><span class='table-sub' id='cpu-maker'> AMD </span></td>
-                <td class='normal-table table-elem'><span class='header-table'>Min Clock </span><span class='table-sub color-2' id='cpu-clock-base'> 3.7GHz</span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Min Clock </span><span class='table-sub color-2' id='cpu-clock-base'> 3.7fdffGHz</span></td>
               </tr>
             </table>
         </div>
@@ -78,8 +78,8 @@
 
       <div class="table-recent">
         <h4 class='lg-header'>Recent Usage</h4>
-        <table class='table-recent-data' id='cpu-recent-data float-l-lg'>
-          <tr>
+        <table class='table-recent-data' id='cpu-recent-data'>
+          <tr id='time-tr'>
             <th>Time</th>
             <td class='lg-table table-elem'>Current</td>
             <td class='lg-table table-elem'>5s</td>
@@ -92,7 +92,7 @@
             <td class='lg-table table-elem'>40s</td>
             
           </tr>
-          <tr>
+          <tr id='available-tr'>
             <th>Available</th>
             <td class='sm-table table-elem'>46.5%</td>
             <td class='sm-table table-elem'>53.5%</td>
@@ -105,7 +105,7 @@
             <td class='sm-table table-elem'>59.5%</td> 
             
           </tr>
-          <tr>
+          <tr id='used-tr'>
             <th>Used</th>
             <td class='lg-table table-elem'>38%</td>
             <td class='sm-table table-elem'>46.5%</td>
@@ -248,5 +248,6 @@
     <script src="./js/menu/menu.js"></script>
     <script src="./js/cpu/update_cpu_stats.js"></script>
     <script src="./js/state/StateManager.js"></script>
+    <script src="./js/cpu/change_table_data.js"></script>
   </body>
 </html>

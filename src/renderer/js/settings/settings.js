@@ -5,16 +5,12 @@
      */
     class _Settings {
         constructor(ipcRenderer) {
-            return new Promise(async (resolve, reject) => {
-                this.ipcRenderer = ipcRenderer;
-                this.ready = false;
-                this.settings = {}
-                this.configure_settings().then(finished => {
-                    this.set_default_settings().then(finished => {
-                        resolve(this.settings);
-                    })
-                })
-            })
+            this.ipcRenderer = ipcRenderer;
+            this.ready = false;
+            this.settings = {}
+            
+            this.configure_settings();
+           
         }
 
         /**
@@ -114,14 +110,14 @@
                 }
     
                 localStorage.setItem("settings", JSON.stringify(this.settings));
-                
+                this.ready = true;
                 resolve();
             })
 
         }
 
-        
     
 
     }
 
+let _settings = new _Settings(ipcRenderer);
