@@ -8,8 +8,6 @@ const system = require("./system")
 let mainWindow;
 
 var os 	= require('os-utils');
-const main = require('electron-reload');
-require('dotenv').config()
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -53,13 +51,12 @@ const createWindow = () => {
     loading_window.show();
   })
 
-  mainWindow.on('ready-to-show', (e) => {
+  ipcMain.on('show-app', (events, data) => {
+    loading_window.destroy();
     setTimeout(() => {
-      loading_window.destroy();
       mainWindow.show();
-      mainWindow.focus();
-    }, 650)
-  })
+    }, 100)
+  });
 
   ipcMain.on("minimize-btn", (events, args) => {
     mainWindow.minimize()

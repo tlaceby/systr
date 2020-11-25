@@ -13,5 +13,3 @@ function close_app () {
 function minimize_app () {
     ipcRenderer.send("minimize-btn", true);
 }
-
-console.log(Settings.get_all());

@@ -6,7 +6,6 @@
  * @param osutil is a npm module for finding network and memory usage.
  * @param default_interval is the default interval the cpu should be getting new data with.
  */
-
 class _CPU {
     constructor (si, osutil, default_interval) {
         // Required Modules
@@ -26,14 +25,22 @@ class _CPU {
         this.brand;
 
         //Recent Data
-        this.most_recent = {free: 100, used: 0};
+        this.most_recent = {free: 100, used: 0.01, system: 0.1, user: 0.19};
         this.recent = {free: [], used: [], time: []};
 
         this.interval_timer = undefined;
 
-        this.get_base_stats();
-        this.start_running_interval_timer();
-        // Timer can be added and removed from this object at any time throughtb the classes lifecycle
+        return new Promise((resolve, reject) => {
+
+            this.get_base_stats().then(() => {
+                this.start_running_interval_timer().then(() => {
+                    resolve(true)
+                })
+            })
+
+            // Timer can be added and removed from this object at any time throughtb the classes lifecycle
+        })
+        
     }
 
     /**
@@ -42,29 +49,32 @@ class _CPU {
     @async
     @returns A Promise containin nothing unless a error occurs.
      */
-    async get_base_stats () {
-        return new Promise(async (resolve, reject) => {
-            await this.si.cpu().then(data => {
+    get_base_stats () {
+        return new Promise((resolve, reject) => {
+            this.si.cpu().then(data => {
                 this.manufacturer = data.manufacturer;
                 this.brand = data.brand;
                 this.base_clock = data.speed;
                 this.physical_cores = data.physicalCores;
                 this.cores = data.cores;
+
+                this.si.currentLoad().then(data => {
+                    this.recent.used.unshift(parseFloat(data.currentload.toFixed(2)));
+                    this.recent.free.unshift(100 - data.currentload.toFixed(2));
+                    this.recent.time.unshift(Date.now());
+    
+                    this.most_recent.free = 100 - data.currentload.toFixed(2);
+                    this.most_recent.used = parseFloat(data.currentload.toFixed(2));
+                    this.most_recent.user = parseFloat(data.currentload_user.toFixed(2));
+                    this.most_recent.system = parseFloat(data.currentload_system.toFixed(2));
+
+                    resolve();
+                    console.log('finished')
+                    console.log(this.most_recent)
+                }).catch(err => reject(err));
                 
             }).catch(err => reject(err)); 
 
-            await this.si.currentLoad().then(data => {
-                this.recent.used.unshift(data.currentload.toFixed(2));
-                this.recent.free.unshift(100 - data.currentload.toFixed(2));
-                this.recent.time.unshift(Date.now());
-
-                this.most_recent.free = 100 - data.currentload.toFixed(2);
-                this.most_recent.used = data.currentload.toFixed(2);
-                
-            }).catch(err => reject(err));
-
-
-            resolve();
 
         });
 
@@ -77,27 +87,35 @@ class _CPU {
     @async
     @returns A Promise containin nothing unless a error occurs.
      */
-    async get_cpu_usage () {
-        return new Promise(async (resolve, reject) => {
+    get_cpu_usage () {
+        return new Promise((resolve, reject) => {
             
-            await this.si.currentLoad().then(data => {
-                console.log(this.model)
-                this.recent.used.unshift(parseInt(data.currentload.toFixed(2)));
+            this.si.currentLoad().then(data => {
+                this.recent.used.unshift(parseFloat(data.currentload.toFixed(2)));
                 this.recent.free.unshift(100 - data.currentload.toFixed(2));
                 this.recent.time.unshift(Date.now());
 
-                this.most_recent.free = 100 - data.currentload.toFixed(2);
-                this.most_recent.used = parseInt(data.currentload.toFixed(2));
+                this.most_recent.used = parseFloat(data.currentload.toFixed(2));
+                this.most_recent.user = parseFloat(data.currentload_user.toFixed(2));
+                this.most_recent.system = parseFloat(data.currentload_system.toFixed(2));
+
+                
             }).catch(err => reject(err));
 
             resolve();
         });
     }
 
-    run_on_interval  () {
+    /**
+     * Runs this function on every interval. This function is called in the function start_runniong_interval_timer
+     * 
+    @async
+    @returns Does nopt return anything
+     */
+    async run_on_interval  () {
         if (this.allow_updates == true) {
             this.get_cpu_usage();
-            console.log('interval checking cpu data')
+            
         } else {
             // do basically nothing here
             console.log('interval is doing basically nothing')
@@ -109,12 +127,16 @@ class _CPU {
      * This function starts the interval and will run the decided functions interval every x seconds
      */
     start_running_interval_timer () {
-        // if the timer hasw not been set then set it
-        if (typeof this.interval_timer == "undefined") {
-            this.interval_timer = setInterval(() => {
-                this.run_on_interval ();
-            }, this.update_interval)
-        }
+        return new Promise((resolve, reject) => {
+            // if the timer hasw not been set then set it
+             if (typeof this.interval_timer == "undefined") {
+                this.interval_timer = setInterval(() => {
+                    this.run_on_interval ();
+                }, this.update_interval)
+            }
+
+            resolve(true)
+        })
     }
 
     /**
@@ -134,5 +156,3 @@ class _CPU {
 
     }
 }
-
-CPU = new _CPU(si, osutil, Settings.settings.cpu_settings.update_interval);

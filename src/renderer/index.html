@@ -2,8 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <script src="./js/main.js"></script>
+    <script src="./js/components/RenderData.js"></script>
     <script src="./js/settings/settings.js"></script>
+    <script src="./js/components/CpuController.js"></script>
+    
+    <script src="./js/main.js"></script>
     <title>systr</title>
     <link rel="stylesheet" href="./style/index.css">
     <link rel="stylesheet" href="./style/settings.css">
@@ -48,7 +51,7 @@
               </tr>
               <tr>
                 <td class='normal-table table-elem'><span class='header-table'>Model </span><span class='table-sub' id='cpu-make'> Ryzen 5 2600 </span></td>
-                <td class='normal-table table-elem'><span class='header-table'>Cores </span><span class='table-sub' id='cpu-cores-stats'> 6 Physical, 12 Logical </span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Cores </span><span class='table-sub' id='cpu-cores-stats'> 16 Physical, 24 Logical </span></td>
               </tr>
               <tr>
                 <td class='normal-table table-elem'><span class='header-table'>Manufacturer </span><span class='table-sub' id='cpu-maker'> AMD </span></td>
@@ -61,13 +64,13 @@
           <h4 class='lg-header margin-around'>CPU Usage</h4>
           <table class='table-specs-live' id='cpu-specs-live'>
             <tr>
-              <td class='md-table table-elem'><span class='header-table'>Current Utilization </span><span class='table-sub color-3' id='processor-name'> 73.06%</span></td>
+              <td class='md-table table-elem'><span class='header-table'>Current Utilization </span><span class='table-sub color-3' id='processor-current-used'> 73.06%</span></td>
             </tr>
             <tr>
-              <td class='md-table table-elem'><span class='header-table'>System Utilization </span><span class='table-sub color-1' id='processor-name'>8.46%</span></td>
+              <td class='md-table table-elem'><span class='header-table'>System Utilization </span><span class='table-sub color-1' id='system-used'>8.46%</span></td>
             </tr>
             <tr>
-              <td class='md-table table-elem'><span class='header-table'>User Utilization</span><span class='table-sub' id='processor-name'> 64.6%</span></td>
+              <td class='md-table table-elem'><span class='header-table'>User Utilization</span><span class='table-sub' id='user-used'> 64.6%</span></td>
             </tr>
           </table>
         </div>
@@ -243,7 +246,7 @@
         
     </section>
     <script src="./js/menu/menu.js"></script>
+    <script src="./js/cpu/update_cpu_stats.js"></script>
     <script src="./js/state/StateManager.js"></script>
-    <script src="./js/components/CpuController.js"></script>
   </body>
 </html>
