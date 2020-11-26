@@ -22,12 +22,12 @@
       "target": [
         "nsis"
       ],
-      "icon": "/Users/tylerlaceby/Documents/systr/icon.ico"
+      "icon": "Z:\\System\\Electron\\systr\\icon.ico"
     },
     "nsis": {
       "oneClick": false,
-      "installerIcon": "Z:/System/Electron/systr/icon.ico",
-      "uninstallerIcon": "Z:/System/Electron/systr/icon.ico",
+      "installerIcon": "Z:\\System\\Electron\\systr\\icon.ico",
+      "uninstallerIcon": "Z:\\System\\Electron\\systr\\icon.ico",
       "uninstallDisplayName": "systr",
       "license": "readme.md",
       "allowToChangeInstallationDirectory": true
@@ -69,12 +69,12 @@
     }
   },
   "dependencies": {
+    "auto-launch": "^5.0.5",
     "child_process": "^1.0.2",
     "dotenv": "^8.2.0",
     "electron-json-storage": "^4.2.0",
     "electron-reload": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0",
-
     "node-powershell": "^4.0.0",
     "os-utils": "0.0.14",
     "systeminformation": "^4.27.11"
@@ -85,6 +85,7 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "electron": "10.1.5"
+    "electron": "10.1.5",
+    "electron-builder": "^22.9.1"
   }
 }

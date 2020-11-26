@@ -3,15 +3,6 @@ let used_tr = document.getElementById("used-tr")
 let available_tr = document.getElementById("available-tr");
 let time_tr = document.getElementById("time-tr");
 
-let cpu_name_full = document.getElementById("processor-name");
-let cpu_brand = document.getElementById("cpu-make");
-let utilization_tag = document.getElementById("processor-utilization");
-let cpu_cores_full = document.getElementById("cpu-cores-stats");
-let cpu_maker = document.getElementById("cpu-maker");
-let base_clock = document.getElementById("cpu-clock-base");
-let system_used = document.getElementById("system-used")
-let user_used = document.getElementById("user-used")
-let utilization_tag_two = document.getElementById("processor-current-used")
 
 
 function update_main_stats (recent, most_recent) {
@@ -21,24 +12,13 @@ function update_main_stats (recent, most_recent) {
     system_used.innerHTML = ` ${most_recent.system}%`;
 }
 
-
-function show_static_cpu_stats (data) {
-    cpu_name_full.innerHTML = ` ${data.manufacturer} ${data.brand}`;
-    cpu_maker.innerHTML = ` ${data.manufacturer}`;
-    cpu_brand.innerHTML = ` ${data.brand}`;
-    utilization_tag.innerHTML = ` ${data.most_recent.used}%`;
-    cpu_cores_full.innerHTML = ` Physical ${data.physical_cores}, Logical ${data.cores}`;
-    base_clock.innerHTML = ` ${data.base_clock}GHz`;
-    
-}
-
 let update_cpu_interval;
 let wait_for_init_interval;
+let first_run = true;
 
 wait_for_init_interval = setInterval(() => {
     if(startup_finished) {
         create_initial_table_timestamp(_cpu.update_interval);
-        show_static_cpu_stats(_cpu);
         update_cpu_interval = setInterval(() => {
             run_on_cpu_interval();
         }, _cpu.update_interval)
@@ -48,8 +28,23 @@ wait_for_init_interval = setInterval(() => {
 }, )
 
 function run_on_cpu_interval () {
+    if (first_run) {
+        show_static_cpu_stats()
+        first_run = false;
+    }
     update_main_stats(_cpu.recent, _cpu.most_recent);
     update_table_data(_cpu.recent);
+}
+
+//static functions
+function show_static_cpu_stats () {
+    cpu_name_full.innerHTML = ` ${_cpu.manufacturer} ${_cpu.brand}`;
+    cpu_maker.innerHTML = ` ${_cpu.manufacturer}`;
+    cpu_brand.innerHTML = ` ${_cpu.brand}`;
+    utilization_tag.innerHTML = ` ${_cpu.most_recent.used}%`;
+    cpu_cores_full.innerHTML = ` Physical ${_cpu.physical_cores}, Logical ${_cpu.cores}`;
+    base_clock.innerHTML = ` ${_cpu.base_clock}GHz`;
+    ipcRenderer.send("show-app", true);
 }
 
 

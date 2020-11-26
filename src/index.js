@@ -55,7 +55,7 @@ const createWindow = () => {
     loading_window.destroy();
     setTimeout(() => {
       mainWindow.show();
-    }, 1000)
+    }, 100)
   });
 
   ipcMain.on("minimize-btn", (events, args) => {

@@ -5,8 +5,8 @@
     <script src="./js/config.js"></script>
     <script src="./js/settings/settings.js"></script>
     <script src="./js/components/CpuController.js"></script>
+    <script src="./js/main.js"></script>
     
-    <script defer src="./js/main.js"></script>
     <title>systr</title>
     <link rel="stylesheet" href="./style/index.css">
     <link rel="stylesheet" href="./style/settings.css">
@@ -219,7 +219,7 @@
             <label class='item-header lg-input'>Load Profile First</label>
 
             <select class='input-item' id="load-profile">
-              <option value="CPU">CPU</option>
+              <option selected value="CPU">CPU</option>
               <option value="Memory">Memory</option>
               <option value="GPU">GPU</option>
               <option value="Network & Disk">Network & Disk</option>
@@ -228,15 +228,15 @@
 
             <label class='item-header lg-input'>Cache Previous Data</label>
             <select class='input-item' id="allow-previous-cache">
-              <option value="Allow">Allow</option>
-              <option value="Minimal">Disable</option>
+              <option value="true">Allow</option>
+              <option value="false">Disable</option>
             </select>
           </div>
           
 
           <div class="settings-item">
             <p class='item-header'>Open <i>systr</i> on startup</p>
-            <input class='input-item' type="checkbox" id="open-at-startup">
+            <input onclick="change_startup_settings()" class='input-item' type="checkbox" id="open-at-startup">
           </div>
         </div>
         
@@ -245,9 +245,11 @@
 
         
     </section>
+    <script src="./js/cpu/cpu_elements.js"></script>
+    
     <script src="./js/menu/menu.js"></script>
     <script src="./js/cpu/update_cpu_stats.js"></script>
     <script src="./js/state/StateManager.js"></script>
-    <script src="./js/cpu/change_table_data.js"></script>
+    <script src="./js/settings/startup_settings.js"></script>
   </body>
 </html>

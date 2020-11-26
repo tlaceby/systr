@@ -10,7 +10,6 @@
             this.settings = {}
             
             this.configure_settings();
-           
         }
 
         /**
@@ -28,9 +27,10 @@
              if (settings == null || settings == undefined) {
                  // if the settings are not there create a default settings
                 this.set_default_settings();
+                console.log('setting old settings')
              } else {
                 this.settings = settings;
-
+                console.log("old settings retreived")
                 resolve(this.settings);
                 this.ready = true;
              }
@@ -87,8 +87,6 @@
                         gpu_update_interval: 3000,
                     },
                     theme: {
-                        name : 'Dark',
-                        startup_preferences : "CPU",
                         layout_profile: "Default",
                         dark_theme: {
                             color1 :  "#ed553b",
@@ -103,6 +101,8 @@
                         },
                     },
                     app_performance: {
+                        startup_preferences : "CPU",
+                        open_startup: true,
                         render_interval: 3500,
                         allow_caching: true,
                         performance_mode: "Default - Most Machines"
