@@ -57,15 +57,6 @@ const createWindow = () => {
     set_window_bounds(mainWindow, storage).then(()=> {
       mainWindow.show();
     })
-    setTimeout(() => {
-      mainWindow.show();
-
-      // events 
-    
-
-    }, 100)
-
-    
   });
 
   ipcMain.on("minimize-btn", (events, args) => {
