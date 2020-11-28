@@ -4,6 +4,7 @@ const path = require('path');
 const storage = require('electron-json-storage');
 const startup = require("./startup")
 const system = require("./system")
+let storage_calls = require("./storage")
 
 let mainWindow;
 
@@ -53,16 +54,27 @@ const createWindow = () => {
 
   ipcMain.on('show-app', (events, data) => {
     loading_window.destroy();
+    set_window_bounds(mainWindow, storage).then(()=> {
+      mainWindow.show();
+    })
     setTimeout(() => {
       mainWindow.show();
+
+      // events 
+    
+
     }, 100)
+
+    
   });
 
   ipcMain.on("minimize-btn", (events, args) => {
     mainWindow.minimize()
+    storage.set("screen-last-pos", mainWindow.getBounds(), (err, data) => {
+      console.log("minimizing app")
+    })
   });
-                        
-
+        
   
 };
 
@@ -70,6 +82,14 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
+
+
+app.on("before-quit", () => {
+  mainWindow.hide()
+  storage.set("screen-last-pos", mainWindow.getBounds(), (err, data) => {
+    console.log('quitting -app but saved settings first')
+  })
+})
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
@@ -93,8 +113,11 @@ app.on('activate', () => {
 
 
 ipcMain.on("close-btn", (events, args) => {
-  console.log(args)
-  app.quit()
+  mainWindow.hide()
+  storage.set("screen-last-pos", mainWindow.getBounds(), (err, data) => {
+    console.log('quitting -app but saved settings first')
+    app.quit()
+  })
 });
 
 ipcMain.on('get-cpu-usage', (events, args) => {
@@ -119,3 +142,23 @@ ipcMain.on("get-user-settings", (events, args) => {
     events.reply(err);
   });
 });
+
+
+
+function set_window_bounds (mainWindow, storage) {
+  return new Promise((resolve, reject) => {
+    storage.get("screen-last-pos", (err, data) => {
+      if (!err) {
+          if (data.x == undefined) {
+              storage.set("screen-last-pos", mainWindow.getBounds())
+              
+          } else {
+            
+            mainWindow.setBounds(data)
+          }
+      }
+
+      resolve()
+    })
+  })
+}

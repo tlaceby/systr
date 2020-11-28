@@ -119,7 +119,7 @@ class _CPU {
         }, this.update_interval)
 
         console.log(`running new interval timer every ${this.update_interval}seconds`)
-
+        this.get_base_stats()
         this.ready = true;    
     }
 

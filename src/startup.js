@@ -1,5 +1,7 @@
 var AutoLaunch = require('auto-launch');
 const {ipcMain } = require('electron');
+
+let storage = require("electron-json-storage");
  
 var launch_systr = new AutoLaunch({
     name: 'systr'

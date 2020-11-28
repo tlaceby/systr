@@ -9,9 +9,7 @@ let current_page = "cpu";
     
 function startup_other_processes () {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(true);
-        }, 10)
+        resolve(true);
     })
 }
 
@@ -26,4 +24,4 @@ check_for_finished_interval = setInterval(() => {
         clearInterval(check_for_finished_interval);
         startup_other_processes()
     }
-}, 100)
+}, 300)
