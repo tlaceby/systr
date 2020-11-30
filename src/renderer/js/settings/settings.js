@@ -68,6 +68,7 @@
          */
         async set_default_settings() {
             return new Promise((resolve,reject) => {
+
                 this.settings = {
                     cpu_settings: {
                         update_interval: 3500,

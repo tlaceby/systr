@@ -84,7 +84,7 @@ li, span, input, p, select, label {
 
     .animate-in {
         background-color: var(--bg-html);
-        animation: anim 1.5s ease-in-out;
+        animation: anim 1.8s ease-in-out;
     }
   @keyframes anim {
     0% {

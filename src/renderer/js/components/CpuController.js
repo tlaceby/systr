@@ -15,6 +15,7 @@ class _CPU {
         // Interval Values
         this.update_interval = default_interval;
         this.allow_updates = true; // Used if nom updates shouldn be called
+        this.allow_rendering_updates = true;
 
         // Base Info
         this.manufacturer;
@@ -104,7 +105,7 @@ class _CPU {
             
         } else {
             // do basically nothing here
-            console.log('interval is doing basically nothing')
+            console.log('cpu-interval not doing anything')
         }
     }
 

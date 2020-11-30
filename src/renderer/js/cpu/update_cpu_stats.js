@@ -9,7 +9,6 @@ let time_tr = document.getElementById("time-tr");
  * 
  */
 function update_main_stats (recent, most_recent) {
-    console.log('updating cpu stats')
     utilization_tag.innerHTML = ` ${recent.used[0]}%`;
     user_used.innerHTML = ` ${most_recent.user}%`;
     utilization_tag_two.innerHTML = ` ${most_recent.used}%`;
@@ -56,11 +55,18 @@ function change_render_interval_cpu () {
  * The function also checkes for a new interval valuer and if there is one it will call change_render_interval_cpu() to change the interval and reset itself.
  * */
 function run_on_cpu_interval () {
-    update_main_stats(_cpu.recent, _cpu.most_recent);
-    update_table_data(_cpu.recent);
-    if (current_interval_to_run != _cpu.update_interval) {
-        console.log(`Old Interval:L ${current_interval_to_run}, newInterval: ${_cpu.update_interval}`)
-        change_render_interval_cpu()
+
+    if(_cpu.allow_rendering_updates) {
+        console.log("rendering cpu stats")
+
+        update_main_stats(_cpu.recent, _cpu.most_recent);
+        update_table_data(_cpu.recent);
+        if (current_interval_to_run != _cpu.update_interval) {
+            console.log(`Old Interval:L ${current_interval_to_run}, newInterval: ${_cpu.update_interval}`)
+            change_render_interval_cpu()
+        }
+    } else {
+        console.log("not rendering any cpu-stats")
     }
 }
 

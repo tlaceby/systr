@@ -42,6 +42,7 @@ function save_setting_on_change (interval_to_update) {
             _settings.update_all(settings_old);
             break;
         case "memory":
+            _memory.set_new_interval(_settings.settings.memory_settings.memory_update_interval)
             settings_old.memory_settings.memory_update_interval = parseInt(mem_interval_input.value);
             _settings.update_all(settings_old);
             break;

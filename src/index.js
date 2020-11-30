@@ -32,7 +32,8 @@ const createWindow = () => {
     },
   });
 
-  //mainWindow.webContents.openDevTools()
+  
+  mainWindow.webContents.openDevTools()
 
   const loading_window = new BrowserWindow({
     minHeight: 170,
@@ -54,7 +55,7 @@ const createWindow = () => {
 
   ipcMain.on('show-app', (events, data) => {
     loading_window.destroy();
-    set_window_bounds(mainWindow, storage).then(()=> {
+    set_window_bounds(mainWindow, storage).then(() => {
       mainWindow.show();
     })
   });
@@ -104,7 +105,7 @@ app.on('activate', () => {
 
 
 ipcMain.on("close-btn", (events, args) => {
-  mainWindow.hide()
+  storage.set("screen-last-pos", mainWindow.getBounds());
   storage.set("screen-last-pos", mainWindow.getBounds(), (err, data) => {
     console.log('quitting -app but saved settings first')
     app.quit()

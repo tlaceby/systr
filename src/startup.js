@@ -1,6 +1,7 @@
 var AutoLaunch = require('auto-launch');
 const {ipcMain } = require('electron');
 
+let num_calls_made_debug = 0;
 let storage = require("electron-json-storage");
  
 var launch_systr = new AutoLaunch({
@@ -22,6 +23,8 @@ launch_systr.isEnabled()
 })
 
 ipcMain.on("set-auto-start", (events, data) => {
+    num_calls_made_debug += 1;
+    console.log("startup call #" + num_calls_made_debug)
     console.log('setting autostart to ::' + data)
     if (data == true) {
         launch_systr.enable();
