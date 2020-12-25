@@ -16,7 +16,7 @@
 ## Current Features
 
 * Settings and Customizable UI (Kind of)
-  * Dark and Light Theme support coming soon!
+  * Dark and Light Theme support
   * Open at startup of machine for windows **"not osx"**
   * two custom ui themes for how data is presented.
 
