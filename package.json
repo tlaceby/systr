@@ -43,7 +43,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "F:\\Electron\\systr\\icon.ico"
+        "icon": "/Users/tylerlaceby/Documents/systr/icon.ico"
       },
       "makers": [
         {
