@@ -14,7 +14,7 @@ function update_main_stats (recent, most_recent) {
     user_used.innerHTML = ` ${most_recent.user}%`;
     document.getElementById("cpu-used-minimal").innerHTML = ` ${_cpu.most_recent.used.toFixed(2)}%`
     document.getElementById("cpu-free-minimal").innerHTML = ` ${_cpu.most_recent.free.toFixed(2)}%`
-    console.log(most_recent)
+    
     utilization_tag_two.innerHTML = ` ${most_recent.used}%`;
     system_used.innerHTML = ` ${most_recent.system}%`;
 }
@@ -63,7 +63,7 @@ function run_on_cpu_interval () {
     
 
     if(_cpu.allow_rendering_updates) {
-        console.log("rendering cpu stats")
+        
 
         update_main_stats(_cpu.recent, _cpu.most_recent);
         if (_settings.settings.theme.layout_profile == "Data Heavy") {
@@ -76,7 +76,7 @@ function run_on_cpu_interval () {
             change_render_interval_cpu()
         }
     } else {
-        console.log("not rendering any cpu-stats")
+        
     }
 }
 

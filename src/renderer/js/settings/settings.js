@@ -88,7 +88,8 @@
                         gpu_update_interval: 3000,
                     },
                     theme: {
-                        layout_profile: "Default",
+                        layout_profile: "Minimal",
+                        theme: "Dark",
                         dark_theme: {
                             color1 :  "#ed553b",
                             color2 : "#f6d55c",
@@ -109,6 +110,8 @@
                         performance_mode: "Default - Most Machines"
                     }
                 }
+
+                localStorage.setItem("dark-mode", "true");
     
                 localStorage.setItem("settings", JSON.stringify(this.settings));
                 this.ready = true;

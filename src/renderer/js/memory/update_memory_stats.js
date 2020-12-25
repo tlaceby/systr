@@ -51,15 +51,13 @@ function change_render_interval_mem () {
 function run_on_mem_interval () {
 
     if(_memory.allow_rendering_updates) {
-        console.log("rendering memory stats")
+        
 
         update_main_mem_stats(_memory.recent);
         if (current_mem_interval_to_run != _memory.interval) {
             console.log(`Old Interval: for mem: ${current_mem_interval_to_run}, newInterval: ${_memory.interval}`)
             change_render_interval_mem()
         }
-    } else {
-        console.log("not rendering any memory-stats")
     }
 }
 

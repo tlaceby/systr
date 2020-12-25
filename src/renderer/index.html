@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./style/cpu.css">
     <link rel="stylesheet" href="./style/memory.css">
     <link rel="stylesheet" href="./style/minimal_cpu.css">
+    <link rel="stylesheet" href="./style/darkMode.css">
   </head>
   <body>
     <nav id="top-bar">
@@ -59,7 +60,7 @@
                 </tr>
                 <tr>
                   <td class='normal-table table-elem'><span class='header-table'>Manufacturer </span><span class='table-sub' id='cpu-maker'> AMD </span></td>
-                  <td class='normal-table table-elem'><span class='header-table'>Min Clock </span><span class='table-sub color-2' id='cpu-clock-base'> 3.7fdffGHz</span></td>
+                  <td class='normal-table table-elem'><span class='header-table'>Min Clock </span><span class='table-sub' id='cpu-clock-base'> 3.7fdffGHz</span></td>
                 </tr>
               </table>
           </div>
@@ -68,10 +69,10 @@
             <h4 class='lg-header margin-around'>CPU Usage</h4>
             <table class='table-specs-live' id='cpu-specs-live'>
               <tr>
-                <td class='md-table table-elem'><span class='header-table'>Current Utilization </span><span class='table-sub color-3' id='processor-current-used'> 73.06%</span></td>
+                <td class='md-table table-elem'><span class='header-table'>Current Utilization </span><span class='table-sub color-3 inverted' id='processor-current-used'> 73.06%</span></td>
               </tr>
               <tr>
-                <td class='md-table table-elem'><span class='header-table'>System Utilization </span><span class='table-sub color-1' id='system-used'>8.46%</span></td>
+                <td class='md-table table-elem'><span class='header-table'>System Utilization </span><span class='table-sub color-1 inverted' id='system-used'>8.46%</span></td>
               </tr>
               <tr>
                 <td class='md-table table-elem'><span class='header-table'>User Utilization</span><span class='table-sub' id='user-used'> 64.6%</span></td>
@@ -82,8 +83,8 @@
   
         <div class="table-recent">
           <h4 class='lg-header'>Recent Usage</h4>
-          <table class='table-recent-data' id='cpu-recent-data'>
-            <tr id='time-tr'>
+          <table class='table-recent-data inverted' id='cpu-recent-data'>
+            <tr id='time-tr'  class="inverted">
               <th>Time</th>
               <td class='lg-table table-elem'>Current</td>
               <td class='lg-table table-elem'>5s</td>
@@ -96,7 +97,7 @@
               <td class='lg-table table-elem'>40s</td>
               
             </tr>
-            <tr id='available-tr'>
+            <tr id='available-tr' class="inverted">
               <th>Available</th>
               <td class='sm-table table-elem'>46.5%</td>
               <td class='sm-table table-elem'>53.5%</td>
@@ -109,7 +110,7 @@
               <td class='sm-table table-elem'>59.5%</td> 
               
             </tr>
-            <tr id='used-tr'>
+            <tr id='used-tr' class="inverted">
               <th>Used</th>
               <td class='lg-table table-elem'>38%</td>
               <td class='sm-table table-elem'>46.5%</td>
@@ -126,7 +127,7 @@
           <br>
           <div class="select-area float-r-lg">
             <label class='item-header lg-input center-sm'>SortBy</label>
-            <select class='input-item lg-input center-sm' id="sort-cpu-table">
+            <select class='input-item lg-input center-sm inverted' id="sort-cpu-table">
               <option value="Recent">Recent</option>
               <option value="Oldest">Oldest</option>
               <option value="Ascending Usage">Ascending Usage</option>
@@ -140,11 +141,11 @@
           <div class="cpu-cards-minimal">
             <div class="minimal-card">
               <h4 class="percent-text-minimal" id='cpu-used-minimal'> 00.00%</h4>
-              <h4 class="sub-text-minimal">Used</h4>
+              <h4 class="sub-text-minimal invert-text">Used</h4>
             </div>
             <div class="minimal-card">
               <h4 class="percent-text-minimal" id='cpu-free-minimal'>00.00%</h4>
-              <h4 class="sub-text-minimal">Available</h4>
+              <h4 class="sub-text-minimal invert-text">Available</h4>
             </div>
           </div>
 
@@ -164,7 +165,7 @@
               </tr>
               <tr>
                 <td class='normal-table table-elem'><span class='header-table'>Manufacturer </span><span class='table-sub' id='cpu-maker-min'> AMD </span></td>
-                <td class='normal-table table-elem'><span class='header-table'>Min Clock </span><span class='table-sub color-2' id='cpu-clock-base-min'> 3.7fdffGHz</span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Min Clock </span><span class='table-sub color-1' id='cpu-clock-base-min'> 3.7fdffGHz</span></td>
               </tr>
             </table>
         </div>
@@ -178,7 +179,7 @@
     <section class='content hidden'  id="memory-section">
         <h3 class="center page-header">System Memory</h3>
 
-        <div id="cpu-minimal-data">
+        <div id="memory-minimal-data">
           <div class="cpu-cards-minimal">
             <div class="minimal-card-mem">
               <h4 class="percent-text-minimal" id='cpu-used-minimal'> 00.00GB</h4>
@@ -197,7 +198,7 @@
             <table class='table-specs' id='mem-specs-table' style="width: 100%; margin: auto;">
               <tr>
                 <td class='lg-table table-elem'><span class='header-table'>Total Memory </span><span class='table-sub' id='mem-total'>32.01GB</span></td>
-                <td class='sm-table table-elem'><span class='header-table'>Physical Layout</span><span  class='table-sub color-2' id='mem-dims-total'>4 Modules</span></td>
+                <td class='sm-table table-elem'><span class='header-table'>Physical Layout</span><span  class='table-sub color-1' id='mem-dims-total'>4 Modules</span></td>
                 
               </tr>
               <tr>
@@ -226,31 +227,27 @@
           
           <div class="setting-item">
             <p class='item-header'>Memory Data Update Interval</p>
-            <input class='input-item md-input' onchange="save_setting_on_change ('memory')" step="500" min='1000' max='20000' type="number" id="memory_update_interval" value='5000'>
+            <input class='input-item md-input inverted' onchange="save_setting_on_change ('memory')" step="500" min='1000' max='20000' type="number" id="memory_update_interval" value='5000'>
           </div>
-          <div class="setting-item">
+          <div class="setting-item" class="keep-dark-inverted">
             <p class='item-header'>GPU Data Update Interval</p>
-            <input class='input-item md-input' onchange="save_setting_on_change ('gpu')" step="500" min='1000' max='20000' type="number" id="gpu_update_interval" value='4000'>
+            <input class='input-item md-input inverted' onchange="save_setting_on_change ('gpu')" step="500" min='1000' max='20000' type="number" id="gpu_update_interval" value='4000'>
           </div>
           <div class="setting-item">
             <p class='item-header'>CPU Data Update Interval</p>
-            <input class='input-item md-input' onchange="save_setting_on_change ('cpu')" step="500" min='1000' max='20000' type="number" id="cpu_update_interval" value='3000'>
+            <input class='input-item md-input inverted' onchange="save_setting_on_change ('cpu')" step="500" min='1000' max='20000' type="number" id="cpu_update_interval" value='3000'>
           </div>
 
           <h3 class='header-sm'>Theme Preferences</h3>
           <div class="setting-item">
-            <label class='item-header lg-input'>Color Theme</label>
 
-            <select class='input-item' id="color-theme">
-              <option value="Dark">Dark</option>
-              <option value="Light">Light</option>
-              <option value="Match Time">Match Time</option>
-              <option disabled value="Custom">Custom</option>
-            </select>
+            <div class="settings-item">
+              <p class='item-header'>Dark Mode</p>
+              <input onclick="change_dark_theme_setting()" class='input-item inverted' type="checkbox" id="dark-mode">
+            </div>
 
             <label class='item-header lg-input'>Layout Profile</label>
-            <select onchange="change_layout_profile()" class='input-item' id="layout-profile">
-              <option value="Default">Default</option>
+            <select onchange="change_layout_profile()" class='input-item inverted' id="layout-profile">
               <option value="Minimal">Minimal</option>
               <option value="Data Heavy">Data Heavy</option>
               <option disabled value="Custom">Custom</option>
@@ -264,16 +261,16 @@
           <h3 class='header-sm color-2'>Notification Threshold</h3>
           <div class="setting-item">
             <p class='item-header'>Memory Max Usage</p>
-            <input class='input-item sm-input' type="text" id="memory_notification" value='40%'>
+            <input class='input-item sm-input inverted' type="text" id="memory_notification" value='40%'>
           </div>
           <div class="setting-item">
             <p class='item-header'>CPU Max Usage</p>
-            <input class='input-item sm-input' type="text" id="cpu_notification" value='80%'>
+            <input class='input-item sm-input inverted' type="text" id="cpu_notification" value='80%'>
           </div>
           <div class="setting-item">
             <label class='item-header'>Network Traffic Notification</label>
 
-            <select class='input-item lg-input' id="network-usage">
+            <select class='input-item lg-input inverted' id="network-usage">
               <option value="Light Traffic >= 4mb / Minute">Light Traffic >= 4mb / Minute</option>
               <option value="Moderate Traffic >= 10mb / Minute">Moderate Traffic >= 10mb / Minute</option>
               <option value="Heavy Traffic >= 60mb / Minutek">Heavy Traffic >= 60mb / Minute</option>
@@ -285,7 +282,7 @@
           <div class="setting-item">
             <label class='item-header lg-input'>App Performance</label>
 
-            <select class='input-item' id="app-performance-mode">
+            <select class='input-item inverted' id="app-performance-mode">
               <option value="Default - Most Machines">Default - Most Machines</option>
               <option value="Optimized: All Machines">Optimized: All Machines</option>
               <option value="Optimized: Slower Machines">Optimized: Slower Machines</option>
@@ -301,7 +298,7 @@
           <div class="setting-item">
             <label class='item-header lg-input'>Load Profile First</label>
 
-            <select class='input-item' id="load-profile">
+            <select class='input-item inverted' id="load-profile">
               <option selected value="CPU">CPU</option>
               <option value="Memory">Memory</option>
               <option value="GPU">GPU</option>
@@ -310,7 +307,7 @@
             </select>
 
             <label class='item-header lg-input'>Cache Previous Data</label>
-            <select class='input-item' id="allow-previous-cache">
+            <select class='input-item inverted' id="allow-previous-cache">
               <option value="true">Allow</option>
               <option value="false">Disable</option>
             </select>
@@ -319,7 +316,7 @@
 
           <div class="settings-item">
             <p class='item-header'>Open <i>systr</i> on startup</p>
-            <input onclick="change_startup_settings()" class='input-item' type="checkbox" id="open-at-startup">
+            <input onclick="change_startup_settings()" class='input-item inverted' type="checkbox" id="open-at-startup">
           </div>
         </div>
         
@@ -336,5 +333,6 @@
     <script src="./js/settings/startup_settings.js"></script>
     <script src="./js/settings/interval_settings.js"></script>
     <script src='./js/settings/layout_profile.js'></script>
+    <script src="./js/settings/dark_mode.js"></script>
   </body>
 </html>
