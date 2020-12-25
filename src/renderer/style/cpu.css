@@ -61,10 +61,6 @@ span {
     margin: 0px 7%;
 }
 
-table {
-    width: 90%;
-}
-
 .table-recent-data {
     width: 300px;
     text-align: center;
@@ -163,7 +159,6 @@ th, td {
     }
 
     .page-header {
-        text-align: left;
         margin-top: 0px;
         font-weight: 100;
     }

@@ -1,6 +1,19 @@
 #memory-section {
     -webkit-app-region: no-drag;
+    margin: auto;
     margin-top: 60px;
     width: 90vw;
     overflow: visible;
+}
+
+.minimal-card-mem {
+    cursor: pointer;
+    width: 210px;
+    height: 190px;
+    border-radius: 8px;
+    text-align: center;
+    margin: auto;
+    color: #ebebeb;
+    margin-top: 40px;
+    background-color: #232323;
 }

@@ -56,7 +56,7 @@ class _CPU {
                 this.recent.free.unshift(100 - data.currentload.toFixed(2));
                 this.recent.time.unshift(Date.now());
 
-                this.most_recent.free = 100 - data.currentload.toFixed(2);
+                this.most_recent.free = parseFloat(100 - data.currentload.toFixed(2));
                 this.most_recent.used = parseFloat(data.currentload.toFixed(2));
                 this.most_recent.user = parseFloat(data.currentload_user.toFixed(2));
                 this.most_recent.system = parseFloat(data.currentload_system.toFixed(2));
@@ -85,6 +85,7 @@ class _CPU {
                 this.most_recent.used = parseFloat(data.currentload.toFixed(2));
                 this.most_recent.user = parseFloat(data.currentload_user.toFixed(2));
                 this.most_recent.system = parseFloat(data.currentload_system.toFixed(2));
+                this.most_recent.free = parseFloat(100 - data.currentload.toFixed(2));
 
                 
             }).catch(err => reject(err));

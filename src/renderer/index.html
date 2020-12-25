@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./style/settings.css">
     <link rel="stylesheet" href="./style/cpu.css">
     <link rel="stylesheet" href="./style/memory.css">
+    <link rel="stylesheet" href="./style/minimal_cpu.css">
   </head>
   <body>
     <nav id="top-bar">
@@ -42,105 +43,177 @@
       <div id="cpu-section" class='container'>
         <h3 class="center page-header">CPU Overview</h3>
         
-        <div class="tables-2">
+        <div id="cpu-heavy-data">
+          <div class="tables-2">
+            <div class="table-specs">
+              <h4 class='lg-header'>Specifications</h4>
+              <table class='table-specs' id='cpu-specs-table'>
+                <tr>
+                  <td class='lg-table table-elem'><span class='header-table'>Name </span><span class='table-sub' id='processor-name'> AMD Ryzen 5 xsxs2600 @ 3.7GHz</span></td>
+                  <td class='sm-table table-elem'><span class='header-table'>Utilization </span><span  class='table-sub color-3' id='processor-utilization'> 46%</span></td>
+                  
+                </tr>
+                <tr>
+                  <td class='normal-table table-elem'><span class='header-table'>Model </span><span class='table-sub' id='cpu-make'> Ryzen 5 2600xs </span></td>
+                  <td class='normal-table table-elem'><span class='header-table'>Cores </span><span class='table-sub' id='cpu-cores-stats'> 16 Physical, 24xsxs Logical </span></td>
+                </tr>
+                <tr>
+                  <td class='normal-table table-elem'><span class='header-table'>Manufacturer </span><span class='table-sub' id='cpu-maker'> AMD </span></td>
+                  <td class='normal-table table-elem'><span class='header-table'>Min Clock </span><span class='table-sub color-2' id='cpu-clock-base'> 3.7fdffGHz</span></td>
+                </tr>
+              </table>
+          </div>
+              
+          <div class="table-live">
+            <h4 class='lg-header margin-around'>CPU Usage</h4>
+            <table class='table-specs-live' id='cpu-specs-live'>
+              <tr>
+                <td class='md-table table-elem'><span class='header-table'>Current Utilization </span><span class='table-sub color-3' id='processor-current-used'> 73.06%</span></td>
+              </tr>
+              <tr>
+                <td class='md-table table-elem'><span class='header-table'>System Utilization </span><span class='table-sub color-1' id='system-used'>8.46%</span></td>
+              </tr>
+              <tr>
+                <td class='md-table table-elem'><span class='header-table'>User Utilization</span><span class='table-sub' id='user-used'> 64.6%</span></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+  
+        <div class="table-recent">
+          <h4 class='lg-header'>Recent Usage</h4>
+          <table class='table-recent-data' id='cpu-recent-data'>
+            <tr id='time-tr'>
+              <th>Time</th>
+              <td class='lg-table table-elem'>Current</td>
+              <td class='lg-table table-elem'>5s</td>
+              <td class='lg-table table-elem'>10s</td>
+              <td class='lg-table table-elem'>15s</td>
+              <td class='lg-table table-elem'>20s</td>
+              <td class='lg-table table-elem'>25s</td>
+              <td class='lg-table table-elem'>30s</td>
+              <td class='lg-table table-elem'>35s</td>
+              <td class='lg-table table-elem'>40s</td>
+              
+            </tr>
+            <tr id='available-tr'>
+              <th>Available</th>
+              <td class='sm-table table-elem'>46.5%</td>
+              <td class='sm-table table-elem'>53.5%</td>
+              <td class='sm-table table-elem'>46.5%</td>
+              <td class='sm-table table-elem'>53.5%</td>
+              <td class='sm-table table-elem'>46.5%</td>
+              <td class='sm-table table-elem'>53.5%</td>
+              <td class='sm-table table-elem'>53.5%</td> 
+              <td class='sm-table table-elem'>53.5%</td> 
+              <td class='sm-table table-elem'>59.5%</td> 
+              
+            </tr>
+            <tr id='used-tr'>
+              <th>Used</th>
+              <td class='lg-table table-elem'>38%</td>
+              <td class='sm-table table-elem'>46.5%</td>
+              <td class='sm-table table-elem'>53.5%</td>
+              <td class='sm-table table-elem'>46.5%</td>
+              <td class='sm-table table-elem'>46.5%</td>
+              <td class='sm-table table-elem'>53.5%</td>
+              <td class='sm-table table-elem'>46.5%</td>
+              <td class='sm-table table-elem'>53.5%</td>
+              <td class='sm-table table-elem'>53.5%</td>
+  
+            </tr>
+          </table>
+          <br>
+          <div class="select-area float-r-lg">
+            <label class='item-header lg-input center-sm'>SortBy</label>
+            <select class='input-item lg-input center-sm' id="sort-cpu-table">
+              <option value="Recent">Recent</option>
+              <option value="Oldest">Oldest</option>
+              <option value="Ascending Usage">Ascending Usage</option>
+              <option value="Descending Usage">Descending Usage</option>
+            </select>
+          </div>
+      </div>
+        </div>
+
+        <div id="cpu-minimal-data">
+          <div class="cpu-cards-minimal">
+            <div class="minimal-card">
+              <h4 class="percent-text-minimal" id='cpu-used-minimal'> 00.00%</h4>
+              <h4 class="sub-text-minimal">Used</h4>
+            </div>
+            <div class="minimal-card">
+              <h4 class="percent-text-minimal" id='cpu-free-minimal'>00.00%</h4>
+              <h4 class="sub-text-minimal">Available</h4>
+            </div>
+          </div>
+
+          <br>
+
           <div class="table-specs">
             <h4 class='lg-header'>Specifications</h4>
             <table class='table-specs' id='cpu-specs-table'>
               <tr>
-                <td class='lg-table table-elem'><span class='header-table'>Name </span><span class='table-sub' id='processor-name'> AMD Ryzen 5 xsxs2600 @ 3.7GHz</span></td>
-                <td class='sm-table table-elem'><span class='header-table'>Utilization </span><span  class='table-sub color-3' id='processor-utilization'> 46%</span></td>
+                <td class='lg-table table-elem'><span class='header-table'>Name </span><span class='table-sub' id='processor-name-min'> AMD Ryzen 5 xsxs2600 @ 3.7GHz</span></td>
+                <td class='sm-table table-elem'><span class='header-table'>System Utilization </span><span  class='table-sub color-3' id='processor-utilization-min'> 46%</span></td>
                 
               </tr>
               <tr>
-                <td class='normal-table table-elem'><span class='header-table'>Model </span><span class='table-sub' id='cpu-make'> Ryzen 5 2600xs </span></td>
-                <td class='normal-table table-elem'><span class='header-table'>Cores </span><span class='table-sub' id='cpu-cores-stats'> 16 Physical, 24xsxs Logical </span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Model </span><span class='table-sub' id='cpu-make-min'> Ryzen 5 2600xs </span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Cores </span><span class='table-sub' id='cpu-cores-stats-min'> 16 Physical, 24xsxs Logical </span></td>
               </tr>
               <tr>
-                <td class='normal-table table-elem'><span class='header-table'>Manufacturer </span><span class='table-sub' id='cpu-maker'> AMD </span></td>
-                <td class='normal-table table-elem'><span class='header-table'>Min Clock </span><span class='table-sub color-2' id='cpu-clock-base'> 3.7fdffGHz</span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Manufacturer </span><span class='table-sub' id='cpu-maker-min'> AMD </span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Min Clock </span><span class='table-sub color-2' id='cpu-clock-base-min'> 3.7fdffGHz</span></td>
               </tr>
             </table>
         </div>
-            
-        <div class="table-live">
-          <h4 class='lg-header margin-around'>CPU Usage</h4>
-          <table class='table-specs-live' id='cpu-specs-live'>
-            <tr>
-              <td class='md-table table-elem'><span class='header-table'>Current Utilization </span><span class='table-sub color-3' id='processor-current-used'> 73.06%</span></td>
-            </tr>
-            <tr>
-              <td class='md-table table-elem'><span class='header-table'>System Utilization </span><span class='table-sub color-1' id='system-used'>8.46%</span></td>
-            </tr>
-            <tr>
-              <td class='md-table table-elem'><span class='header-table'>User Utilization</span><span class='table-sub' id='user-used'> 64.6%</span></td>
-            </tr>
-          </table>
-        </div>
-      </div>
 
-      <div class="table-recent">
-        <h4 class='lg-header'>Recent Usage</h4>
-        <table class='table-recent-data' id='cpu-recent-data'>
-          <tr id='time-tr'>
-            <th>Time</th>
-            <td class='lg-table table-elem'>Current</td>
-            <td class='lg-table table-elem'>5s</td>
-            <td class='lg-table table-elem'>10s</td>
-            <td class='lg-table table-elem'>15s</td>
-            <td class='lg-table table-elem'>20s</td>
-            <td class='lg-table table-elem'>25s</td>
-            <td class='lg-table table-elem'>30s</td>
-            <td class='lg-table table-elem'>35s</td>
-            <td class='lg-table table-elem'>40s</td>
-            
-          </tr>
-          <tr id='available-tr'>
-            <th>Available</th>
-            <td class='sm-table table-elem'>46.5%</td>
-            <td class='sm-table table-elem'>53.5%</td>
-            <td class='sm-table table-elem'>46.5%</td>
-            <td class='sm-table table-elem'>53.5%</td>
-            <td class='sm-table table-elem'>46.5%</td>
-            <td class='sm-table table-elem'>53.5%</td>
-            <td class='sm-table table-elem'>53.5%</td> 
-            <td class='sm-table table-elem'>53.5%</td> 
-            <td class='sm-table table-elem'>59.5%</td> 
-            
-          </tr>
-          <tr id='used-tr'>
-            <th>Used</th>
-            <td class='lg-table table-elem'>38%</td>
-            <td class='sm-table table-elem'>46.5%</td>
-            <td class='sm-table table-elem'>53.5%</td>
-            <td class='sm-table table-elem'>46.5%</td>
-            <td class='sm-table table-elem'>46.5%</td>
-            <td class='sm-table table-elem'>53.5%</td>
-            <td class='sm-table table-elem'>46.5%</td>
-            <td class='sm-table table-elem'>53.5%</td>
-            <td class='sm-table table-elem'>53.5%</td>
-
-          </tr>
-        </table>
-        <br>
-        <div class="select-area float-r-lg">
-          <label class='item-header lg-input center-sm'>SortBy</label>
-          <select class='input-item lg-input center-sm' id="sort-cpu-table">
-            <option value="Recent">Recent</option>
-            <option value="Oldest">Oldest</option>
-            <option value="Ascending Usage">Ascending Usage</option>
-            <option value="Descending Usage">Descending Usage</option>
-          </select>
         </div>
-    </div>
+
+        
       
     </section>
 
     <section class='content hidden'  id="memory-section">
-      <div class='container'>
         <h3 class="center page-header">System Memory</h3>
-      
-      </div>
-      
+
+        <div id="cpu-minimal-data">
+          <div class="cpu-cards-minimal">
+            <div class="minimal-card-mem">
+              <h4 class="percent-text-minimal" id='cpu-used-minimal'> 00.00GB</h4>
+              <h4 class="sub-text-minimal">Used</h4>
+            </div>
+            <div class="minimal-card-mem">
+              <h4 class="percent-text-minimal" id='cpu-free-minimal'>00.00GB</h4>
+              <h4 class="sub-text-minimal">Available</h4>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="table-specs">
+            <h4 class='lg-header'>Specifications</h4>
+            <table class='table-specs' id='mem-specs-table' style="width: 100%; margin: auto;">
+              <tr>
+                <td class='lg-table table-elem'><span class='header-table'>Total Memory </span><span class='table-sub' id='mem-total'>32.01GB</span></td>
+                <td class='sm-table table-elem'><span class='header-table'>Physical Layout</span><span  class='table-sub color-2' id='mem-dims-total'>4 Modules</span></td>
+                
+              </tr>
+              <tr>
+                <td class='normal-table table-elem'><span class='header-table'>Module Fequency </span><span class='table-sub color-3' id='mem-freq'> 3000Mhz</span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Module Size</span><span class='table-sub' id='mem-module-size'>8GB</span></td>
+              </tr>
+              <tr>
+                <td class='normal-table table-elem'><span class='header-table'>Manufacture(s)</span><span class='table-sub' id='mem-makers'>Corsair
+
+                </span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Module Layout</span><span class='table-sub' id='mem-unique-per-module'>Uniform </span></td>
+              </tr>
+            </table>
+        </div>
+
+        </div>
     </section>
 
     <section id="settings-section" class='hidden'>
@@ -176,7 +249,7 @@
             </select>
 
             <label class='item-header lg-input'>Layout Profile</label>
-            <select class='input-item' id="layout-profile">
+            <select onchange="change_layout_profile()" class='input-item' id="layout-profile">
               <option value="Default">Default</option>
               <option value="Minimal">Minimal</option>
               <option value="Data Heavy">Data Heavy</option>
@@ -262,5 +335,6 @@
     <script src="./js/memory/update_memory_stats.js"></script>
     <script src="./js/settings/startup_settings.js"></script>
     <script src="./js/settings/interval_settings.js"></script>
+    <script src='./js/settings/layout_profile.js'></script>
   </body>
 </html>

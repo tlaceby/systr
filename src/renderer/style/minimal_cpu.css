@@ -1,0 +1,56 @@
+:root {
+    --minimal-card-bg-color: rgb(44, 44, 44);
+}
+
+#cpu-minimal-data {
+    width: 80vw;
+    margin: auto;
+}
+
+.minimal-card {
+    cursor: pointer;
+    width: 210px;
+    height: 190px;
+    border-radius: 8px;
+    text-align: center;
+    margin: auto;
+    color: #ebebeb;
+    margin-top: 40px;
+    background-color: #252525;
+}
+
+
+.cpu-cards-minimal {
+    display: grid;
+    margin: auto;
+    width: 70%;
+    justify-content: center;
+    grid-template-columns: 50% 50%;
+}
+
+.percent-text-minimal {
+    margin-top: 60px;
+    font-size: 35px;
+    font-weight: 600;
+    font-style: italic;
+    color: #f6f6f6;
+}
+
+.sub-text-minimal {
+    margin-top: 0px;
+    color: #8d8d8d;
+    font-weight: 100;
+}
+
+
+
+@media only screen and (max-width: 770px) {
+    .cpu-cards-minimal {
+        width: 90%;
+    }
+    
+    .page-header {
+        text-align: center;
+    }
+
+  }

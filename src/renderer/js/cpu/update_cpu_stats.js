@@ -1,4 +1,4 @@
-
+let cpu_current_layout = undefined;
 let has_shown_static_cpu_stats = false;
 let used_tr = document.getElementById("used-tr")
 let available_tr = document.getElementById("available-tr");
@@ -9,8 +9,12 @@ let time_tr = document.getElementById("time-tr");
  * 
  */
 function update_main_stats (recent, most_recent) {
+    utilization_tag_min.innerHTML = ` ${most_recent.system}%`;
     utilization_tag.innerHTML = ` ${recent.used[0]}%`;
     user_used.innerHTML = ` ${most_recent.user}%`;
+    document.getElementById("cpu-used-minimal").innerHTML = ` ${_cpu.most_recent.used.toFixed(2)}%`
+    document.getElementById("cpu-free-minimal").innerHTML = ` ${_cpu.most_recent.free.toFixed(2)}%`
+    console.log(most_recent)
     utilization_tag_two.innerHTML = ` ${most_recent.used}%`;
     system_used.innerHTML = ` ${most_recent.system}%`;
 }
@@ -55,12 +59,18 @@ function change_render_interval_cpu () {
  * The function also checkes for a new interval valuer and if there is one it will call change_render_interval_cpu() to change the interval and reset itself.
  * */
 function run_on_cpu_interval () {
+    if (typeof _settings.settings == "object") display_correct_cpu_layout(_settings.settings);
+    
 
     if(_cpu.allow_rendering_updates) {
         console.log("rendering cpu stats")
 
         update_main_stats(_cpu.recent, _cpu.most_recent);
-        update_table_data(_cpu.recent);
+        if (_settings.settings.theme.layout_profile == "Data Heavy") {
+            update_table_data(_cpu.recent);
+        }
+
+        
         if (current_interval_to_run != _cpu.update_interval) {
             console.log(`Old Interval:L ${current_interval_to_run}, newInterval: ${_cpu.update_interval}`)
             change_render_interval_cpu()
@@ -75,6 +85,7 @@ function run_on_cpu_interval () {
  * This function shows the static cpu stats then will make a call to IPCMain to show the app window.
  */
 function show_static_cpu_stats (_cpu) {
+    document.getElementById("cpu-free-minimal").innerHTML = ` ${_cpu.most_recent.free.toFixed(2)}%`
     create_initial_table_timestamp(_cpu.update_interval);
     cpu_name_full.innerHTML = ` ${_cpu.manufacturer} ${_cpu.brand}`;
     cpu_maker.innerHTML = ` ${_cpu.manufacturer}`;
@@ -82,6 +93,15 @@ function show_static_cpu_stats (_cpu) {
     utilization_tag.innerHTML = ` ${_cpu.most_recent.used}%`;
     cpu_cores_full.innerHTML = ` Physical ${_cpu.physical_cores}, Logical ${_cpu.cores}`;
     base_clock.innerHTML = ` ${_cpu.base_clock}GHz`;
+
+    cpu_name_full_min.innerHTML= ` ${_cpu.manufacturer} ${_cpu.brand}`;
+    cpu_maker_min.innerHTML = ` ${_cpu.manufacturer}`;
+    cpu_brand_min.innerHTML = ` ${_cpu.brand}`;
+    utilization_tag_min.innerHTML = ` ${_cpu.most_recent.used}%`;
+    cpu_cores_full_min.innerHTML = ` Physical ${_cpu.physical_cores}, Logical ${_cpu.cores}`;
+    base_clock_min.innerHTML = ` ${_cpu.base_clock}GHz`;
+
+    document.getElementById("cpu-used-minimal").innerHTML = ` ${_cpu.most_recent.used}%`
     console.log("showing app")
     ipcRenderer.send("show-app", true);
 }
@@ -136,4 +156,17 @@ function create_initial_table_timestamp (interval) {
         }
         
     }
+}
+
+function display_correct_cpu_layout (settings) {
+
+    if(settings.theme.layout_profile == "Default" || settings.theme.layout_profile == "Minimal") {
+        document.getElementById("cpu-heavy-data").style.display = "none";
+        document.getElementById("cpu-minimal-data").style.display = "block";
+
+    } else {
+        document.getElementById("cpu-heavy-data").style.display = "block";
+        document.getElementById("cpu-minimal-data").style.display = "none";
+    }
+
 }

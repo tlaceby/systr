@@ -23,12 +23,12 @@
       "target": [
         "nsis"
       ],
-      "icon": "Z:\\System\\Electron\\systr\\icon.ico"
+      "icon": "F:\\Electron\\systr\\icon.ico"
     },
     "nsis": {
       "oneClick": false,
-      "installerIcon": "Z:\\System\\Electron\\systr\\icon.ico",
-      "uninstallerIcon": "Z:\\System\\Electron\\systr\\icon.ico",
+      "installerIcon": "F:\\Electron\\systr\\icon.ico",
+      "uninstallerIcon": "F:\\Electron\\systr\\icon.ico",
       "uninstallDisplayName": "systr",
       "license": "readme.md",
       "allowToChangeInstallationDirectory": true
@@ -43,7 +43,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "/Users/tylerlaceby/Documents/systr/icon.ico"
+        "icon": "F:\\Electron\\systr\\icon.ico"
       },
       "makers": [
         {

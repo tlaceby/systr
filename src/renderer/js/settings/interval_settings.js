@@ -17,7 +17,7 @@ function load_initial_interval_settings () {
     gpu_interval_input.value = `${gpu_interval}`;
     mem_interval_input.value = `${mem_interval}`;
 
-    console.log(`${cpu_interval}`)
+    //console.log(`${cpu_interval}`)
 
 }
 

@@ -1,11 +1,28 @@
+## System Tracker  
 
-# About systr:
-    * stsr is a cross platform system-analysis and monitoring app. This application shows you real time hardware information and and allow you to set custom notifications, themes, and much more. 
+* systr is a system tracking and monitoring application for Windows, & OSX. The application is built using electron along with core js and python libraries.
 
-    * Access: this application does not require or need to access admin and will never ask you to allow admin access.
-    * Suport and Feature develoipment
-        * The project repo is on Github and I am always looking for ways to improve this application with new features and addons. 
+### Objectives / Future Plans for Development
 
-        * Github : https://github.com/tylerbadger23/systr
+* Add UI for Memory, Network / IO & System Overview Page
+* Auto Updater Support and Release API for custom releases.
+* Custom Theme Support
+  * Allow custom JS, CSS, and HTML to be put into a community folder and then have a public api for any js code to access. 
+  * The API will only allow variables I create and make private ***Privacy Reasons***
+  * Plans for this will be further down below and I am experimenting with this concept in a separate code base.
 
-        ** ** Enjoy ** **
+
+
+## Current Features
+
+* Settings and Customizable UI (Kind of)
+  * Dark and Light Theme support coming soon!
+  * Open at startup of machine for windows **"not osx"**
+  * two custom ui themes for how data is presented.
+
+* CPU Tracking
+
+  * Basic Usage and Utilization stats are implemented.
+
+    
+
