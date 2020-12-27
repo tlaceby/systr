@@ -119,3 +119,7 @@ li, span, input, p, select, label {
 
 
   }
+
+#version-num {
+    color: rgb(211, 211, 211);
+}
