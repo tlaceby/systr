@@ -1,8 +1,8 @@
 {
   "name": "systr",
   "productName": "systr",
-  "version": "1.2.4",
-  "description": "System Tracking app for windows 10.",
+  "version": "1.2.5",
+  "description": "System Tracking app for Windows 10 && OSX",
   "main": "src/index.js",
   "scripts": {
     "start": "electron .",
@@ -12,7 +12,7 @@
     "lint": "echo \"No linting configured\"",
     "build-installer": "electron-builder",
     "build": "electron-builder build --win --publish never",
-    "deploy": "electron-builder build --win --publish always"
+    "deploy": "electron-builder build --win --mac --publish always"
   },
   "repository": {
     "type": "git",
@@ -24,12 +24,12 @@
       "target": [
         "nsis"
       ],
-      "icon": "F:\\Electron\\systr\\icon.ico"
+      "icon": "/Users/nox/Documents/Electron/systr/icon.ico"
     },
     "nsis": {
       "oneClick": true,
-      "installerIcon": "F:\\Electron\\systr\\icon.ico",
-      "uninstallerIcon": "F:\\Electron\\systr\\icon.ico",
+      "installerIcon": "/Users/nox/Documents/Electron/systr/icon.ico",
+      "uninstallerIcon": "/Users/nox/Documents/Electron/systr/icon.ico",
       "uninstallDisplayName": "systr",
       "license": "readme.md",
       "allowToChangeInstallationDirectory": false
@@ -44,7 +44,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "/Users/tylerlaceby/Documents/systr/icon.ico"
+        "icon": "/Users/nox/Documents/Electron/systr/icon.ico"
       },
       "makers": [
         {
