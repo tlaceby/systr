@@ -155,17 +155,17 @@
             <h4 class='lg-header'>Specifications</h4>
             <table class='table-specs' id='cpu-specs-table'>
               <tr>
-                <td class='lg-table table-elem'><span class='header-table'>Name </span><span class='table-sub' id='processor-name-min'> AMD Ryzen 5 xsxs2600 @ 3.7GHz</span></td>
-                <td class='sm-table table-elem'><span class='header-table'>System Utilization </span><span  class='table-sub color-3' id='processor-utilization-min'> 46%</span></td>
+                <td class='lg-table table-elem'><span class='header-table'>Name </span><span class='table-sub' id='processor-name-min'> ......</span></td>
+                <td class='sm-table table-elem'><span class='header-table'>System Utilization </span><span  class='table-sub color-3' id='processor-utilization-min'> ......</span></td>
                 
               </tr>
               <tr>
-                <td class='normal-table table-elem'><span class='header-table'>Model </span><span class='table-sub' id='cpu-make-min'> Ryzen 5 2600xs </span></td>
-                <td class='normal-table table-elem'><span class='header-table'>Cores </span><span class='table-sub' id='cpu-cores-stats-min'> 16 Physical, 24xsxs Logical </span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Model </span><span class='table-sub' id='cpu-make-min'> ..... </span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Cores </span><span class='table-sub' id='cpu-cores-stats-min'> ......... </span></td>
               </tr>
               <tr>
-                <td class='normal-table table-elem'><span class='header-table'>Manufacturer </span><span class='table-sub' id='cpu-maker-min'> AMD </span></td>
-                <td class='normal-table table-elem'><span class='header-table'>Min Clock </span><span class='table-sub color-1' id='cpu-clock-base-min'> 3.7fdffGHz</span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Manufacturer </span><span class='table-sub' id='cpu-maker-min'>....</span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Min Clock </span><span class='table-sub color-1' id='cpu-clock-base-min'> ........</span></td>
               </tr>
             </table>
         </div>
@@ -177,42 +177,45 @@
     </section>
 
     <section class='content hidden'  id="memory-section">
+
         <h3 class="center page-header">System Memory</h3>
+
 
         <div id="memory-minimal-data">
           <div class="cpu-cards-minimal">
             <div class="minimal-card-mem">
-              <h4 class="percent-text-minimal" id='cpu-used-minimal'> 00.00GB</h4>
+              <h4 class="percent-text-minimal" id='mem-used-minimal'> 00.00GB</h4>
               <h4 class="sub-text-minimal">Used</h4>
             </div>
             <div class="minimal-card-mem">
-              <h4 class="percent-text-minimal" id='cpu-free-minimal'>00.00GB</h4>
+              <h4 class="percent-text-minimal" id='mem-free-minimal'>00.00GB</h4>
               <h4 class="sub-text-minimal">Available</h4>
             </div>
           </div>
 
           <br>
-
           <div class="table-specs">
             <h4 class='lg-header'>Specifications</h4>
             <table class='table-specs' id='mem-specs-table' style="width: 100%; margin: auto;">
               <tr>
-                <td class='lg-table table-elem'><span class='header-table'>Total Memory </span><span class='table-sub' id='mem-total'>32.01GB</span></td>
-                <td class='sm-table table-elem'><span class='header-table'>Physical Layout</span><span  class='table-sub color-1' id='mem-dims-total'>4 Modules</span></td>
+                <td class='lg-table table-elem'><span class='header-table'>Total Memory </span><span class='table-sub' id='mem-total'>0.0GB</span></td>
+                <td class='sm-table table-elem'><span class='header-table'>Physical Layout</span><span  class='table-sub color-1' id='mem-dims-total'>0 Modules</span></td>
                 
               </tr>
               <tr>
-                <td class='normal-table table-elem'><span class='header-table'>Module Fequency </span><span class='table-sub color-3' id='mem-freq'> 3000Mhz</span></td>
-                <td class='normal-table table-elem'><span class='header-table'>Module Size</span><span class='table-sub' id='mem-module-size'>8GB</span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Module Fequency </span><span class='table-sub color-3' id='mem-freq'> 0.00</span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Module Size</span><span class='table-sub' id='mem-module-size'>0.00GB</span></td>
               </tr>
               <tr>
-                <td class='normal-table table-elem'><span class='header-table'>Manufacture(s)</span><span class='table-sub' id='mem-makers'>Corsair
+                <td class='normal-table table-elem'><span class='header-table'>Manufacture(s)</span><span class='table-sub' id='mem-makers'>........
 
                 </span></td>
-                <td class='normal-table table-elem'><span class='header-table'>Module Layout</span><span class='table-sub' id='mem-unique-per-module'>Uniform </span></td>
+                <td class='normal-table table-elem'><span class='header-table'>Module Layout</span><span class='table-sub' id='mem-unique-per-module'>....... </span></td>
               </tr>
             </table>
-        </div>
+          </div>
+
+            <input onclick="toggle_mem_mode ()" value='Toggle Metric GB' class='input-item' type="button"id="mem-mode-btn">
 
         </div>
     </section>
@@ -227,15 +230,15 @@
           
           <div class="setting-item">
             <p class='item-header'>Memory Data Update Interval</p>
-            <input class='input-item md-input inverted' onchange="save_setting_on_change ('memory')" step="500" min='1000' max='20000' type="number" id="memory_update_interval" value='5000'>
+            <input class='input-item md-input inverted' onchange="save_setting_on_change ('memory')" step="500" min='2000' max='30000' type="number" id="memory_update_interval" value='5000'>
           </div>
           <div class="setting-item" class="keep-dark-inverted">
             <p class='item-header'>GPU Data Update Interval</p>
-            <input class='input-item md-input inverted' onchange="save_setting_on_change ('gpu')" step="500" min='1000' max='20000' type="number" id="gpu_update_interval" value='4000'>
+            <input class='input-item md-input inverted' onchange="save_setting_on_change ('gpu')" step="500" min='30000' max='30000' type="number" id="gpu_update_interval" value='4000'>
           </div>
           <div class="setting-item">
             <p class='item-header'>CPU Data Update Interval</p>
-            <input class='input-item md-input inverted' onchange="save_setting_on_change ('cpu')" step="500" min='1000' max='20000' type="number" id="cpu_update_interval" value='3000'>
+            <input class='input-item md-input inverted' onchange="save_setting_on_change ('cpu')" step="500" min='2000' max='30000' type="number" id="cpu_update_interval" value='4000'>
           </div>
 
           <h3 class='header-sm'>Theme Preferences</h3>
@@ -243,7 +246,7 @@
 
             <div class="settings-item">
               <p class='item-header'>Dark Mode</p>
-              <input onclick="change_dark_theme_setting()" class='input-item inverted' type="checkbox" id="dark-mode" checked='true'>
+              <input onclick="toggle_dark_mode()" value='Toggle' class='input-item inverted' type="button"id="dark-mode"'>
             </div>
 
             <label class='item-header lg-input'>Layout Profile</label>
@@ -318,8 +321,10 @@
             <p class='item-header'>Open <i>systr</i> on startup</p>
             <input onclick="change_startup_settings()" class='input-item inverted' type="checkbox" id="open-at-startup">
           </div>
+
         </div>
         
+
       </div>
       <br>
 
@@ -329,6 +334,7 @@
     <script src="./js/state/StateManager.js"></script>
     <script src="./js/menu/menu.js"></script>
     <script src="./js/cpu/update_cpu_stats.js"></script>
+    <script src="./js/memory/memory_elements.js"></script>
     <script src="./js/memory/update_memory_stats.js"></script>
     <script src="./js/settings/startup_settings.js"></script>
     <script src="./js/settings/interval_settings.js"></script>

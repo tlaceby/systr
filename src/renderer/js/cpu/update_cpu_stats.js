@@ -23,6 +23,7 @@ let update_cpu_interval;
 let wait_for_init_interval;
 let first_run = true;
 let current_interval_to_run = 0;
+_memory.allow_rendering_updates = false;
 
 /**
  * This interval runns every 300ms and checks for the _cpu class to be ready.
@@ -30,14 +31,12 @@ let current_interval_to_run = 0;
  * This function will also start the timer used for the duration of the apps lifecyckle.
  */
 wait_for_init_interval = setInterval(() => {
-    if(startup_finished && first_run == true) {
-        if (typeof _cpu.manufacturer !== "undefined") {
-            show_static_cpu_stats(_cpu)
-            first_run = false;
-            clearInterval(wait_for_init_interval)
-            change_render_interval_cpu()
-        }
+    if(startup_finished) {
+        show_static_cpu_stats(_cpu)
+        first_run = false;
+        change_render_interval_cpu()
     }
+        
 }, 300)
 
 /**
@@ -51,6 +50,8 @@ function change_render_interval_cpu () {
     update_cpu_interval = setInterval(() => {
         run_on_cpu_interval();
     }, _cpu.update_interval)
+
+    clearInterval(wait_for_init_interval)
 
 }
 

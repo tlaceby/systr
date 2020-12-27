@@ -6,15 +6,16 @@
  */
 class _Memory {
     constructor (si, osutil, interval) {
-        this.totalmem = undefined;
+        
         this.osutil = osutil;
         this.si = si;
         this.interval = interval;
-        this.recent_data = {mem_used: [],mem_free: [],timsetamp: []};
-
+        this.recent_data = {mem_used: [],mem_free: [], mem_free_bytes: [], mem_used_bytes: []};
+        this.recent_data_limit = 10;
         // other stats
         this.memory_layout = []
 
+        this.totalmem = this.osutil.totalmem()
         // Timer
         this.ready = false;
         this.timer = undefined;
@@ -23,28 +24,39 @@ class _Memory {
 
         this.create_timer()
         this.get_static_stats();
+        this.get_current_stats()
+    }
+
+    clear_recent_data (limit) {
+
+        this.recent_data.mem_free.pop()
+        this.recent_data.mem_used.pop()
+        this.recent_data.mem_used_bytes.pop()
+        this.recent_data.mem_free_bytes.pop()
     }
 
     /**
      * Gets the current memory usage of the users system. This will also return the length of the arrays in use.
      */
     get_current_stats () {
-        return new Promise((resolve, reject) => {
-            this.si.mem().then((data) => {
-                this.totalmem = data.total;
-                this.recent_data.mem_used.push(data.used)
-                this.recent_data.mem_free.push(data.free)
-                this.recent_data.timsetamp.push(Date.now())
+        let free_per = this.osutil.freememPercentage();
+        
+        this.recent_data.mem_used.unshift(1 - free_per)
+        this.recent_data.mem_free.unshift(free_per)
 
-                resolve(this.recent_data.mem_used.length);
-            }).catch(err => reject(err))
-        })
+        this.recent_data.mem_free_bytes.unshift(this.osutil.freemem())
+        this.recent_data.mem_used_bytes.unshift(this.totalmem - this.osutil.freemem())
+        if (this.recent_data.mem_free.length > this.recent_data_limit) this.clear_recent_data(this.recent_data_limit);
+
+        
+
     }
 
     /**
      * Gets the static stats of the memory sticks wand this will not change over time unless system restarts.
      */
     get_static_stats () {
+        this.totalmem = this.osutil.totalmem()
         return new Promise((resolve, reject) => {
             this.si.memLayout().then(data => {
                 data.forEach(memory_stick => {
@@ -52,6 +64,7 @@ class _Memory {
                 });
             }).catch(err => reject(err))
             this.ready = true;
+
             resolve()
         })
     }

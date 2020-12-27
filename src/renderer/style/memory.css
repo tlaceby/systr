@@ -17,3 +17,13 @@
     margin-top: 40px;
     background-color: #232323;
 }
+
+#mem-mode-btn {
+    margin-top: 10px;
+    border-radius: 4px;
+    padding: 10px 14px;
+    background-color: transparent;
+    border: 1px solid rgb(156, 156, 156);
+    color:#ebebeb;
+    font-weight: 100;
+}

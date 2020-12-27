@@ -1,11 +1,29 @@
-
+let show_gb_memory_stats = false;
 let has_shown_static_mem_stats = false;
 
+
+function toggle_mem_mode () {
+
+    if (show_gb_memory_stats) document.getElementById("mem-mode-btn").value = "Toggle Metric GB"
+    if (!show_gb_memory_stats) document.getElementById("mem-mode-btn").value = "Toggle Metric %"
+
+    show_gb_memory_stats = !show_gb_memory_stats;
+
+    update_main_mem_stats(_memory.recent_data, _memory.totalmem);
+}
 
 /**
  * 
  */
-function update_main_mem_stats (recent_stats) {
+function update_main_mem_stats (recent_stats, totalmem, profile) {
+
+    if (show_gb_memory_stats)  {
+        mem_free_min.innerHTML = ` ${parseFloat(recent_stats.mem_free_bytes[0] / 1000).toFixed(2)}GB`;
+        mem_used_min.innerHTML = ` ${parseFloat(recent_stats.mem_used_bytes[0] / 1000).toFixed(2)}GB`;
+    } else {
+        mem_free_min.innerHTML = ` ${parseFloat(recent_stats.mem_free[0] * 100).toFixed(2)}%`;
+        mem_used_min.innerHTML = ` ${parseFloat(recent_stats.mem_used[0] * 100).toFixed(2)}%`;
+    }
 
 }
 
@@ -22,10 +40,11 @@ let current_mem_interval_to_run = 0;
 wait_for_mem_init_interval = setInterval(() => {
     if(startup_finished && mem_first_run == true) {
         if (typeof _memory.totalmem !== "undefined") {
-            show_static_mem_stats(_memory)
+            show_static_mem_stats(_memory);
             mem_first_run = false;
             clearInterval(wait_for_init_interval)
             change_render_interval_mem()
+            update_main_mem_stats(_memory.recent_data, _memory.totalmem);
         }
     }
 }, 300)
@@ -49,11 +68,10 @@ function change_render_interval_mem () {
  * The function also checkes for a new interval valuer and if there is one it will call change_render_interval_mem() to change the interval and reset itself.
  * */
 function run_on_mem_interval () {
-
     if(_memory.allow_rendering_updates) {
         
 
-        update_main_mem_stats(_memory.recent);
+        update_main_mem_stats(_memory.recent_data, _memory.totalmem);
         if (current_mem_interval_to_run != _memory.interval) {
             console.log(`Old Interval: for mem: ${current_mem_interval_to_run}, newInterval: ${_memory.interval}`)
             change_render_interval_mem()
@@ -66,5 +84,6 @@ function run_on_mem_interval () {
  * This function shows the static memory stats then will make a call to IPCMain to show the app window.
  */
 function show_static_mem_stats (_memory) {
-
+    
+    mem_total.innerHTML = `${(_memory.totalmem / 1000).toFixed(2)}GB`
 }

@@ -13,7 +13,7 @@ class _CPU {
         this.osutil = osutil;
 
         // Interval Values
-        this.update_interval = default_interval;
+        this.update_interval = 1000;
         this.allow_updates = true; // Used if nom updates shouldn be called
         this.allow_rendering_updates = true;
 
@@ -32,8 +32,9 @@ class _CPU {
         this.interval_timer = undefined;
         this.ready = false;
 
-       this.get_base_stats();
-       this.start_running_interval_timer();
+        this.get_base_stats()
+        this.start_running_interval_timer();
+
         
     }
 
@@ -44,27 +45,43 @@ class _CPU {
     @returns A Promise containin nothing unless a error occurs.
      */
     get_base_stats () {
-        this.si.cpu().then(data => {
-            this.manufacturer = data.manufacturer;
-            this.brand = data.brand;
-            this.base_clock = data.speed;
-            this.physical_cores = data.physicalCores;
-            this.cores = data.cores;
+        return new Promise((resolve, reject) => {
+            this.si.cpu().then(data => {
 
-            this.si.currentLoad().then(data => {
-                this.recent.used.unshift(parseFloat(data.currentload.toFixed(2)));
-                this.recent.free.unshift(100 - data.currentload.toFixed(2));
-                this.recent.time.unshift(Date.now());
+                this.manufacturer = data.manufacturer;
+                this.brand = data.brand;
+                this.base_clock = data.speed;
+                this.physical_cores = data.physicalCores;
+                this.cores = data.cores;
 
-                this.most_recent.free = parseFloat(100 - data.currentload.toFixed(2));
-                this.most_recent.used = parseFloat(data.currentload.toFixed(2));
-                this.most_recent.user = parseFloat(data.currentload_user.toFixed(2));
-                this.most_recent.system = parseFloat(data.currentload_system.toFixed(2));
-
+                let waiting_interval = setInterval(()=> {
+                    if (typeof this.manufacturer == "string") {
+                        this.ready = true;
+                        clearInterval(waiting_interval);
+                    } else {
+                        this.ready = false;
+                    }
+                    
+                    console.log(this.manufacturer)
+                }, 100)
                 
-            }).catch(err => reject(err));
+
+                this.si.currentLoad().then(data => {
+                    this.recent.used.unshift(parseFloat(data.currentload.toFixed(2)));
+                    this.recent.free.unshift(100 - data.currentload.toFixed(2));
+                    this.recent.time.unshift(Date.now());
+    
+                    this.most_recent.free = parseFloat(100 - data.currentload.toFixed(2));
+                    this.most_recent.used = parseFloat(data.currentload.toFixed(2));
+                    this.most_recent.user = parseFloat(data.currentload_user.toFixed(2));
+                    this.most_recent.system = parseFloat(data.currentload_system.toFixed(2));
+
+                }).catch(err => reject(err));
+                
+            }).catch(err => reject(err)); 
             
-        }).catch(err => reject(err)); 
+            resolve(true)
+        })
 
     }
 
@@ -120,9 +137,7 @@ class _CPU {
             this.run_on_interval ();
         }, this.update_interval)
 
-        console.log(`running new interval timer every ${this.update_interval}seconds`)
-        this.get_base_stats()
-        this.ready = true;    
+        console.log(`running new interval timer every ${this.update_interval}seconds`) 
     }
 
     /**
@@ -145,4 +160,4 @@ class _CPU {
 }
 
 
-let _cpu = new _CPU(si, osutil, 1500);
+_cpu = new _CPU(si, osutil, 1500);

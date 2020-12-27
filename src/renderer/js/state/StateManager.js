@@ -38,6 +38,7 @@ function load_cpu_page () {
         current_page = "cpu";
     }
     document.getElementById("cpu").classList.add("active-link")
+    _memory.allow_rendering_updates = false;
 }
 
 function load_memory_page () {

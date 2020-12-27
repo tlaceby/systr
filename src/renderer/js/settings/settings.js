@@ -10,6 +10,7 @@
             this.settings = {}
             
             this.configure_settings();
+         
         }
 
         /**
@@ -111,6 +112,7 @@
                     }
                 }
 
+                localStorage.setItem("dark-mode", "true");
                 localStorage.setItem("dark-mode", "true");
     
                 localStorage.setItem("settings", JSON.stringify(this.settings));
