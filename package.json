@@ -27,12 +27,12 @@
       "icon": "F:\\Electron\\systr\\icon.ico"
     },
     "nsis": {
-      "oneClick": false,
+      "oneClick": true,
       "installerIcon": "F:\\Electron\\systr\\icon.ico",
       "uninstallerIcon": "F:\\Electron\\systr\\icon.ico",
       "uninstallDisplayName": "systr",
       "license": "readme.md",
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": false
     }
   },
   "keywords": [],
