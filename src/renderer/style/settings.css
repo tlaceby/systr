@@ -122,4 +122,6 @@ li, span, input, p, select, label {
 
 #version-num {
     color: rgb(211, 211, 211);
+    font-weight: 100;
+    font-style: italic;
 }
