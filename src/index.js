@@ -5,7 +5,7 @@ const storage = require('electron-json-storage');
 const startup = require("./startup")
 const system = require("./system")
 let storage_calls = require("./storage")
-
+const { autoUpdater } = require('electron-updater');
 let mainWindow;
 
 var os 	= require('os-utils');
@@ -51,6 +51,7 @@ const createWindow = () => {
   loading_window.on("ready-to-show", (e) => {
     mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
     loading_window.show();
+    autoUpdater.checkForUpdatesAndNotify();
   })
 
   ipcMain.on('show-app', (events, data) => {
@@ -154,3 +155,12 @@ function set_window_bounds (mainWindow, storage) {
     })
   })
 }
+
+
+
+autoUpdater.on('update-available', () => {
+  console.log('update_available');
+});
+autoUpdater.on('update-downloaded', () => {
+  console.log("update_downloaded")
+});
