@@ -1,7 +1,7 @@
 {
   "name": "systr",
   "productName": "systr",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "System Tracking app for windows 10.",
   "main": "src/index.js",
   "scripts": {
@@ -27,12 +27,12 @@
       "icon": "F:\\Electron\\systr\\icon.ico"
     },
     "nsis": {
-      "oneClick": false,
+      "oneClick": true,
       "installerIcon": "F:\\Electron\\systr\\icon.ico",
       "uninstallerIcon": "F:\\Electron\\systr\\icon.ico",
       "uninstallDisplayName": "systr",
       "license": "readme.md",
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": false
     }
   },
   "keywords": [],
