@@ -7,7 +7,7 @@ ipcRenderer.on('update_available', () => {
   });
   ipcRenderer.on('update_downloaded', () => {
     ipcRenderer.removeAllListeners('update_downloaded');
-    version.innerHTML = `A Update was found. Installing Update`
+    version.innerHTML = `A Update was found! It will be installed on next startup.`
   });
     
 ipcRenderer.send('app_version');
