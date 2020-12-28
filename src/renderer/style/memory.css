@@ -1,9 +1,9 @@
 #memory-section {
     -webkit-app-region: no-drag;
     margin: auto;
-    margin-top: 60px;
-    width: 90vw;
+    width: 82vw;
     overflow: visible;
+    margin-top: 60px;
 }
 
 .minimal-card-mem {
@@ -26,4 +26,16 @@
     border: 1px solid rgb(156, 156, 156);
     color:#ebebeb;
     font-weight: 100;
+}
+
+
+@media only screen and (max-width: 760px) {
+    
+    #mem-mode-btn {
+        margin-top: 20px;
+    }
+
+    .lg-header {
+        margin-top: 10px;
+    }
 }
