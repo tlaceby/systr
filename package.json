@@ -1,8 +1,8 @@
 {
   "name": "systr",
   "productName": "systr",
-  "version": "1.2.5",
-  "description": "System Tracking app for Windows 10 && OSX",
+  "version": "1.2.6",
+  "description": "System Tracking app for Windows 10 & OSX",
   "main": "src/index.js",
   "scripts": {
     "start": "electron .",
@@ -24,12 +24,12 @@
       "target": [
         "nsis"
       ],
-      "icon": "/Users/nox/Documents/Electron/systr/icon.ico"
+      "icon": "F:\\Electron\\systr\\icon.ico"
     },
     "nsis": {
       "oneClick": true,
-      "installerIcon": "/Users/nox/Documents/Electron/systr/icon.ico",
-      "uninstallerIcon": "/Users/nox/Documents/Electron/systr/icon.ico",
+      "installerIcon": "F:\\Electron\\systr\\icon.ico",
+      "uninstallerIcon": "F:\\Electron\\systr\\icon.ico",
       "uninstallDisplayName": "systr",
       "license": "readme.md",
       "allowToChangeInstallationDirectory": false
@@ -44,7 +44,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "/Users/nox/Documents/Electron/systr/icon.ico"
+        "icon": "F:\\Electron\\systr\\icon.ico"
       },
       "makers": [
         {
