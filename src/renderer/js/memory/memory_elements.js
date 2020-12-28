@@ -11,6 +11,6 @@ let mem_total = document.getElementById("mem-total");
 let mem_dims_total = document.getElementById("mem-dims-total");
 let mem_freq = document.getElementById("mem-freq");
 let mem_module_sizes = document.getElementById("mem-module-size");
-let mem_maker = document.getElementById("mem-makers");
-let mem_unique_modules = document.getElementById("mem-unique-per-module");
+let mem_form_factor = document.getElementById("mem-form-factor");
+let mem_voltage = document.getElementById("mem-voltage");
 

@@ -13,10 +13,14 @@ class _Memory {
         this.recent_data = {mem_used: [],mem_free: [], mem_free_bytes: [], mem_used_bytes: []};
         this.recent_data_limit = 10;
         // other stats
+        this.formFactor;
         this.memory_layout = []
-
+        this.module_size = 0;
+        this.lowest_clock = undefined;
         this.totalmem = this.osutil.totalmem()
+        this.num_modules = 0;
         // Timer
+        this.mem_voltage = 0.0;
         this.ready = false;
         this.timer = undefined;
         this.should_update = true;
@@ -59,9 +63,20 @@ class _Memory {
         this.totalmem = this.osutil.totalmem()
         return new Promise((resolve, reject) => {
             this.si.memLayout().then(data => {
+                let lowest_clock = 100000;
+                let module_size = 0;
                 data.forEach(memory_stick => {
+                    this.mem_voltage = memory_stick.voltageConfigured;
                     this.memory_layout.push(memory_stick);
+                    if (memory_stick.clockSpeed <= lowest_clock) {
+                        lowest_clock = memory_stick.clockSpeed;
+                    }
+                    this.formFactor = memory_stick.formFactor;
+                    this.num_modules += 1;
+                   this.module_size = memory_stick.size;
                 });
+
+                this.lowest_clock = lowest_clock;
             }).catch(err => reject(err))
             this.ready = true;
 

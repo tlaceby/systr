@@ -84,6 +84,11 @@ function run_on_mem_interval () {
  * This function shows the static memory stats then will make a call to IPCMain to show the app window.
  */
 function show_static_mem_stats (_memory) {
-    
-    mem_total.innerHTML = `${(_memory.totalmem / 1000).toFixed(2)}GB`
+    console.log(_memory)
+    mem_total.innerHTML = `${(_memory.totalmem / 1000).toFixed(2)}GB`;
+    mem_freq.innerHTML = `${(_memory.lowest_clock)}MHz`;
+    mem_module_sizes.innerHTML = `${(_memory.module_size / 1000000000).toFixed(1)}GB`;
+    mem_dims_total.innerHTML = ` ${_memory.num_modules} Modules`;
+    mem_voltage.innerHTML = ` ${_memory.mem_voltage}`;
+    mem_form_factor.innerHTML = `${_memory.formFactor}`;
 }
