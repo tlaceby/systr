@@ -14,3 +14,7 @@ let mem_module_sizes = document.getElementById("mem-module-size");
 let mem_form_factor = document.getElementById("mem-form-factor");
 let mem_voltage = document.getElementById("mem-voltage");
 
+// bar charts 
+
+let memory_free_chart = document.getElementById("memory-free");
+let memory_used_chart = document.getElementById("memory-used");

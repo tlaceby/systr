@@ -150,17 +150,3 @@ th, td {
     }
 
   }
-
-
-.color-1 {
-    color: var(--color-special-1)
-}
-.color-2 {
-    color: var(--color-special-2)
-}
-.color-3 {
-    color: var(--color-special-3)
-}
-.color-4 {
-    color: var(--color-special-4)
-}

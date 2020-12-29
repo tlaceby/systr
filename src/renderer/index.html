@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./style/memory.css">
     <link rel="stylesheet" href="./style/minimal_cpu.css">
     <link rel="stylesheet" href="./style/darkMode.css">
+    <link rel="stylesheet" href="./style/percentage_bars.css">
   </head>
   <body>
     <nav id="top-bar">
@@ -149,8 +150,29 @@
             </div>
           </div>
 
-          <br>
+          <div class="minimal-cpu-bar" class='bar-area'>
 
+            <div class='percentage-bars'>
+              <div id="user-percentage" class='bar-percentage bg-color-1'></div>
+            </div>
+
+            <div class='percentage-bars'>
+              <div id="cpu-percentage" class='bar-percentage bg-color-white'></div>
+            </div>
+
+            <div class='percentage-bars'>
+              <div id="system-percentage" class='bar-percentage bg-color-3'></div>
+            </div>
+
+            <ul class='legend-colors'>
+              <li class='legend-text'><div class='bg-color-1 legend-bg'> </div> <span>User </span></li>
+              <li class='legend-text'><div class='bg-color-white legend-bg'> </div> <span>Overall</span></li>
+              <li class='legend-text'><div class='bg-color-3 legend-bg'> </div> <span>System</span></li>
+            </ul>
+
+          </div>
+          <br>
+          <br>
           <div class="table-specs">
             <h4 class='lg-header'>Specifications</h4>
             <table class='table-specs' id='cpu-specs-table'>
@@ -191,6 +213,23 @@
               <h4 class="percent-text-minimal" id='mem-free-minimal'>00.00GB</h4>
               <h4 class="sub-text-minimal">Available</h4>
             </div>
+          </div>
+          <br>
+          <div class="minimal-cpu-bar" class='bar-area'>
+
+            <div class='percentage-bars'>
+              <div id="memory-free" class='bar-percentage bg-color-1'></div>
+            </div>
+
+            <div class='percentage-bars'>
+              <div id="memory-used" class='bar-percentage bg-color-white'></div>
+            </div>
+
+            <ul class='legend-colors-mem'>
+              <li class='legend-text'><div class='bg-color-1 legend-bg'> </div> <span>Free Memory</span></li>
+              <li class='legend-text'><div class='bg-color-white legend-bg'> </div> <span>Used Memory</span></li>
+            </ul>
+
           </div>
 
           <br>

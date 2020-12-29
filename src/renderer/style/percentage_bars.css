@@ -1,0 +1,105 @@
+
+.color-1 {
+    color: var(--color-special-1)
+}
+.color-2 {
+    color: var(--color-special-2)
+}
+.color-3 {
+    color: var(--color-special-3)
+}
+.color-4 {
+    color: var(--color-special-4)
+}
+
+.bar-area {
+    width: 60vw;
+    text-align: center;
+    margin: auto;
+}
+
+.percentage-bars {
+    border-radius: 4px;
+    margin: auto;
+    background-color: rgb(43, 43, 43);
+    width: 65%;
+    height: 16px;
+    margin-top: 14px;
+}
+
+.minimal-mem-bar {
+    width: 58vw;
+    margin: auto;
+    margin-top: 30px;
+}
+
+
+.bar-percentage {
+    border-radius: 4px;
+    height: 100%;
+    width: 0%;
+    font-size: 10px;
+}
+
+.bg-color-1 {
+    background-color: var(--color-special-1);
+}
+.bg-color-2 {
+    background-color: var(--color-special-2);
+}
+.bg-color-3 {
+    background-color: var(--color-special-3);
+}
+
+.bg-color-4 {
+    background-color: var(--color-special-4);
+}
+.bg-color-white {
+    background-color: rgb(235, 235, 235);
+}
+
+.legend-bg {
+    margin-top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+.legend-text {
+    font-size: 12px;
+    font-weight: 100;
+    font-style: italic;
+    display: grid;
+    grid-template-columns: 30% 60%;
+}
+
+.legend-text span {
+    padding-bottom: 2px;
+}
+
+.legend-colors {
+    width: 37%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    margin-top: 10px;
+}
+
+.legend-colors-mem {
+    width: 70%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 10px;
+}
+
+@media only screen and (min-width: 900px) {
+
+    .legend-colors {
+        width: 30%; 
+    }
+
+    .legend-colors-mem {
+        width: 50%;
+    }
+}

@@ -17,6 +17,11 @@ function update_main_stats (recent, most_recent) {
     
     utilization_tag_two.innerHTML = ` ${most_recent.used}%`;
     system_used.innerHTML = ` ${most_recent.system}%`;
+
+    draw_chart(_cpu.most_recent.used.toFixed(1),cpu_percent_chart);
+    draw_chart(most_recent.system,system_percent_chart);
+    draw_chart(most_recent.user , user_percent_chart);
+
 }
 
 let update_cpu_interval;
@@ -105,6 +110,9 @@ function show_static_cpu_stats (_cpu) {
     document.getElementById("cpu-used-minimal").innerHTML = ` ${_cpu.most_recent.used}%`
     console.log("showing app")
     ipcRenderer.send("show-app", true);
+    
+
+    update_main_stats(_cpu.recent, _cpu.most_recent)
 }
 
 /**
@@ -170,4 +178,10 @@ function display_correct_cpu_layout (settings) {
         document.getElementById("cpu-minimal-data").style.display = "none";
     }
 
+}
+
+
+function draw_chart (percentage, elem) {
+    if (percentage < 1) percentage = 1;
+    elem.style.width = percentage + "%";
 }

@@ -25,6 +25,8 @@ function update_main_mem_stats (recent_stats, totalmem, profile) {
         mem_used_min.innerHTML = ` ${parseFloat(recent_stats.mem_used[0] * 100).toFixed(2)}%`;
     }
 
+    draw_chart(parseFloat(recent_stats.mem_free[0] * 100).toFixed(2),memory_free_chart);
+    draw_chart(parseFloat(recent_stats.mem_used[0] * 100).toFixed(2), memory_used_chart);
 }
 
 let update_mem_interval;
@@ -91,4 +93,7 @@ function show_static_mem_stats (_memory) {
     mem_dims_total.innerHTML = ` ${_memory.num_modules} Modules`;
     mem_voltage.innerHTML = ` ${_memory.mem_voltage}`;
     mem_form_factor.innerHTML = `${_memory.formFactor}`;
+
+    draw_chart(parseFloat(_memory.recent_data.mem_free[0] * 100).toFixed(2),memory_free_chart);
+    draw_chart(parseFloat(_memory.recent_data.mem_used[0] * 100).toFixed(2), memory_used_chart);
 }

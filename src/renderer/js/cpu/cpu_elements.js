@@ -18,3 +18,10 @@ let cpu_maker_min = document.getElementById("cpu-maker-min");
 let base_clock_min = document.getElementById("cpu-clock-base-min");
 let system_used_min = document.getElementById("system-used-min")
 let user_used_min = document.getElementById("user-used-min")
+
+
+// Bar and charts
+
+let cpu_percent_chart = document.getElementById("cpu-percentage");
+let user_percent_chart = document.getElementById("user-percentage");
+let system_percent_chart = document.getElementById("system-percentage");
