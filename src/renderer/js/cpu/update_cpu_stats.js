@@ -9,16 +9,24 @@ let time_tr = document.getElementById("time-tr");
  * 
  */
 function update_main_stats (recent, most_recent) {
+
+    let used = _cpu.most_recent.used.toFixed(2);
+    let free = _cpu.most_recent.free.toFixed(2);
+
+    if (used <= 0.00) used = 0.01;
+    if (free <= 0.00) free = 0.01;
+
+
     utilization_tag_min.innerHTML = ` ${most_recent.system}%`;
     utilization_tag.innerHTML = ` ${recent.used[0]}%`;
     user_used.innerHTML = ` ${most_recent.user}%`;
-    document.getElementById("cpu-used-minimal").innerHTML = ` ${_cpu.most_recent.used.toFixed(2)}%`
-    document.getElementById("cpu-free-minimal").innerHTML = ` ${_cpu.most_recent.free.toFixed(2)}%`
+    document.getElementById("cpu-used-minimal").innerHTML = ` ${used}%`
+    document.getElementById("cpu-free-minimal").innerHTML = ` ${free}%`
     
-    utilization_tag_two.innerHTML = ` ${most_recent.used}%`;
+    utilization_tag_two.innerHTML = ` ${used}%`;
     system_used.innerHTML = ` ${most_recent.system}%`;
 
-    draw_chart(_cpu.most_recent.used.toFixed(1),cpu_percent_chart);
+    draw_chart(used,cpu_percent_chart);
     draw_chart(most_recent.system,system_percent_chart);
     draw_chart(most_recent.user , user_percent_chart);
 
