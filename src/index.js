@@ -1,10 +1,11 @@
 const { app, BrowserWindow, BrowserView, ipcMain } = require('electron');
 const si = require('systeminformation');
+const cpu_temps = require("./system_calls");
 const path = require('path');
 const storage = require('electron-json-storage');
 const startup = require("./startup")
 const system = require("./system")
-let storage_calls = require("./storage")
+const storage_calls = require("./storage")
 const { autoUpdater } = require('electron-updater');
 let mainWindow;
 
@@ -15,12 +16,12 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
   app.quit();
 }
 
-require('electron-reload')(__dirname);
+//require('electron-reload')(__dirname);
 
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    minHeight: 490,
+    minHeight: 470,
     minWidth: 650,
     width: 982,
     frame: false,
