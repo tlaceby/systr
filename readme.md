@@ -23,7 +23,16 @@ https://systr.tech/
 
 * CPU Tracking
 
-  * Basic Usage and Utilization stats are implemented.
+  * Basic Usage and Utilization stats are implemented
 
-    
+  ## Stable Release
+  
+  Most stable release is 1.2.8 currently.
+  
+* ## Development Bugs And Notes
 
+* The current build I am focusing on is 1.2.9 and it has noticeable spikes in CPU usage during the launching of a new python process. The app itself does not cause much extra performance overhead, however the widows defender is pegged at around 16% on my Ryzen 5 2600 system. 
+
+* I think the main way to fix this is to not launch any python processes unless one is bugged or crashed. Then the windows defender will not be constantly trying to check this process. 
+
+  
