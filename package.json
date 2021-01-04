@@ -1,7 +1,7 @@
 {
   "name": "systr",
   "productName": "systr",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "System Tracking app for Windows 10 & OSX",
   "main": "src/index.js",
   "scripts": {
@@ -79,6 +79,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "electron-updater": "^4.3.5",
     "node-powershell": "^4.0.0",
+    "node-python-communication": "^1.0.4",
     "os-utils": "0.0.14",
     "systeminformation": "^4.27.11"
   },

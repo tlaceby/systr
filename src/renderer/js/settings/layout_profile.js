@@ -6,11 +6,7 @@ let layout_profile;
  */
 function load_layout_profile () {
     layout_profile = _settings.settings.theme.layout_profile;
-
-
-
     layout_select.value = `${layout_profile}`;
-    console.log(`Settings loaded: ${layout_profile}`)
 
 }
 

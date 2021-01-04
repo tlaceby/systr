@@ -61,8 +61,6 @@ class _CPU {
                     } else {
                         this.ready = false;
                     }
-                    
-                    console.log(this.manufacturer)
                 }, 100)
                 
 
@@ -136,8 +134,6 @@ class _CPU {
         this.interval_timer = setInterval(() => {
             this.run_on_interval ();
         }, this.update_interval)
-
-        console.log(`running new interval timer every ${this.update_interval}seconds`) 
     }
 
     /**

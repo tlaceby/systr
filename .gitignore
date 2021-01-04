@@ -3,3 +3,4 @@ node_modules
 out/
 dist/
 electron-builder.yml
+process_example_data.json

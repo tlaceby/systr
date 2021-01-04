@@ -30,27 +30,19 @@ function update_main_mem_stats (recent_stats, totalmem, profile) {
 }
 
 let update_mem_interval;
-let wait_for_mem_init_interval;
 let mem_first_run = true;
 let current_mem_interval_to_run = 0;
 
-/**
- * This interval runns every 300ms and checks for the _memory class to be ready.
- * It will then pre-render the statis memory stats that never change and then it will make a ipc call to show ther app.
- * This function will also start the timer used for the duration of the apps lifecyckle.
- */
-wait_for_mem_init_interval = setInterval(() => {
+APP_STATE.on("ready", () => {
     if(startup_finished && mem_first_run == true) {
         if (typeof _memory.totalmem !== "undefined") {
             show_static_mem_stats(_memory);
             mem_first_run = false;
-            clearInterval(wait_for_init_interval)
             change_render_interval_mem()
             update_main_mem_stats(_memory.recent_data, _memory.totalmem);
         }
     }
-}, 300)
-
+})
 /**
  * This function clears the previous interval and creates a new one to replace it. It also creates a new table header row by calling the 
  * function  create_initial_table_timestamp
@@ -86,7 +78,6 @@ function run_on_mem_interval () {
  * This function shows the static memory stats then will make a call to IPCMain to show the app window.
  */
 function show_static_mem_stats (_memory) {
-    console.log(_memory)
     mem_total.innerHTML = `${(_memory.totalmem / 1000).toFixed(2)}GB`;
     mem_freq.innerHTML = `${(_memory.lowest_clock)}MHz`;
     mem_module_sizes.innerHTML = `${(_memory.module_size / 1000000000).toFixed(1)}GB`;
@@ -97,3 +88,4 @@ function show_static_mem_stats (_memory) {
     draw_chart(parseFloat(_memory.recent_data.mem_free[0] * 100).toFixed(2),memory_free_chart);
     draw_chart(parseFloat(_memory.recent_data.mem_used[0] * 100).toFixed(2), memory_used_chart);
 }
+

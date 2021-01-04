@@ -31,9 +31,8 @@
                 console.log('setting old settings')
              } else {
                 this.settings = settings;
-                console.log("old settings retreived")
-                resolve(this.settings);
                 this.ready = true;
+                resolve(this.settings);
              }
             });
         }

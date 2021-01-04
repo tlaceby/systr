@@ -33,24 +33,18 @@ function update_main_stats (recent, most_recent) {
 }
 
 let update_cpu_interval;
-let wait_for_init_interval;
 let first_run = true;
 let current_interval_to_run = 0;
 _memory.allow_rendering_updates = false;
 
-/**
- * This interval runns every 300ms and checks for the _cpu class to be ready.
- * It will then pre-render the statis cpu stats that never change and then it will make a ipc call to show ther app.
- * This function will also start the timer used for the duration of the apps lifecyckle.
- */
-wait_for_init_interval = setInterval(() => {
+
+APP_STATE.on("ready", () => {
     if(startup_finished) {
         show_static_cpu_stats(_cpu)
         first_run = false;
         change_render_interval_cpu()
     }
-        
-}, 300)
+})
 
 /**
  * This function clears the previous interval and creates a new one to replace it. It also creates a new table header row by calling the 
@@ -63,8 +57,6 @@ function change_render_interval_cpu () {
     update_cpu_interval = setInterval(() => {
         run_on_cpu_interval();
     }, _cpu.update_interval)
-
-    clearInterval(wait_for_init_interval)
 
 }
 
@@ -116,11 +108,9 @@ function show_static_cpu_stats (_cpu) {
     base_clock_min.innerHTML = ` ${_cpu.base_clock}GHz`;
 
     document.getElementById("cpu-used-minimal").innerHTML = ` ${_cpu.most_recent.used}%`
-    console.log("showing app")
     ipcRenderer.send("show-app", true);
-    
-
     update_main_stats(_cpu.recent, _cpu.most_recent)
+
 }
 
 /**
@@ -189,7 +179,10 @@ function display_correct_cpu_layout (settings) {
 }
 
 
-function draw_chart (percentage, elem) {
-    if (percentage < 1) percentage = 1;
+function draw_chart (percentage, elem, time) {
+    let current_percentage = elem.style,width;
+
+    if (percentage <= 1) percentage = Math.random();
     elem.style.width = percentage + "%";
+
 }
