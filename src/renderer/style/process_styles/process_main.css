@@ -1,0 +1,173 @@
+
+
+body {
+    height: 100vh;
+    width: 100vw;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    overflow: visible;
+    background-color: var(--bg-html);
+  }
+  
+  .left-bar-page-name {
+      padding-left: 20px;
+  }
+
+  .center {
+      text-align: center;
+  }
+  
+  :root {
+    --color-special-1: #ed553b;
+    --color-special-2: #f6d55c;
+    --color-special-3: #3caea3;
+    --color-special-4: #513cae;
+    --color-special-5: #ae3c4f;
+    --primary-text: #fff;
+    --secondary-text: #d3d3d3;
+    --third-text: #f3f3f3;
+    --bg-html: #252525;
+    --hover-links: #ffffff;
+    --base_links: #afafaf;
+    --bg-nav: #fff;
+    --active-fill: #fff;
+  }
+  
+  .color {
+      color: var(--color-special-3);
+  }
+  .color-2 {
+    color: var(--color-special-2);
+  }
+  
+  
+  nav {
+    z-index: 10;
+    background-color: var(--bg-nav);
+    height: 38px;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    -webkit-app-region: drag;
+  }
+  .divider {
+    padding: 2px 10px;
+  }
+  
+  .svg:hover {
+    fill: var(--active-fill);
+    background-color:var(--bg-html);
+    cursor: pointer;
+  }
+  
+  
+  .close-svg:hover {
+    fill: white;
+    background-color: var(--color-special-1);
+  }
+  
+  .svg {
+    -webkit-app-region: no-drag;
+    padding: 10px 14px;
+    cursor: pointer;
+    fill: var(--bg-html);
+  }
+  
+  .left-bar {
+    display: flex;
+  }
+  
+  
+  .right-bar {
+    display: flex;
+  }
+  
+  .active-link {
+    cursor: pointer;
+    fill: var(--active-fill);
+    background-color: var(--bg-html);
+  }
+  
+  .page-header {
+    margin: 0px 0px 5px 0px;
+    color: var(--primary-text);
+    font-size: 26px;
+  }
+  
+  .page-header-2 {
+    color: var(--primary-text);
+    font-size: 22px;
+    font-weight: 100;
+  }
+  
+  
+  
+  .container {
+    width: 90vw;
+    margin: auto;
+  }
+  
+  /* width */
+  ::-webkit-scrollbar {
+    width: .1px;
+    height: .1px;  
+    background-color: transparent;
+    color: transparent;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+  
+  @media only screen and (max-width: 770px) {
+    .item {
+      margin-top: 20px;
+    }
+  
+    .break-hide {
+      margin-top: 50px;
+    }
+  
+    .page-header {
+      margin-top: 60px;
+    }
+  }
+  
+  footer {
+    position: fixed;
+    margin: auto;
+    bottom: 0;
+  }
+  
+  #version {
+    padding:10px 0px 5px 5px;
+    color: #5d5d5d;
+    font-size: 12px;
+  }
+  
+  .hidden{
+    display: none;
+  }
+  
+  .m-top-60 {
+    margin-top: 60px;
+  }
+
+.section-header {
+  color: #f3f3f3;
+}

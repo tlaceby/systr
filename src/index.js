@@ -15,7 +15,7 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
   app.quit();
 }
 
-//require('electron-reload')(__dirname);
+require('electron-reload')(__dirname);
 
 const createWindow = () => {
   // Create the browser window.
@@ -50,19 +50,21 @@ const createWindow = () => {
     minHeight: 170,
     minWidth: 170,
     width: 900,
-    frame: true,
+    frame: false,
     show: false,
-    autoHideMenuBar: false,
+    autoHideMenuBar: true,
     alwaysOnTop: false,
     height: 720,
   });
+
+
   processPage.loadFile(path.join(__dirname, '/renderer/processes.html'));
   loading_window.loadFile(path.join(__dirname, '/renderer/loading.html'));
   
   processPage.on("ready-to-show", () => {
     processPage.show();
     processPage.webContents.openDevTools();
-  })
+  });
 
   loading_window.on("ready-to-show", (e) => {
     mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));

@@ -1,0 +1,71 @@
+.input-area  {
+    background: transparent;
+    color: white;
+    padding: 7px 12px;
+    font-size: 13px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #9b9b9b;
+    margin-right: 10px;
+    cursor: pointer;
+
+}
+
+.submit-btn {
+    color: rgb(22, 22, 22);
+    background-color: white;
+    border-radius: 4px;
+    border: none;
+    padding: 8px 13px;
+    cursor: pointer;
+    font-size: 12px;
+    outline: none;
+}
+
+#results-area {
+    margin: auto;
+    padding: 10px 14px;
+    margin-top: 30px;
+   
+    width: 90%;
+    color: black;
+    border-radius: 7px;
+    height: 70vh;
+}
+
+.result {
+    background-color: rgb(44, 44, 44);
+    display: flex;
+    border-radius: 4px;
+    justify-content: space-between;
+    justify-items: center;
+    font-size: 12px;
+    padding: 6px 20px;
+    margin-top: 4px;
+}
+
+.process-name {
+    padding-top: 8px;
+    color: rgb(230, 230, 230);
+}
+
+.btn-med {
+    padding: 8px 12px;
+    font-size: 10px;
+    border: none;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.btn-settings {
+    background-color: rgb(34, 34, 34);
+}
+
+.btn-save {
+    background-color: var(--color-special-1);
+}
+
+.btn-view {
+    background-color: var(--color-special-3);
+}
