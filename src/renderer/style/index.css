@@ -162,3 +162,7 @@ footer {
 .m-top-60 {
   margin-top: 60px;
 }
+
+.center-text {
+  text-align: center;
+}

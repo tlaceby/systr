@@ -150,3 +150,18 @@ th, td {
     }
 
   }
+
+
+  .view-processes-btn {
+      color: #b3b3b3;
+      font-weight: 100;
+      font-style: italic;
+      background-color: transparent;
+      outline: none;
+      border: none;
+      cursor: pointer;
+  }
+
+  .view-processes-btn:hover {
+    text-decoration: underline;
+  }

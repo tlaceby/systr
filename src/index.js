@@ -8,7 +8,13 @@ const storage_calls = require("./storage");
 const { autoUpdater } = require('electron-updater');
 let mainWindow, processPage;
 
+// State for Windows 
+let processWindowCreated = false;
+//
+
+
 var os 	= require('os-utils');
+const main = require('electron-reload');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -46,26 +52,16 @@ const createWindow = () => {
     height: 230,
   });
 
-  processPage = new BrowserWindow({
-    minHeight: 170,
-    minWidth: 170,
-    width: 900,
-    frame: false,
-    show: false,
-    autoHideMenuBar: true,
-    alwaysOnTop: false,
-    height: 720,
-  });
+  const hideMainWindow = () => {
+    mainWindow.hide();
+  }
+
+  const showMainWindow = () => {
+    mainWindow.show()
+  }
 
 
-  processPage.loadFile(path.join(__dirname, '/renderer/processes.html'));
   loading_window.loadFile(path.join(__dirname, '/renderer/loading.html'));
-  
-  processPage.on("ready-to-show", () => {
-    processPage.show();
-    processPage.webContents.openDevTools();
-  });
-
   loading_window.on("ready-to-show", (e) => {
     mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
     loading_window.show();
@@ -83,6 +79,10 @@ const createWindow = () => {
     storage.set("screen-last-pos", mainWindow.getBounds())
   })
 
+  mainWindow.on("moved", (e) => {
+    storage.set("screen-last-pos", mainWindow.getBounds())
+  })
+
   ipcMain.on("minimize-btn", (events, args) => {
     mainWindow.minimize()
     storage.set("screen-last-pos", mainWindow.getBounds(), (err, data) => {
@@ -91,6 +91,61 @@ const createWindow = () => {
   });
         
   
+};
+
+//********************************* */
+/// CREATE PROCESSES WINDOW FUNCTION
+//********************************* */
+const createProcessWindow = () => {
+  processPage = new BrowserWindow({
+    minHeight: 170,
+    minWidth: 170,
+    width: 760,
+    frame: true,
+    show: false,
+    autoHideMenuBar: true,
+    alwaysOnTop: false,
+    height: 490,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
+
+  processPage.loadFile(path.join(__dirname, '/renderer/processes.html'));
+  
+  processPage.on("ready-to-show", () => {
+    processWindowCreated = true;
+    processPage.show();
+    processPage.webContents.openDevTools();
+  });
+
+  processPage.on("closed", (e) => {
+    processWindowCreated = false;
+    mainWindow.show()
+  })
+
+  processPage.on("minimize", (e) => {
+    mainWindow.show();
+  }) ;
+
+  processPage.on("resize", (e) => {
+    storage.set("screen-last-pos-process-window", processPage.getBounds())      
+  });
+
+  processPage.on("moved", (e) => {
+    storage.set("screen-last-pos-process-window", processPage.getBounds())      
+  });
+
+  storage.get("screen-last-pos-process-window", (err, data) => {
+    if (!err) {
+        if (data.x == undefined) {
+            storage.set("screen-last-pos-process-window", processPage.getBounds())           
+        } else {
+          processPage.setBounds(data)
+        }
+    }
+  })
+
 };
 
 // This method will be called when Electron has finished
@@ -122,6 +177,11 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+/**
+ * ipc AND EVENT LISTENERS
+ */
+
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
@@ -179,6 +239,12 @@ function set_window_bounds (mainWindow, storage) {
 }
 
 
+/*
+*****************************
+  EVENT AND UPDATES IPC CALLS
+*****************************
+*/
+
 
 autoUpdater.on('update-available', () => {
   console.log('update_available');
@@ -191,4 +257,18 @@ autoUpdater.on('update-downloaded', () => {
 
 ipcMain.on('app_version', (event) => {
   event.sender.send('app_version', { version: app.getVersion() });
+});
+
+// ********************
+// Process Window IPC
+// ********************
+
+ipcMain.on('create-process-window', (event, args) => {
+  if (!processWindowCreated) {
+    createProcessWindow(args);
+  } else {
+    processPage.show();
+  }
+
+  mainWindow.hide()
 });
