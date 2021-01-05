@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="./js/config.js"></script>
+    <script src="./js/processes/processes.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/process_styles/process_main.css">
     <link rel="stylesheet" href="./style/process_styles/search.css">
+    <link rel="stylesheet" href="./style/darkMode.css">
     <title>systr - View Processes</title>
 </head>
 <body>
@@ -12,50 +15,19 @@
     <section id='process-info'>
         <div class="container">
 
-            <h1 class='section-header'>Process Information</h1>
+            <h1 class='section-header center'>System Processes</h1>
             <div class="search-bar-con center">`
-                <input type="search" name="search-area" class="input-area" id="search-process-input" placeholder="Search programs ...">
+                <input type="search" onkeyup="update_search_results()"  name="search-area" class="input-area" id="search-process-input" placeholder="Search programs ...">
                 <button class="submit-btn btn" type="submit">Search</button>
             </div>
-
-            <div class="results-area" id='results-area'>
-                <div class="result">
-                    <span class="process-name">Discord.exe</span>
-                    <div class="buttons-right">
-                        <button type="reset" class="btn-view btn-med">View</button>
-                        <button type="reset" class="btn-save btn-med">Watch</button>
-                    </div>
-                </div>
-
-                <div class="result">
-                    <span class="process-name">systr.exe</span>
-                    <div class="buttons-right">
-      
-                        <button type="reset" class="btn-view btn-med">View</button>
-                        <button type="reset" class="btn-save btn-med">Settings</button>
-                    </div>
-                </div>
-
-                <div class="result">
-                    <span class="process-name">Visual-Studio-Code.exe</span>
-                    <div class="buttons-right">
-                        <button type="reset" class="btn-view btn-med">View</button>
-                        <button type="reset" class="btn-save btn-med">Watch</button>
-                    </div>
-                </div>
-
-                <div class="result">
-                    <span class="process-name">PythonSpanwner</span>
-                    <div class="buttons-right">
-                        <button type="reset" class="btn-view btn-med">View</button>
-                        <button type="reset" class="btn-save btn-med">Settings</button>
-                    </div>
-                </div>
-            </div>
+            <p id='results-count' class="small-header">No Results Found</p>
+            <div class="results-area" id='results-area'></div>
 
         </div>
     </section>
 
     <script src="./js/processes/main.js"></script>
+    <script src="./js/processes/search.js"></script>
+    <script src="./js/processes/settings/dark.js"></script>
 </body>
 </html>

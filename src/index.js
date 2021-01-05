@@ -111,12 +111,14 @@ const createProcessWindow = () => {
     },
   });
 
+  //processPage.webContents.openDevTools();
+  
   processPage.loadFile(path.join(__dirname, '/renderer/processes.html'));
   
   processPage.on("ready-to-show", () => {
     processWindowCreated = true;
     processPage.show();
-    processPage.webContents.openDevTools();
+    
   });
 
   processPage.on("closed", (e) => {

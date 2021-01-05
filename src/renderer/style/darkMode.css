@@ -10,3 +10,8 @@
     
     font-weight: bold;
 }
+
+
+.dark-mode-second-window {
+    filter: invert(1) hue-rotate(180deg);
+}
