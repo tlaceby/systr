@@ -6,7 +6,7 @@ const startup = require("./startup");
 const system = require("./system");
 const storage_calls = require("./storage");
 const { autoUpdater } = require('electron-updater');
-let mainWindow;
+let mainWindow, processPage;
 
 var os 	= require('os-utils');
 
@@ -15,7 +15,7 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
   app.quit();
 }
 
-///require('electron-reload')(__dirname);
+//require('electron-reload')(__dirname);
 
 const createWindow = () => {
   // Create the browser window.
@@ -46,8 +46,24 @@ const createWindow = () => {
     height: 230,
   });
 
+  processPage = new BrowserWindow({
+    minHeight: 170,
+    minWidth: 170,
+    width: 900,
+    frame: true,
+    show: false,
+    autoHideMenuBar: false,
+    alwaysOnTop: false,
+    height: 720,
+  });
+  processPage.loadFile(path.join(__dirname, '/renderer/processes.html'));
   loading_window.loadFile(path.join(__dirname, '/renderer/loading.html'));
   
+  processPage.on("ready-to-show", () => {
+    processPage.show();
+    processPage.webContents.openDevTools();
+  })
+
   loading_window.on("ready-to-show", (e) => {
     mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
     loading_window.show();
@@ -60,6 +76,10 @@ const createWindow = () => {
       mainWindow.show();
     })
   });
+
+  mainWindow.on("resize", (r) => {
+    storage.set("screen-last-pos", mainWindow.getBounds())
+  })
 
   ipcMain.on("minimize-btn", (events, args) => {
     mainWindow.minimize()
