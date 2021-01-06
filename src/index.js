@@ -255,7 +255,9 @@ autoUpdater.on('update-available', () => {
   mainWindow.webContents.send('update_available');
 });
 autoUpdater.on('update-downloaded', () => {
-  console.log("update_downloaded")
+  console.log("update_downloaded");
+  app.relaunch()
+  app.exit()
   mainWindow.webContents.send('update_downloaded');
 });
 
