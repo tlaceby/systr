@@ -122,11 +122,13 @@ const createProcessWindow = () => {
   });
 
   processPage.on("closed", (e) => {
+    mainWindow.webContents.send('resume-normal-usage');
     processWindowCreated = false;
     mainWindow.show()
   })
 
   processPage.on("minimize", (e) => {
+    mainWindow.webContents.send('resume-normal-usage');
     mainWindow.show();
   }) ;
 
@@ -271,6 +273,6 @@ ipcMain.on('create-process-window', (event, args) => {
   } else {
     processPage.show();
   }
-
+  mainWindow.webContents.send('use-minimal-usage');
   mainWindow.hide()
 });

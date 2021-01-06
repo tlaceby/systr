@@ -69,7 +69,6 @@ function run_on_cpu_interval () {
     
 
     if(_cpu.allow_rendering_updates) {
-        
 
         update_main_stats(_cpu.recent, _cpu.most_recent);
         if (_settings.settings.theme.layout_profile == "Data Heavy") {

@@ -33,15 +33,30 @@ function display_results (results) {
         //create span for the process-name
         let name_span = document.createElement("span");
         name_span.classList.add("process-name");
-        name_span.innerHTML = result.name;
+        name_span.innerHTML = `${result.name} (${result.children_processes})`;
 
         // create the two button elements container and the buttons inside them
         let button_container = document.createElement("div");
         button_container.classList.add("buttons-right");
 
         let button_view = document.createElement("button");
-        button_view.classList = "btn-view btn-med";
+        button_view.classList = "btn-view btn-med invert";
         button_view.innerHTML = "View";
+
+        // stats/elements
+        let stats_container = document.createElement("span");
+        stats_container.classList = "stats-container"
+
+        let cpu_stat = document.createElement("p");
+        cpu_stat.classList = "cpu-search-stat stat";
+        cpu_stat.innerText = `CPU ${(result.cpu_used).toFixed(2)}% `
+
+        let mem_stat = document.createElement("p");
+        mem_stat.classList = "mem-search-stat stat invert-text-dark";
+        mem_stat.innerText = `Memory ${(result.memory_used).toFixed(2)}%   `
+
+        stats_container.appendChild(mem_stat);
+        stats_container.appendChild(cpu_stat);
 
         let button_watch = document.createElement("button");
         button_watch.classList = "btn-save btn-med";
@@ -54,8 +69,8 @@ function display_results (results) {
 
         // append buttons to button
         div.appendChild(name_span);
+        div.appendChild(stats_container)
         div.appendChild(button_container);
-
         //append new result to the array
         results_area.appendChild(div);
     });
@@ -63,3 +78,7 @@ function display_results (results) {
 
     document.getElementById("results-count").innerText = (results.length > 0) ? `${results.length} Results` : "No Results Found";
 }
+
+document.body.addEventListener("click", (e) => {
+    update_search_results ();
+});

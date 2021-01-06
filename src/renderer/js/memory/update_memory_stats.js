@@ -63,7 +63,6 @@ function change_render_interval_mem () {
  * */
 function run_on_mem_interval () {
     if(_memory.allow_rendering_updates) {
-        
 
         update_main_mem_stats(_memory.recent_data, _memory.totalmem);
         if (current_mem_interval_to_run != _memory.interval) {

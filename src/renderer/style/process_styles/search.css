@@ -34,6 +34,7 @@
 }
 
 .result {
+    cursor: pointer;
     background-color: rgb(44, 44, 44);
     display: flex;
     border-radius: 4px;
@@ -42,6 +43,25 @@
     font-size: 12px;
     padding: 6px 20px;
     margin-top: 4px;
+}
+
+.result:hover {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.stat {
+    padding: 0px 5px;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.mem-search-stat {
+    color: var(--color-special-3);
+}
+
+.cpu-search-stat {
+    color: var(--color-special-2);
 }
 
 .small-header {
@@ -54,7 +74,14 @@
     color: rgb(230, 230, 230);
 }
 
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+
 .btn-med {
+    margin: 0 2px;
     padding: 8px 12px;
     font-size: 10px;
     border: none;
@@ -72,5 +99,7 @@
 }
 
 .btn-view {
-    background-color: var(--color-special-3);
+    background-color: rgb(32, 32, 32);
+    color: white;
+    font-weight: 100;
 }

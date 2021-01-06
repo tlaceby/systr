@@ -17,17 +17,15 @@
 
             <h1 class='section-header center'>System Processes</h1>
             <div class="search-bar-con center">`
-                <input type="search" onkeyup="update_search_results()"  name="search-area" class="input-area" id="search-process-input" placeholder="Search programs ...">
-                <button class="submit-btn btn" type="submit">Search</button>
+                <input type="search" onkeypress="update_search_results()"  name="search-area" class="input-area" id="search-process-input" placeholder="Search programs ...">
+                <button onclick="update_search_results()" class="submit-btn btn" type="submit">Search</button>
             </div>
             <p id='results-count' class="small-header">No Results Found</p>
             <div class="results-area" id='results-area'></div>
-
         </div>
     </section>
-
-    <script src="./js/processes/main.js"></script>
     <script src="./js/processes/search.js"></script>
+    <script src="./js/processes/main.js"></script>
     <script src="./js/processes/settings/dark.js"></script>
 </body>
 </html>
