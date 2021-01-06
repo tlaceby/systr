@@ -1,7 +1,7 @@
 {
   "name": "systr",
   "productName": "systr",
-  "version": "1.3.0",
+  "version": "1.3.01",
   "description": "System Tracking app for Windows 10.",
   "main": "src/index.js",
   "scripts": {

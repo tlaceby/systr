@@ -251,13 +251,9 @@ function set_window_bounds (mainWindow, storage) {
 
 
 autoUpdater.on('update-available', () => {
-  console.log('update_available');
   mainWindow.webContents.send('update_available');
 });
 autoUpdater.on('update-downloaded', () => {
-  console.log("update_downloaded");
-  app.relaunch()
-  app.exit()
   mainWindow.webContents.send('update_downloaded');
 });
 
