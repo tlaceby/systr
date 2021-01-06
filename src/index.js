@@ -24,6 +24,7 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 require('electron-reload')(__dirname);
 
 const createWindow = () => {
+  autoUpdater.checkForUpdatesAndNotify();
   // Create the browser window.
   mainWindow = new BrowserWindow({
     minHeight: 470,
@@ -65,7 +66,6 @@ const createWindow = () => {
   loading_window.on("ready-to-show", (e) => {
     mainWindow.loadFile(path.join(__dirname, '/renderer/index.html'));
     loading_window.show();
-    autoUpdater.checkForUpdatesAndNotify();
   })
 
   ipcMain.on('show-app', (events, data) => {
