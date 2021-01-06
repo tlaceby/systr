@@ -93,6 +93,14 @@
     margin-top: 10px;
 }
 
+.legend-colors-process {
+    max-width: 200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 10px;
+}
+
 @media only screen and (min-width: 900px) {
 
     .legend-colors {

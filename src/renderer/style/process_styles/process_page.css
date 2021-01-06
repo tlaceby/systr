@@ -1,0 +1,49 @@
+.big-page-header {
+    color: white;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+
+.percentage-bars:hover {
+    background-color: #333;
+    cursor: pointer;
+}
+
+.legend-text {
+    color: white;
+}
+
+.sub-text-minimal {
+    font-weight: 400;
+    color: rgb(233, 233, 233);
+}
+
+#back-process-search {
+    text-align: center;
+    font-weight: 100;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    color: rgb(197, 197, 197);
+    cursor: pointer;
+    padding-top: 10px;
+}
+
+#back-process-search:hover {
+    text-decoration: underline;
+}
+
+.percent-text-minimal {
+    font-weight: 600;
+}
+.children-processes {
+    text-align: center;
+    font-weight: 100;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: rgb(228, 228, 228);
+}

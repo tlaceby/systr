@@ -8,9 +8,46 @@
     <link rel="stylesheet" href="./style/process_styles/process_main.css">
     <link rel="stylesheet" href="./style/process_styles/search.css">
     <link rel="stylesheet" href="./style/darkMode.css">
-    <title>systr - View Processes</title>
+    <link rel="stylesheet" href="./style/percentage_bars.css">
+    <link rel="stylesheet" href="./style/minimal_cpu.css">
+    <link rel="stylesheet" href="./style/process_styles/process_page.css">
+    <title>View Processes</title>
 </head>
 <body>
+
+    <section id='process-page'>
+        <h1 class="big-page-header" id='process-name'>electron.exe</h1>
+        <p style="cursor: pointer;" id='back-process-search'>Go Back</p>
+        <div class="cpu-cards-minimal">
+            <div class="minimal-card">
+              <h4 class="percent-text-minimal" id='process-cpu-usage'> 00.00%</h4>
+              <h4 class="sub-text-minimal invert-text">CPU Usage</h4>
+            </div>
+            <div class="minimal-card">
+              <h4 class="percent-text-minimal" id='process-memory-usage'>00.00%</h4>
+              <h4 class="sub-text-minimal invert-text">Memory Usage</h4>
+            </div>
+          </div>
+
+          <div class="minimal-cpu-bar" class='bar-area'>
+
+            <div class='percentage-bars' id='mem-bar'>
+              <div id="memory-percentage-used" class='bar-percentage bg-color-1'></div>
+            </div>
+
+            <div class='percentage-bars' id='cpu-bar'>
+              <div id="cpu-percentage-used" class='bar-percentage bg-color-white'></div>
+            </div>
+
+            <ul class='legend-colors-process'>
+              <li class='legend-text'><div class='bg-color-1 legend-bg'> </div> <span>Memory %</span></li>
+              <li class='legend-text'><div class='bg-color-white legend-bg'> </div> <span>CPU %</span></li>
+            </ul>
+          </div>
+         <br>
+          <p class='children-processes'>Children Processes: <span id='sub-processes'></span></p>
+          <p class='children-processes'>Execution Level: <span id='exe-level'></span></p>
+    </section>
     
     <section id='process-info'>
         <div class="container">
@@ -26,6 +63,8 @@
     </section>
     <script src="./js/processes/search.js"></script>
     <script src="./js/processes/main.js"></script>
+    <script src="./js/processes/process_page.js"></script>
     <script src="./js/processes/settings/dark.js"></script>
+    <script src="./js/processes/process_state.js"></script>
 </body>
 </html>

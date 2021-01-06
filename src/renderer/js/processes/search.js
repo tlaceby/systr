@@ -23,12 +23,19 @@ function update_search_results () {
  * @param results The array of results to display 
  */
 function display_results (results) {
+    
 
     results_area.innerHTML = ""; // clear the area
     results.forEach(result => {
+        
         //results div that contains each result
         let div = document.createElement("div");
-        div.classList.add("result");
+        div.classList = `${(dark_mode) ? 'result' :'result inverted' }`
+
+        let hdnVal = document.createElement("input");
+        hdnVal.type = "hidden";
+        hdnVal.value = result.name
+        div.appendChild(hdnVal)
 
         //create span for the process-name
         let name_span = document.createElement("span");
@@ -71,8 +78,17 @@ function display_results (results) {
         div.appendChild(name_span);
         div.appendChild(stats_container)
         div.appendChild(button_container);
+
+        // add event listsners
+        div.addEventListener("click", (e) => {
+            current_viewed_process = result;
+            STATE.emit("view-process", (result));
+            update_process_info(ALL_PROCESSES)
+        })
+
         //append new result to the array
         results_area.appendChild(div);
+
     });
 
 
@@ -80,5 +96,5 @@ function display_results (results) {
 }
 
 document.body.addEventListener("click", (e) => {
-    update_search_results ();
+    if (!is_viewing_process) update_search_results ();
 });

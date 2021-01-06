@@ -1,3 +1,5 @@
+let dark_mode = localStorage.getItem("dark-mode-second-window");
+
 
 document.onkeypress = function (e) {
     let is_dark_mode = localStorage.getItem("dark-mode-second-window");
@@ -48,6 +50,7 @@ function toggle_dark_mode () {
  */
 function save_theme_settings (current_value) {
     localStorage.setItem("dark-mode-second-window", current_value);
+    dark_mode = current_value;
 }
 
 function set_default_dark_mode () {

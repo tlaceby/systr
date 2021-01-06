@@ -1,5 +1,8 @@
 
 let ALL_PROCESSES = []
+let is_viewing_process = false;
+let current_viewed_process = {};
+let process_update_interval;
 
 let TRACKED_PROCESSES = [];
 let PROCESS_INTERVAL = localStorage.getItem("process-update-interval");
@@ -15,3 +18,4 @@ if ( typeof PROCESS_INTERVAL != "string") {
 
 let ev = require('events');
 let STATE = new ev.EventEmitter();
+
