@@ -17,8 +17,8 @@ const known_windows_mac_processes_pids = [976, 816, 644, 0, 4, 888, 896, 6188];
 
 
 if ( typeof PROCESS_INTERVAL != "string") {
-    localStorage.setItem("process-update-interval", "5000");
-    PROCESS_INTERVAL = 5000;
+    localStorage.setItem("process-update-interval", "3500");
+    PROCESS_INTERVAL = 3500;
 } else {
     PROCESS_INTERVAL = parseInt(PROCESS_INTERVAL);
 }

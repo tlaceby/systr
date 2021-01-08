@@ -19,12 +19,17 @@ var chart = new Chart(ctx, {
 
      // Configuration options go here
      options: {
+        elements: {
+            line: {
+                tension: 0 // disables bezier curves
+            }
+        },
         legend: {
             display: false
          },
         elements: {
            line: {
-                tension: 1 // disables bezier curves
+                tension: 0 // disables bezier curves
            }
         }, 
         animation: {

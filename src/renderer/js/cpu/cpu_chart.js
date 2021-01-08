@@ -20,6 +20,11 @@ var chart_cpu = new Chart(ctx, {
 
     // Configuration options go here
     options: {
+        elements: {
+            line: {
+                tension: 0 // disables bezier curves
+            }
+        },
         legend: {
         display: false
      }, animation: {
@@ -30,10 +35,5 @@ var chart_cpu = new Chart(ctx, {
         },
         responsiveAnimationDuration: 0
     },
-    elements :{
-        line: {
-             tension: 1 // disables bezier curves
-        }
-     }
     
 });
