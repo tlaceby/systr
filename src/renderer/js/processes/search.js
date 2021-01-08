@@ -82,7 +82,15 @@ function display_results (results) {
 
         // add event listsners
         div.addEventListener("click", (e) => {
+
+            if (current_viewed_process.old.name != result.name) {
+                // clear previous data
+                chart.data.datasets[0].data = [];
+                chart.update();
+            }
+
             current_viewed_process.old = []
+            current_viewed_process.cpu_data = []
             current_viewed_process.old = result;
             STATE.emit("view-process", (result));
             update_process_info(ALL_PROCESSES)

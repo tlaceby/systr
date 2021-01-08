@@ -19,7 +19,6 @@ function show_process_view () {
     is_viewing_process = true;
 }
 
-hide_process_view()
 
 
 STATE.on('view-process', (p) => {
@@ -37,7 +36,7 @@ document.getElementById("back-process-search").addEventListener("click", (e) => 
 
 function addData(chart, cpu) {
     chart.data.datasets[0].data.unshift(cpu[0])
-    if (chart.data.datasets[0].data.length > 15) chart.data.datasets[0].data.pop()
+    if (chart.data.datasets[0].data.length > 26) chart.data.datasets[0].data.pop()
     chart.update()
 }
 

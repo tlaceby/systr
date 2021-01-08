@@ -5,25 +5,25 @@ var chart = new Chart(ctx, {
     
     // The data for our dataset
     data: {
-        labels: ['', '', '', '', '', '', '', '', '','', '', '', '', '', ''],
+        labels: ['', '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '', '', '', '', '', '','', '', '', ''],
         datasets: [{
             label: '',
-            backgroundColor: '#ed553b',
+            backgroundColor: '#fff',
             borderColor: '#ed553b',
             fill: false,
-            data: []
-            
+            data: [],
         }, 
         ]
     },
 
      // Configuration options go here
      options: {
+       /** 
         elements: {
             line: {
                 tension: 0 // disables bezier curves
             }
-        },
+        }, */
         legend: {
             display: false
          },
@@ -38,6 +38,23 @@ var chart = new Chart(ctx, {
         hover: {
             animationDuration: 0 // duration of animations when hovering an item
         },
-        responsiveAnimationDuration: 0
+        responsiveAnimationDuration: 0,
+        scales: {
+            xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                    }
+                }],
+            yAxes: [{
+                    display: true,
+                    ticks: {
+                        beginAtZero: true,
+                        steps: 10,
+                        stepValue: 1,
+                        max: 100
+                    }
+                }]
+        },
     }
 });
