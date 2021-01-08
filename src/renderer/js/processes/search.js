@@ -7,6 +7,7 @@ function update_search_results () {
     let q = search_field.value;
     q = q.toString().toLowerCase();
     // check text in field agains search results
+    //console.log(ALL_PROCESSES)
     ALL_PROCESSES.forEach(i => {
         if (i.name.toLowerCase().includes(q)) {
             results_matched.push(i);
@@ -81,7 +82,8 @@ function display_results (results) {
 
         // add event listsners
         div.addEventListener("click", (e) => {
-            current_viewed_process = result;
+            current_viewed_process.old = []
+            current_viewed_process.old = result;
             STATE.emit("view-process", (result));
             update_process_info(ALL_PROCESSES)
         })

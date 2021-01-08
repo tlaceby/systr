@@ -76,13 +76,14 @@ function clean_processes_array (pr) {
 
 
 // constantly run this interval
-STATE.on("ready-for-interval", ()=> {
+STATE.on("ready-for-interval", () => {
     setInterval(() => {
         get_all_processes().then(p => {
             clean_processes_array(p).then(f => {
                 ALL_PROCESSES = f;
-                update_search_results ()
+                if (!is_viewing_process) update_search_results ();
             })
         }).catch(err => console.log(err));
+       
     }, PROCESS_INTERVAL)
 })

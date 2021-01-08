@@ -7,6 +7,7 @@
     <script src="./js/settings/settings.js"></script>
     <script src="./js/components/CpuController.js"></script>
     <script src="./js/components/MemoryController.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="./js/main.js"></script>
     
     <title>systr</title>
@@ -149,6 +150,7 @@
               <h4 class="sub-text-minimal invert-text">Available</h4>
             </div>
           </div>
+          
 
           <div class="minimal-cpu-bar" class='bar-area'>
 
@@ -171,8 +173,11 @@
             </ul>
             <p class="view-processes-btn center-text" onclick="show_processes_window()">View Processes</p>
           </div>
-          <br>
-          <br>
+
+          <div class="chart-area" style="max-width: 800px;margin: auto; max-height: 600px;padding: 20px 80px;">
+            <canvas id="cpuChart"></canvas>
+          </div>
+          
           <div class="table-specs">
             <h4 class='lg-header'>Specifications</h4>
             <table class='table-specs' id='cpu-specs-table'>
@@ -191,6 +196,9 @@
               </tr>
             </table>
         </div>
+
+        <br>
+        <br>
 
         </div>
 
@@ -364,6 +372,7 @@
         
       </div>
     </section>
+    <script src="./js/cpu/cpu_chart.js"></script>
     <script src="./js/cpu/cpu_elements.js"></script>
     <script src="./js/state/StateManager.js"></script>
     <script src="./js/menu/menu.js"></script>

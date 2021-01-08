@@ -30,6 +30,7 @@ function update_main_stats (recent, most_recent) {
     draw_chart(most_recent.system,system_percent_chart);
     draw_chart(most_recent.user , user_percent_chart);
 
+    update_line_chart_cpu (chart_cpu, recent.used)
 }
 
 let update_cpu_interval;
@@ -185,3 +186,13 @@ function draw_chart (percentage, elem, time) {
     elem.style.width = percentage + "%";
 
 }
+
+function update_line_chart_cpu (chart, cpu_data) {
+    console.log(cpu_data)
+    chart.data.datasets[0].data.unshift(cpu_data[0])
+    if (chart.data.datasets[0].data.length > 13) chart.data.datasets[0].data.pop()
+    chart.update()
+}
+
+//addData(chart, current_viewed_process.cpu_data)
+

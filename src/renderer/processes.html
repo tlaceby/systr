@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="./style/percentage_bars.css">
     <link rel="stylesheet" href="./style/minimal_cpu.css">
     <link rel="stylesheet" href="./style/process_styles/process_page.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <title>View Processes</title>
 </head>
 <body>
 
-    <section id='process-page'>
+    <section id='process-page' style="display: none;">
+      <br>
         <h1 class="big-page-header" id='process-name'>electron.exe</h1>
         <p style="cursor: pointer;" id='back-process-search'>Go Back</p>
         <div class="cpu-cards-minimal">
@@ -47,6 +49,15 @@
          <br>
           <p class='children-processes'>Children Processes: <span id='sub-processes'></span></p>
           <p class='children-processes'>Execution Level: <span id='exe-level'></span></p>
+
+          
+          <div class="process-btns">
+            <br>
+            <div class="chart-area" style="max-width: 700px;margin: auto; max-height: 500px;padding: 20px 80px;">
+              <canvas id="myChart"></canvas>
+            </div>
+            
+          </div>
     </section>
     
     <section id='process-info'>
@@ -61,10 +72,16 @@
             <div class="results-area" id='results-area'></div>
         </div>
     </section>
+
+    <br><br>
+    <br>
+    <br>
+
     <script src="./js/processes/search.js"></script>
     <script src="./js/processes/main.js"></script>
     <script src="./js/processes/process_page.js"></script>
     <script src="./js/processes/settings/dark.js"></script>
     <script src="./js/processes/process_state.js"></script>
+    <script src="./js/processes/chart_process.js"></script>
 </body>
 </html>
