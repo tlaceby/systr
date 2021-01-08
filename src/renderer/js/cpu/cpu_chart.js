@@ -5,7 +5,7 @@ var chart_cpu = new Chart(ctx, {
     
     // The data for our dataset
     data: {
-        labels: ['', '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '', '', '', '', '', '','', '', '', ''],
+        labels: ['|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', ],
         datasets: [{
             label: '',
             showLine: true,
@@ -13,8 +13,9 @@ var chart_cpu = new Chart(ctx, {
             borderColor: '#fff',
             fill: false,
             data: [],
-            
+            pointStyle: 'rectRounded'
         }, 
+        
         ]
     },
 
@@ -40,9 +41,15 @@ var chart_cpu = new Chart(ctx, {
                     display: true,
                     scaleLabel: {
                         display: true,
-                    }
+                    },
+                    gridLines: {
+                        display: false,
+                    },
                 }],
             yAxes: [{
+                    gridLines: {
+                        display: false
+                    },
                     display: true,
                     ticks: {
                         beginAtZero: true,
@@ -52,6 +59,7 @@ var chart_cpu = new Chart(ctx, {
                     }
                 }]
         },
+
     },
     
     

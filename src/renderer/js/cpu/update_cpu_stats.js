@@ -58,7 +58,8 @@ function change_render_interval_cpu () {
     update_cpu_interval = setInterval(() => {
         run_on_cpu_interval();
     }, _cpu.update_interval)
-
+    
+    set_labels(_cpu.update_interval, 40, chart_cpu)
 }
 
 /**
@@ -187,10 +188,22 @@ function draw_chart (percentage, elem, time) {
 
 }
 
+function set_labels (int, max, chart) {
+    let count = 0;
+    let labels = [];
+    while (count <= max ) {
+        labels.push(`${count}s`)
+        count += (int / 1000);
+        console.log(count)
+    }
+
+    chart.data.labels = labels;
+    chart.update()
+}
+
 function update_line_chart_cpu (chart, cpu_data) {
-    
     chart.data.datasets[0].data.unshift(cpu_data[0])
-    if (chart.data.datasets[0].data.length > 26) chart.data.datasets[0].data.pop()
+    if (chart.data.datasets[0].data.length > 45) chart.data.datasets[0].data.pop()
     chart.update()
 }
 
