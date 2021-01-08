@@ -25,14 +25,9 @@ hide_process_view()
 STATE.on('view-process', (p) => {
     process_update_interval = setInterval(() => {
         update_process_info (ALL_PROCESSES);
-    }, 5000)
+        addData(chart, current_viewed_process.cpu_data)
+    }, PROCESS_INTERVAL)
     show_process_view();
-
-    setTimeout(() => {
-        update_graph_interval = setInterval (() => {
-            addData(chart, current_viewed_process.cpu_data)
-        }, 5000)
-    }, 1000)
     
 })
 

@@ -17,8 +17,22 @@ var chart = new Chart(ctx, {
         ]
     },
 
-    // Configuration options go here
-    options: {legend: {
-        display: false,
-     }}
+     // Configuration options go here
+     options: {
+        legend: {
+            display: false
+         },
+        elements: {
+           line: {
+                tension: 1 // disables bezier curves
+           }
+        }, 
+        animation: {
+            duration: 0 // general animation time
+        },
+        hover: {
+            animationDuration: 0 // duration of animations when hovering an item
+        },
+        responsiveAnimationDuration: 0
+    }
 });

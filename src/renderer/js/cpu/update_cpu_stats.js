@@ -188,7 +188,7 @@ function draw_chart (percentage, elem, time) {
 }
 
 function update_line_chart_cpu (chart, cpu_data) {
-    console.log(cpu_data)
+    
     chart.data.datasets[0].data.unshift(cpu_data[0])
     if (chart.data.datasets[0].data.length > 13) chart.data.datasets[0].data.pop()
     chart.update()

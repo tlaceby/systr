@@ -8,17 +8,32 @@ var chart_cpu = new Chart(ctx, {
         labels: ['', '', '', '', '', '', '', '', '','', '', '', ''],
         datasets: [{
             label: '',
+            showLine: true,
             backgroundColor: '#fff',
             borderColor: '#fff',
             fill: false,
-            data: []
+            data: [],
             
         }, 
         ]
     },
 
     // Configuration options go here
-    options: {legend: {
-        display: false,
-     }}
+    options: {
+        legend: {
+        display: false
+     }, animation: {
+            duration: 0 // general animation time
+        },
+        hover: {
+            animationDuration: 0 // duration of animations when hovering an item
+        },
+        responsiveAnimationDuration: 0
+    },
+    elements :{
+        line: {
+             tension: 1 // disables bezier curves
+        }
+     }
+    
 });

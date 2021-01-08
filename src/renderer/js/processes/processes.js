@@ -25,9 +25,3 @@ if ( typeof PROCESS_INTERVAL != "string") {
 
 let ev = require('events');
 let STATE = new ev.EventEmitter();
-
-
-if (typeof localStorage.getItem("graph-interval" !== "string")) {
-    localStorage.setItem("graph-interval", "10000");
-}
-
