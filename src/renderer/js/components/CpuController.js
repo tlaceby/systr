@@ -27,7 +27,7 @@ class _CPU {
 
         //Recent Data
         this.most_recent = {free: 100, used: 0.01, system: 0.1, user: 0.19};
-        this.recent = {free: [], used: [], time: []};
+        this.recent = {free: [], used: [], system_used:[], user_used: []}
 
         this.interval_timer = undefined;
         this.ready = false;
@@ -65,10 +65,9 @@ class _CPU {
                 
 
                 this.si.currentLoad().then(data => {
-                    this.recent.used.unshift(parseFloat(data.currentload.toFixed(2)));
-                    this.recent.free.unshift(100 - data.currentload.toFixed(2));
-                    this.recent.time.unshift(Date.now());
-    
+                    this.recent.used.unshift(parseFloat(data.currentload.toFixed(2)))
+                    this.recent.system_used.unshift(parseFloat(data.currentload_system.toFixed(2)));
+                    this.recent.user_used.unshift(parseFloat(data.currentload_user.toFixed(2)));
                     this.most_recent.free = parseFloat(100 - data.currentload.toFixed(2));
                     this.most_recent.used = parseFloat(data.currentload.toFixed(2));
                     this.most_recent.user = parseFloat(data.currentload_user.toFixed(2));
@@ -94,9 +93,10 @@ class _CPU {
             
             this.si.currentLoad().then(data => {
                 this.recent.used.unshift(parseFloat(data.currentload.toFixed(2)));
-                this.recent.free.unshift(100 - data.currentload.toFixed(2));
-                this.recent.time.unshift(Date.now());
+                this.recent.system_used.unshift(parseFloat(data.currentload_system.toFixed(2)));
+                this.recent.user_used.unshift(parseFloat(data.currentload_user.toFixed(2)));
 
+                
                 this.most_recent.used = parseFloat(data.currentload.toFixed(2));
                 this.most_recent.user = parseFloat(data.currentload_user.toFixed(2));
                 this.most_recent.system = parseFloat(data.currentload_system.toFixed(2));

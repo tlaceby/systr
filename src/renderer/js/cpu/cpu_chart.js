@@ -6,8 +6,9 @@ var chart_cpu = new Chart(ctx, {
     // The data for our dataset
     data: {
         labels: ['|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', ],
-        datasets: [{
-            label: '',
+        datasets: [
+            {
+            label: 'Overall',
             showLine: true,
             backgroundColor: '#fff ',
             borderColor: '#fff',
@@ -15,6 +16,25 @@ var chart_cpu = new Chart(ctx, {
             data: [],
             pointStyle: 'rectRounded'
         }, 
+
+        { label: 'User',
+            showLine: true,
+            backgroundColor: '#ed553b ',
+            borderColor: '#ed553b',
+            fill: false,
+            data: [],
+            pointStyle: 'rectRot'
+        },
+
+        { label: 'System',
+            showLine: true,
+            backgroundColor: '#3caea3 ',
+            borderColor: '#3caea3',
+            fill: false,
+            data: [],
+            pointStyle: 'rectRot'
+        },
+         
         
         ]
     },
@@ -28,7 +48,7 @@ var chart_cpu = new Chart(ctx, {
             }
         }, */
         legend: {
-        display: false
+        display: true
      }, animation: {
             duration: 0 // general animation time
         },

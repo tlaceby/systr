@@ -1,3 +1,5 @@
+const { memLayout } = require("systeminformation");
+
 let cpu_current_layout = undefined;
 let has_shown_static_cpu_stats = false;
 let used_tr = document.getElementById("used-tr")
@@ -16,7 +18,6 @@ function update_main_stats (recent, most_recent) {
     if (used <= 0.00) used = 0.01;
     if (free <= 0.00) free = 0.01;
 
-
     utilization_tag_min.innerHTML = ` ${most_recent.system}%`;
     utilization_tag.innerHTML = ` ${recent.used[0]}%`;
     user_used.innerHTML = ` ${most_recent.user}%`;
@@ -29,8 +30,17 @@ function update_main_stats (recent, most_recent) {
     draw_chart(used,cpu_percent_chart);
     draw_chart(most_recent.system,system_percent_chart);
     draw_chart(most_recent.user , user_percent_chart);
+    update_line_chart_cpu (chart_cpu, recent.used, recent.user_used, recent.system_used)
+}
 
-    update_line_chart_cpu (chart_cpu, recent.used)
+localStorage.setItem("max-graph-time", "60"); 
+let MAX_GRAPH_TIME = localStorage.getItem("max-graph-time");
+
+if (typeof MAX_GRAPH_TIME !== "string") {
+    localStorage.setItem("max-graph-time", "60"); 
+    MAX_GRAPH_TIME = 60;
+} else {
+    MAX_GRAPH_TIME = parseInt(MAX_GRAPH_TIME);
 }
 
 let update_cpu_interval;
@@ -59,7 +69,7 @@ function change_render_interval_cpu () {
         run_on_cpu_interval();
     }, _cpu.update_interval)
     
-    set_labels(_cpu.update_interval, 40, chart_cpu)
+    set_labels(_cpu.update_interval, MAX_GRAPH_TIME, chart_cpu)
 }
 
 /**
@@ -194,16 +204,21 @@ function set_labels (int, max, chart) {
     while (count <= max ) {
         labels.push(`${count}s`)
         count += (int / 1000);
-        console.log(count)
     }
 
     chart.data.labels = labels;
     chart.update()
 }
 
-function update_line_chart_cpu (chart, cpu_data) {
+function update_line_chart_cpu (chart, cpu_data, user_data, system_data) {
     chart.data.datasets[0].data.unshift(cpu_data[0])
-    if (chart.data.datasets[0].data.length > 45) chart.data.datasets[0].data.pop()
+    chart.data.datasets[1].data.unshift(user_data[0])
+    chart.data.datasets[2].data.unshift(system_data[0])
+    if (chart.data.datasets[0].data.length > (MAX_GRAPH_TIME)) {
+        chart.data.datasets[0].data.pop()
+        chart.data.datasets[1].data.pop()
+        chart.data.datasets[2].data.pop()
+    }
     chart.update()
 }
 

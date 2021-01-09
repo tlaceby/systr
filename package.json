@@ -44,7 +44,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "F:\\Electron\\systr\\icon.ico"
+        "icon": "/Users/nox/Documents/Electron/systr/icon.ico"
       },
       "makers": [
         {
