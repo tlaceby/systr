@@ -2,14 +2,13 @@
 /**
  * This class is used to view, edit, and change memory data. This object also has a timer used to update the memory totals evrry interval seconds.
  *@param si SystemInformation Module instance used to gather current and past memory usage.
- *@param interval Interval is a typeof Number reprersenting the update interval for Memory usage.
+ 
  */
 class _Memory {
-    constructor (si, osutil, interval) {
+    constructor (si, osutil) {
         
         this.osutil = osutil;
         this.si = si;
-        this.interval = interval;
         this.recent_data = {mem_used: [],mem_free: [], mem_free_bytes: [], mem_used_bytes: []};
         this.recent_data_limit = 10;
         // other stats
@@ -21,12 +20,7 @@ class _Memory {
         this.num_modules = 0;
         // Timer
         this.mem_voltage = 0.0;
-        this.ready = false;
-        this.timer = undefined;
-        this.should_update = true;
-        this.allow_rendering_updates = true;
 
-        this.create_timer()
         this.get_static_stats();
         this.get_current_stats()
     }
@@ -83,27 +77,6 @@ class _Memory {
             resolve()
         })
     }
-
-    /**
-     * Runs every x secondas and  will update the clasees values.
-     */
-    run_on_timer () {
-        if (this.should_update) this.get_current_stats();
-    }
-
-    create_timer () {
-        clearInterval(this.timer);
-        this.timer = setInterval (() => {
-            this.run_on_timer();
-        }, this.interval)
-
-        this.ready = true;
-    }
-
-    set_new_interval (interval) {
-        this.interval = interval;
-        this.create_timer();
-    }
 }
 
-_memory = new _Memory(si, osutil, 2000);
+_memory = new _Memory(si, osutil);

@@ -19,9 +19,7 @@ let check_for_finished_interval;
 
 check_for_finished_interval = setInterval(() => {
     
-    if (_settings.ready == true && _cpu.ready == true && _memory.ready == true) {
-        _cpu.set_new_interval(_settings.settings.cpu_settings.update_interval)
-        _memory.set_new_interval(_settings.settings.memory_settings.memory_update_interval)
+    if (SystemStats.ready) {
         startup_finished = true;
         clearInterval(check_for_finished_interval);
         startup_other_processes()
