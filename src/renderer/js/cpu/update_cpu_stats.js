@@ -50,7 +50,7 @@ _memory.allow_rendering_updates = false;
 
 APP_STATE.on("ready", () => {
     if(startup_finished) {
-        show_static_cpu_stats(_cpu)
+        show_static_cpu_stats()
         first_run = false;
         change_render_interval_cpu()
     }
@@ -99,26 +99,34 @@ function run_on_cpu_interval () {
 /**
  * This function shows the static cpu stats then will make a call to IPCMain to show the app window.
  */
-function show_static_cpu_stats (_cpu) {
-    document.getElementById("cpu-free-minimal").innerHTML = ` ${_cpu.most_recent.free.toFixed(2)}%`
-    create_initial_table_timestamp(_cpu.update_interval);
-    cpu_name_full.innerHTML = ` ${_cpu.manufacturer} ${_cpu.brand}`;
-    cpu_maker.innerHTML = ` ${_cpu.manufacturer}`;
-    cpu_brand.innerHTML = ` ${_cpu.brand}`;
-    utilization_tag.innerHTML = ` ${_cpu.most_recent.used}%`;
-    cpu_cores_full.innerHTML = ` Physical ${_cpu.physical_cores}, Logical ${_cpu.cores}`;
-    base_clock.innerHTML = ` ${_cpu.base_clock}GHz`;
+function show_static_cpu_stats () {
 
-    cpu_name_full_min.innerHTML= ` ${_cpu.manufacturer} ${_cpu.brand}`;
-    cpu_maker_min.innerHTML = ` ${_cpu.manufacturer}`;
-    cpu_brand_min.innerHTML = ` ${_cpu.brand}`;
-    utilization_tag_min.innerHTML = ` ${_cpu.most_recent.used}%`;
-    cpu_cores_full_min.innerHTML = ` Physical ${_cpu.physical_cores}, Logical ${_cpu.cores}`;
-    base_clock_min.innerHTML = ` ${_cpu.base_clock}GHz`;
+    if (typeof _cpu.manufacturer !== "string") {
+        setTimeout(() => {
+            show_static_cpu_stats()
+        }, 300)
+    } else {
+        document.getElementById("cpu-free-minimal").innerHTML = ` ${_cpu.most_recent.free.toFixed(2)}%`
+        create_initial_table_timestamp(_cpu.update_interval);
+        cpu_name_full.innerHTML = ` ${_cpu.manufacturer} ${_cpu.brand}`;
+        cpu_maker.innerHTML = ` ${_cpu.manufacturer}`;
+        cpu_brand.innerHTML = ` ${_cpu.brand}`;
+        utilization_tag.innerHTML = ` ${_cpu.most_recent.used}%`;
+        cpu_cores_full.innerHTML = ` Physical ${_cpu.physical_cores}, Logical ${_cpu.cores}`;
+        base_clock.innerHTML = ` ${_cpu.base_clock}GHz`;
+    
+        cpu_name_full_min.innerHTML= ` ${_cpu.manufacturer} ${_cpu.brand}`;
+        cpu_maker_min.innerHTML = ` ${_cpu.manufacturer}`;
+        cpu_brand_min.innerHTML = ` ${_cpu.brand}`;
+        utilization_tag_min.innerHTML = ` ${_cpu.most_recent.used}%`;
+        cpu_cores_full_min.innerHTML = ` Physical ${_cpu.physical_cores}, Logical ${_cpu.cores}`;
+        base_clock_min.innerHTML = ` ${_cpu.base_clock}GHz`;
+    
+        document.getElementById("cpu-used-minimal").innerHTML = ` ${_cpu.most_recent.used}%`
+        update_main_stats(_cpu.recent, _cpu.most_recent)
+        ipcRenderer.send("show-app", true);
+    }
 
-    document.getElementById("cpu-used-minimal").innerHTML = ` ${_cpu.most_recent.used}%`
-    ipcRenderer.send("show-app", true);
-    update_main_stats(_cpu.recent, _cpu.most_recent)
 
 }
 
