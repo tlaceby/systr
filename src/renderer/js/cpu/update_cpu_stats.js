@@ -67,7 +67,7 @@ function change_render_interval_cpu () {
     create_initial_table_timestamp(_cpu.update_interval);
     update_cpu_interval = setInterval(() => {
         run_on_cpu_interval();
-    }, _cpu.update_interval)
+    }, SystemStats.update_interval)
     
     set_labels(_cpu.update_interval, MAX_GRAPH_TIME, chart_cpu)
 }
@@ -81,7 +81,6 @@ function run_on_cpu_interval () {
     
 
     if(_cpu.allow_rendering_updates) {
-
         update_main_stats(_cpu.recent, _cpu.most_recent);
         if (_settings.settings.theme.layout_profile == "Data Heavy") {
             update_table_data(_cpu.recent);
@@ -211,6 +210,9 @@ function set_labels (int, max, chart) {
 }
 
 function update_line_chart_cpu (chart, cpu_data, user_data, system_data) {
+
+    console.log("drwaing chart")
+
     chart.data.datasets[0].data.unshift(cpu_data[0])
     chart.data.datasets[1].data.unshift(user_data[0])
     chart.data.datasets[2].data.unshift(system_data[0])

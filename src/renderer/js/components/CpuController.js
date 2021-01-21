@@ -10,6 +10,7 @@ class _CPU {
         // Required Modules
         this.si = si;
         this.osutil = osutil;
+        this.allow_rendering_updates = true;
 
         // Base Info
         this.manufacturer;
