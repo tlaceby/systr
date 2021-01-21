@@ -33,6 +33,7 @@ let update_mem_interval;
 let mem_first_run = true;
 let current_mem_interval_to_run = 0;
 
+
 APP_STATE.on("ready", () => {
     if(startup_finished && mem_first_run == true) {
         if (typeof _memory.totalmem !== "undefined") {
@@ -49,11 +50,11 @@ APP_STATE.on("ready", () => {
  */
 function change_render_interval_mem () {
     clearInterval(update_mem_interval)
-    current_mem_interval_to_run = _memory.interval;
-    create_initial_table_timestamp(_memory.interval);
+    current_mem_interval_to_run = SystemStats.update_interval;
+    create_initial_table_timestamp(SystemStats.update_interval);
     update_mem_interval = setInterval(() => {
         run_on_mem_interval ();
-    }, _memory.interval)
+    }, SystemStats.update_interval)
 
 }
 
@@ -65,8 +66,8 @@ function run_on_mem_interval () {
     if(_memory.allow_rendering_updates) {
 
         update_main_mem_stats(_memory.recent_data, _memory.totalmem);
-        if (current_mem_interval_to_run != _memory.interval) {
-            console.log(`Old Interval: for mem: ${current_mem_interval_to_run}, newInterval: ${_memory.interval}`)
+        if (current_mem_interval_to_run != SystemStats.update_interval) {
+            console.log(`Old Interval: for mem: ${current_mem_interval_to_run}, newInterval: ${SystemStats.update_interval}`)
             change_render_interval_mem()
         }
     }

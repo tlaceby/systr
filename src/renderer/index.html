@@ -274,16 +274,13 @@
           <h3 class='header-sm color-3'>Update Interval</h3>
           
           <div class="setting-item">
-            <p class='item-header'>Memory Data Update Interval</p>
-            <input class='input-item md-input inverted' onchange="save_setting_on_change ('memory')" step="500" min='2000' max='30000' type="number" id="memory_update_interval" value='5000'>
+            <p class='item-header'>Data Update Interval</p>
+            <input class='input-item md-input inverted' onchange="save_setting_on_change ()" step="500" min='1000' max='30000' type="number" id="update_interval" value='2500'>
           </div>
-          <div class="setting-item" class="keep-dark-inverted">
-            <p class='item-header'>GPU Data Update Interval</p>
-            <input class='input-item md-input inverted' onchange="save_setting_on_change ('gpu')" step="500" min='30000' max='30000' type="number" id="gpu_update_interval" value='4000'>
-          </div>
+
           <div class="setting-item">
-            <p class='item-header'>CPU Data Update Interval</p>
-            <input class='input-item md-input inverted' onchange="save_setting_on_change ('cpu')" step="500" min='2000' max='30000' type="number" id="cpu_update_interval" value='4000'>
+            <p class='item-header'>Max Graph Length - Time</p>
+            <input class='input-item md-input inverted' onchange="save_graph_length_settings ()" step="2" min='10' max='120' type="number" id="graph-length-max" value='60'>
           </div>
 
           <h3 class='header-sm'>Theme Preferences</h3>
@@ -375,11 +372,11 @@
     <script src="./js/cpu/cpu_elements.js"></script>
     <script src="./js/state/StateManager.js"></script>
     <script src="./js/menu/menu.js"></script>
+    <script src="./js/settings/interval_settings.js"></script>
     <script src="./js/cpu/update_cpu_stats.js"></script>
     <script src="./js/memory/memory_elements.js"></script>
     <script src="./js/memory/update_memory_stats.js"></script>
     <script src="./js/settings/startup_settings.js"></script>
-    <script src="./js/settings/interval_settings.js"></script>
     <script src='./js/settings/layout_profile.js'></script>
     <script src="./js/settings/dark_mode.js"></script>
     <script src="./js/settings/update_info.js"></script>

@@ -13,6 +13,7 @@ class _Memory {
         this.recent_data_limit = 10;
         // other stats
         this.formFactor;
+        this.allow_rendering_updates = true;
         this.memory_layout = []
         this.module_size = 0;
         this.lowest_clock = undefined;

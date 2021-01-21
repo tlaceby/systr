@@ -36,7 +36,7 @@ class _SystemStats {
                 this.update_interval = parseFloat(inter);
             }
 
-            this.change_update_interval().then(() => {
+            this.change_update_interval(this.update_interval).then(() => {
                 resolve(true);
             })
         })
@@ -45,15 +45,14 @@ class _SystemStats {
     /**
      * Changes the update interval for retreiving the system stats.
      * @param  new_interval Integer value containing the new interval to use.
-     * @param set Boolean value that defauults to false. If true then it will change the actual value of the interval in settings.
      */
-    change_update_interval (interval = this.update_interval, set = false) {
+    change_update_interval (interval = this.update_interval) {
         return new Promise((resolve, reject) => {
-            if (set) {
-                localStorage.setItem("global-update-interval", parseFloat(interval));
-                this.update_interval = parseFloat(interval);
-            }
+
+            localStorage.setItem("global-update-interval", parseFloat(interval));
+            this.update_interval = parseFloat(interval);
     
+            clearInterval(this.update_loop)
             // set the actual update interval
             this.update_loop = setInterval(() => {
                 this.run_on_interval();
@@ -68,11 +67,9 @@ class _SystemStats {
      * Runs contents of function every time the interval is to be run.
      */
     run_on_interval () {
-        console.time("interval");
         this.CPU.get_cpu_usage();
         this.MEMORY.get_current_stats();
         this.NETWORK.get_current_network_stats();
-        console.timeEnd("interval");
     }
 
 

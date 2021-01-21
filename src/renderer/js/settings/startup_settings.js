@@ -6,7 +6,10 @@ let allow_prev_cache = document.getElementById("allow-previous-cache");
 
 
 let startup_preferences, open_startup, allow_cache;
-
+/**
+ * This funstion takes the settings and communicates over IPC to retreive the settings for startup on windows launch. Then toggles the html forum to match the correct value.
+ * @param  settings The instance of the settings class.
+ */
 function get_startup_settings_and_load (settings) {
     
     open_startup = settings.open_startup;
@@ -24,6 +27,9 @@ function get_startup_settings_and_load (settings) {
     
 }
 
+/**
+ * Communicate over IPC and change the sgtartup settings via IPC
+ */
 function change_startup_settings() {
     ipcRenderer.send("set-auto-start", !open_startup);
     open_startup = !open_startup;

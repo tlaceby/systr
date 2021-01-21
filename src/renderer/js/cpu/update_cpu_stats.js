@@ -33,20 +33,19 @@ function update_main_stats (recent, most_recent) {
     update_line_chart_cpu (chart_cpu, recent.used, recent.user_used, recent.system_used)
 }
 
-localStorage.setItem("max-graph-time", "60"); 
-let MAX_GRAPH_TIME = localStorage.getItem("max-graph-time");
-
-if (typeof MAX_GRAPH_TIME !== "string") {
-    localStorage.setItem("max-graph-time", "60"); 
-    MAX_GRAPH_TIME = 60;
-} else {
-    MAX_GRAPH_TIME = parseInt(MAX_GRAPH_TIME);
-}
-
 let update_cpu_interval;
 let first_run = true;
 let current_interval_to_run = 0;
 _memory.allow_rendering_updates = false;
+
+    MAX_GRAPH_TIME = localStorage.getItem("max-graph-time");
+
+    if (typeof MAX_GRAPH_TIME !== "string") {
+        localStorage.setItem("max-graph-time", "60"); 
+        MAX_GRAPH_TIME = 60;
+    } else {
+        MAX_GRAPH_TIME = parseInt(MAX_GRAPH_TIME);
+    }
 
 
 APP_STATE.on("ready", () => {
@@ -63,13 +62,13 @@ APP_STATE.on("ready", () => {
  */
 function change_render_interval_cpu () {
     clearInterval(update_cpu_interval)
-    current_interval_to_run = _cpu.update_interval;
-    create_initial_table_timestamp(_cpu.update_interval);
+    current_interval_to_run = SystemStats.update_interval;
+    create_initial_table_timestamp(SystemStats.update_interval);
     update_cpu_interval = setInterval(() => {
         run_on_cpu_interval();
     }, SystemStats.update_interval)
     
-    set_labels(_cpu.update_interval, MAX_GRAPH_TIME, chart_cpu)
+    set_labels(current_interval_to_run, MAX_GRAPH_TIME, chart_cpu)
 }
 
 /**
@@ -87,8 +86,8 @@ function run_on_cpu_interval () {
         }
 
         
-        if (current_interval_to_run != _cpu.update_interval) {
-            console.log(`Old Interval:L ${current_interval_to_run}, newInterval: ${_cpu.update_interval}`)
+        if (current_interval_to_run != SystemStats.update_interval) {
+            console.log(`Old Interval:L ${current_interval_to_run}, newInterval: ${SystemStats.update_interval}`);
             change_render_interval_cpu()
         }
     } else {
@@ -211,8 +210,6 @@ function set_labels (int, max, chart) {
 
 function update_line_chart_cpu (chart, cpu_data, user_data, system_data) {
 
-    console.log("drwaing chart")
-
     chart.data.datasets[0].data.unshift(cpu_data[0])
     chart.data.datasets[1].data.unshift(user_data[0])
     chart.data.datasets[2].data.unshift(system_data[0])
@@ -226,3 +223,6 @@ function update_line_chart_cpu (chart, cpu_data, user_data, system_data) {
 
 //addData(chart, current_viewed_process.cpu_data)
 
+APP_STATE.on("label-change", (e) => {
+    set_labels(current_interval_to_run, MAX_GRAPH_TIME, chart_cpu);
+})
