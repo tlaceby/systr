@@ -8,7 +8,9 @@ let time_tr = document.getElementById("time-tr");
 
 
 /**
- * 
+ * This will actually render the CPU stats and fill in the dom. This function is GPU intensive and should be run little.
+ * @param recent Recent stats contained in the _cpu array
+ * @param  most_recent This array contains the common most recent stats.
  */
 function update_main_stats (recent, most_recent) {
 
@@ -27,10 +29,10 @@ function update_main_stats (recent, most_recent) {
     utilization_tag_two.innerHTML = ` ${used}%`;
     system_used.innerHTML = ` ${most_recent.system}%`;
 
+    update_line_chart_cpu (chart_cpu, recent.used, recent.user_used, recent.system_used);
     draw_chart(used,cpu_percent_chart);
     draw_chart(most_recent.system,system_percent_chart);
     draw_chart(most_recent.user , user_percent_chart);
-    update_line_chart_cpu (chart_cpu, recent.used, recent.user_used, recent.system_used)
 }
 
 let update_cpu_interval;
@@ -48,6 +50,7 @@ _memory.allow_rendering_updates = false;
     }
 
 
+// RUN's on startup after the main data is ready to be rendered at first. 
 APP_STATE.on("ready", () => {
     if(startup_finished) {
         show_static_cpu_stats()
@@ -135,31 +138,41 @@ function show_static_cpu_stats () {
  * It loops through each table and then plots the new tr data
  */
 function update_table_data (recent) {
-     for (let i = 0; i < used_tr.children.length; i++) {
-         if (recent.used.length <= i) {
-             used_tr.children[i].innerHTML = `( n/a )%`;
-         } else {
-             if (i == 0) {
-                used_tr.children[i].innerHTML = `Used`;
-             } else {
-                used_tr.children[i].innerHTML = ` ${recent.used[i].toFixed(1)}%`;
-             }
-         }
-         
-     }
 
-     for (let i = 0; i < available_tr.children.length; i++) {
-        if (recent.free.length <= i) {
-            available_tr.children[i].innerHTML = `( n/a )%`;
-        } else {
-            if (i == 0) {
-                available_tr.children[i].innerHTML = `Available`;
+    if (isInViewport(used_tr)) {
+
+        for (let i = 0; i < used_tr.children.length; i++) {
+            if (recent.used.length <= i) {
+                used_tr.children[i].innerHTML = `( n/a )%`;
             } else {
-                available_tr.children[i].innerHTML = `${recent.free[i].toFixed(1)}%`;
+                if (i == 0) {
+                   used_tr.children[i].innerHTML = `Used`;
+                } else {
+                   used_tr.children[i].innerHTML = ` ${recent.used[i].toFixed(1)}%`;
+                }
             }
+            
         }
-        
+   
+        for (let i = 0; i < available_tr.children.length; i++) {
+           if (recent.free.length <= i) {
+               available_tr.children[i].innerHTML = `( n/a )%`;
+           } else {
+               if (i == 0) {
+                   available_tr.children[i].innerHTML = `Available`;
+               } else {
+                   available_tr.children[i].innerHTML = `${recent.free[i].toFixed(1)}%`;
+               }
+           }
+           
+       }
+
+
+    } else {
+        console.log("not rendering - "+ elem.id)
     }
+
+     
 }
 
 
@@ -182,6 +195,10 @@ function create_initial_table_timestamp (interval) {
     }
 }
 
+/**
+ * This switches the layout for displaying Heavy and Light Stats. Will hide correct elements on setting change.
+ * @param settings  The settings Class
+ */
 function display_correct_cpu_layout (settings) {
 
     if(settings.theme.layout_profile == "Default" || settings.theme.layout_profile == "Minimal") {
@@ -195,15 +212,27 @@ function display_correct_cpu_layout (settings) {
 
 }
 
-
+/**
+ * Draws a horizontal bar chart for a corseponding element given a) percentage and b) element's Node value.
+ * @param percentage The percentage of the chart to fill wide.
+ * @param elem The actual DOM element for the chart.
+ * @param time Not Implimented yet. But this is the delay between the startr and endTime of the rendering amnimation.
+ */
 function draw_chart (percentage, elem, time) {
-    let current_percentage = elem.style,width;
 
-    if (percentage <= 1) percentage = Math.random();
-    elem.style.width = percentage + "%";
+    if (isInViewport(elem)) {
+        if (percentage <= 1) {percentage = Math.random();}
+        elem.style.width = percentage + "%";
+    }
 
 }
 
+/**
+ * Sets the labels for the Chart.js Chart and determines the correct scale to use based on min, max and data values.
+ * @param {*} int The interval in MiliSeconds. if the max length of the chart is in Time then make sure it is the form of 1000 = 1s.
+ * @param {*} max Max amount of X-Cordinates.
+ * @param {*} chart The DOM element of the chart to be rendere3d and efected.
+ */
 function set_labels (int, max, chart) {
     let count = 0;
     let labels = [];
@@ -218,15 +247,18 @@ function set_labels (int, max, chart) {
 
 function update_line_chart_cpu (chart, cpu_data, user_data, system_data) {
 
-    chart.data.datasets[0].data.unshift(cpu_data[0])
-    chart.data.datasets[1].data.unshift(user_data[0])
-    chart.data.datasets[2].data.unshift(system_data[0])
-    if (chart.data.datasets[0].data.length > (MAX_GRAPH_TIME)) {
-        chart.data.datasets[0].data.pop()
-        chart.data.datasets[1].data.pop()
-        chart.data.datasets[2].data.pop()
+    // only render chart if its in view
+    if (isInViewport(document.getElementById("cpuChart"))) {
+        chart.data.datasets[0].data.unshift(cpu_data[0])
+        chart.data.datasets[1].data.unshift(user_data[0])
+        chart.data.datasets[2].data.unshift(system_data[0])
+        if (chart.data.datasets[0].data.length > (MAX_GRAPH_TIME)) {
+            chart.data.datasets[0].data.pop()
+            chart.data.datasets[1].data.pop()
+            chart.data.datasets[2].data.pop()
+        }
+        chart.update();
     }
-    chart.update()
 }
 
 //addData(chart, current_viewed_process.cpu_data)

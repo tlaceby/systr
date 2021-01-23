@@ -40,7 +40,7 @@ const createWindow = () => {
   });
 
   
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   const loading_window = new BrowserWindow({
     minHeight: 170,

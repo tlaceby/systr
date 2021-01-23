@@ -2,6 +2,9 @@ let show_gb_memory_stats = false;
 let has_shown_static_mem_stats = false;
 
 
+/**
+ * Used to toggle the value format for the memory page. GB or % Can be toggled and this function simply inverts the values.
+ */
 function toggle_mem_mode () {
 
     if (show_gb_memory_stats) document.getElementById("mem-mode-btn").value = "Toggle Metric GB"
@@ -13,7 +16,7 @@ function toggle_mem_mode () {
 }
 
 /**
- * 
+ * Update and render the memory stats on the DOM.
  */
 function update_main_mem_stats (recent_stats, totalmem, profile) {
 
@@ -84,7 +87,13 @@ function show_static_mem_stats (_memory) {
     mem_dims_total.innerHTML = ` ${_memory.num_modules} Modules`;
     mem_voltage.innerHTML = ` ${_memory.mem_voltage}`;
     mem_form_factor.innerHTML = `${_memory.formFactor}`;
+    console.log(_memory.formFactor)
 
+    // check for wierd or n/a values and replace it with N/A
+    if (_memory.mem_voltage - 0) {mem_voltage.innerHTML = ` N/A`;}
+    if (_memory.formFactor == "") {mem_form_factor.innerHTML = ` N/A`;}
+
+    // Draw the stationary Bar Charts
     draw_chart(parseFloat(_memory.recent_data.mem_free[0] * 100).toFixed(2),memory_free_chart);
     draw_chart(parseFloat(_memory.recent_data.mem_used[0] * 100).toFixed(2), memory_used_chart);
 }
