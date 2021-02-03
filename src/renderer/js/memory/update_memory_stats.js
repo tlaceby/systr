@@ -87,7 +87,6 @@ function show_static_mem_stats (_memory) {
     mem_dims_total.innerHTML = ` ${_memory.num_modules} Modules`;
     mem_voltage.innerHTML = ` ${_memory.mem_voltage}`;
     mem_form_factor.innerHTML = `${_memory.formFactor}`;
-    console.log(_memory.formFactor)
 
     // check for wierd or n/a values and replace it with N/A
     if (_memory.mem_voltage - 0) {mem_voltage.innerHTML = ` N/A`;}

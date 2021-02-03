@@ -1,4 +1,3 @@
-const { memLayout } = require("systeminformation");
 
 let cpu_current_layout = undefined;
 let has_shown_static_cpu_stats = false;

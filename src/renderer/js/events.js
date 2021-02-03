@@ -1,6 +1,3 @@
-let ev = require('events');
-let APP_STATE = new ev.EventEmitter();
-    
 
 
 ipcRenderer.on('use-minimal-usage', () => {
