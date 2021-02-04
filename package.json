@@ -1,8 +1,8 @@
 {
   "name": "systr",
   "productName": "systr",
-  "version": "1.3.7",
-  "description": "System Tracking app for Windows 10.",
+  "version": "1.4.0",
+  "description": "System Analysis Application for Windows 10 & OSX. View and Track CPU, Memory, Network And Application performance.",
   "main": "src/index.js",
   "scripts": {
     "start": "electron .",
@@ -76,11 +76,8 @@
     "child_process": "^1.0.2",
     "dotenv": "^8.2.0",
     "electron-json-storage": "^4.2.0",
-    "electron-reload": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0",
     "electron-updater": "^4.3.5",
-    "node-powershell": "^4.0.0",
-    "node-python-communication": "^1.0.4",
     "os-utils": "0.0.14",
     "systeminformation": "^4.27.11"
   },

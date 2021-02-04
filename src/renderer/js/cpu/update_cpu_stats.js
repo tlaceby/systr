@@ -68,6 +68,7 @@ function change_render_interval_cpu () {
     create_initial_table_timestamp(SystemStats.update_interval);
     update_cpu_interval = setInterval(() => {
         run_on_cpu_interval();
+        update_network_stats() // updates the small network _stats too
     }, SystemStats.update_interval)
     
     set_labels(current_interval_to_run, MAX_GRAPH_TIME, chart_cpu)

@@ -10,18 +10,12 @@ let mainWindow, processPage;
 
 // State for Windows 
 let processWindowCreated = false;
-//
-
-
-var os 	= require('os-utils');
-const main = require('electron-reload');
+//;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
   app.quit();
 }
-
-require('electron-reload')(__dirname);
 
 const createWindow = () => {
   autoUpdater.checkForUpdatesAndNotify();
@@ -41,7 +35,7 @@ const createWindow = () => {
   });
 
   
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools();
 
   const loading_window = new BrowserWindow({
     minHeight: 170,
@@ -59,7 +53,7 @@ const createWindow = () => {
   }
 
   const showMainWindow = () => {
-    mainWindow.show()
+    mainWindow.show();
   }
 
 

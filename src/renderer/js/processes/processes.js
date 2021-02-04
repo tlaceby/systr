@@ -1,4 +1,5 @@
-
+let si = require("systeminformation")
+require("chart.js")
 let ALL_PROCESSES = []
 let is_viewing_process = false;
 let update_graph_interval;

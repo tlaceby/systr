@@ -1,0 +1,16 @@
+.top-space {
+    padding-top: 60px;
+}
+
+.minimal-network-bar {
+    width: 80vw;
+    margin: auto;
+   
+}
+
+#network-usage-minimal {
+    -webkit-app-region: no-drag;
+    margin: auto;
+    width: 82vw;
+    overflow: visible;
+}
