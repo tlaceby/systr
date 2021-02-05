@@ -1,7 +1,7 @@
 {
   "name": "systr",
   "productName": "systr",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "System Analysis Application for Windows 10 & OSX. View and Track CPU, Memory, Network And Application performance.",
   "main": "src/index.js",
   "scripts": {

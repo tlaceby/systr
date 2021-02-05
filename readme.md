@@ -1,16 +1,18 @@
 ## System Tracker  
 https://systr.tech/
 
-* systr is a system tracking and monitoring application for Windows, & OSX. The application is built using electron along with core js and python libraries.
+* systr is a system tracking and monitoring application for Windows, & OSX. The application is built using electron along with NodeJS.
 
 ### Objectives / Future Plans for Development
 
-* Add UI for Memory, Network / IO & System Overview Page
-* Auto Updater Support and Release API for custom releases.
+* **Add & Style System Overview and Network Pages.** 
+* Custom notifications and settings for when usage of x part become too high.
+* Speed and Launch time improvements. Target for *2seconds* of launch time and no *CPU usage above 2%* over a duration of a minute or so.
 * Custom Theme Support
   * Allow custom JS, CSS, and HTML to be put into a community folder and then have a public api for any js code to access. 
   * The API will only allow variables I create and make private ***Privacy Reasons***
   * Plans for this will be further down below and I am experimenting with this concept in a separate code base.
+* More customizability for what types of data are shown. Currently its all static and you cannot disable bar charts or graphs without changing themes. I want to add custom checkboxes for enabling and disabling at runtime each and every type of UI element.
 
 
 
@@ -18,21 +20,47 @@ https://systr.tech/
 
 * Settings and Customizable UI (Kind of)
   * Dark and Light Theme support
+  
   * Open at startup of machine for windows **"not osx"**
-  * two custom ui themes for how data is presented.
 
-* CPU Tracking
+  * Two custom ui themes for how data is presented.
+  
+    * One heavy with tables and another light with graphs and charts.
+  
+      
+  
+* **CPU Tracking**
 
-  * Basic Usage and Utilization stats are implemented
+  * Basic Usage and Utilization stats are implemented.
+  * Model, make, manufacturer, clock.
+  * System, User, and Overall % used in real time.
+  * Nice Graph to see usage over a custom interval time.
+  
+* **Memory Tracking**
 
+  * GB used and free
+  * % Free and Used
+
+* **Network Tracking**
+
+  * Upload and Download / second
+
+* **Process window**
+
+  * Track and view any process running on your computer
+  * see a real time graph and track how much the process is taking up on your system.
+  * search and fast load times for tracking a process.
+
+* Interval control for how often data is updated.
+  
   ## Stable Release
   
-  Most stable release is 1.2.8 currently.
+  Most stable release is *1.4.0* currently.
   
-* ## Development Bugs And Notes
+  ##  Development Bugs And Notes
+  
+* Currently the overhead at startup is way to large and upwards of 3 seconds at average on my system. The target goal is 2seconds on all systems with a 4core CPU and decent ram amount. 
 
-* The current build I am focusing on is 1.2.9 and it has noticeable spikes in CPU usage during the launching of a new python process. The app itself does not cause much extra performance overhead, however the widows defender is pegged at around 16% on my Ryzen 5 2600 system. 
-
-* I think the main way to fix this is to not launch any python processes unless one is bugged or crashed. Then the windows defender will not be constantly trying to check this process. 
+* I also have finally removed the security vulnerabilities associated with Node Integration being allowed in the render processes. However this is still available to be used in the process window.
 
   
