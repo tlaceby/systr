@@ -247,18 +247,16 @@ function set_labels (int, max, chart) {
 
 function update_line_chart_cpu (chart, cpu_data, user_data, system_data) {
 
-    // only render chart if its in view
-    if (isInViewport(document.getElementById("cpuChart"))) {
-        chart.data.datasets[0].data.unshift(cpu_data[0])
-        chart.data.datasets[1].data.unshift(user_data[0])
-        chart.data.datasets[2].data.unshift(system_data[0])
-        if (chart.data.datasets[0].data.length > (MAX_GRAPH_TIME)) {
-            chart.data.datasets[0].data.pop()
-            chart.data.datasets[1].data.pop()
-            chart.data.datasets[2].data.pop()
-        }
-        chart.update();
+
+    chart.data.datasets[0].data.unshift(cpu_data[0])
+    chart.data.datasets[1].data.unshift(user_data[0])
+    chart.data.datasets[2].data.unshift(system_data[0])
+    if (chart.data.datasets[0].data.length > (MAX_GRAPH_TIME)) {
+        chart.data.datasets[0].data.pop()
+        chart.data.datasets[1].data.pop()
+        chart.data.datasets[2].data.pop()
     }
+    chart.update();
 }
 
 //addData(chart, current_viewed_process.cpu_data)
