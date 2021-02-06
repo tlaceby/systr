@@ -14,3 +14,15 @@
     width: 82vw;
     overflow: visible;
 }
+
+.minimal-card-network {
+    cursor: pointer;
+    width: 200px;
+    padding: 10px 40px;
+    border-radius: 8px;
+    text-align: center;
+    margin: auto;
+    color: #ebebeb;
+    margin-top: 2px;
+    background-color: transparent;
+}

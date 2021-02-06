@@ -15,7 +15,6 @@
     text-align: center;
     margin: auto;
     color: #ebebeb;
-    
     background-color: #252525;
 }
 
@@ -23,7 +22,7 @@
 .cpu-cards-minimal {
     display: grid;
     margin: auto;
-    width: 70%;
+    width: 80%;
     justify-content: center;
     grid-template-columns: 50% 50%;
 }
@@ -35,6 +34,16 @@
     font-style: italic;
     color: #f6f6f6;
 }
+
+.percent-text-small {
+    margin-top: 60px;
+    font-size: 31px;
+    font-weight: 600;
+    font-style: italic;
+    color: #f6f6f6;
+}
+
+
 
 .sub-text-minimal {
     margin-top: 0px;
